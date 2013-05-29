@@ -1,0 +1,11 @@
+*swp
+*~
+notes.mkd
+
+system
+vendor/
+application/cache
+
+# for security
+application/config/config.php
+application/config/database.php
