@@ -1,0 +1,19 @@
+# GDUT 新生网
+
+**施工中 WIP**
+
+-----------------
+
+## 开发环境搭建
+
+数据表导入请使用 schema.sql
+
+请另外复制 [CodeIgniter](https://github.com/EllisLab/CodeIgniter) 的 `system/`
+文件夹到根目录下。
+
+本地数据库配置请修改 `application/config/database.php.example` 到 `database.php`
+
+session 加密盐请自行设置，修改 `application/config/config.php.example`
+到 `config.php` 并设置 `encryption_key`
+
+请使用 [composer](http://getcomposer.org) 安装依赖。
