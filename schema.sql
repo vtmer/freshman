@@ -18,7 +18,7 @@ CREATE TABLE `fm_users_roles` (
 	FOREIGN KEY(`user_id`) REFERENCES `fm_users` (`id`),
 	FOREIGN KEY(`role_id`) REFERENCES `fm_roles` (`id`)
 );
-CREATE TABLE `fm_roles_perminssions` (
+CREATE TABLE `fm_roles_permissions` (
 	`role_id` int,
 	`permission_id` int,
 	FOREIGN KEY(`role_id`) REFERENCES `fm_roles` (`id`),
