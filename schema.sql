@@ -1,16 +1,33 @@
+DROP TABLE IF EXISTS `fm_users_roles`;
+DROP TABLE IF EXISTS `fm_user_metas`;
+DROP TABLE IF EXISTS `fm_post_metas`;
+DROP TABLE IF EXISTS `fm_posts_categories`;
+DROP TABLE IF EXISTS `fm_roles_permissions`;
+DROP TABLE IF EXISTS `fm_posts_tags`;
+DROP TABLE IF EXISTS `fm_categories`;
+DROP TABLE IF EXISTS `fm_tags`;
+DROP TABLE IF EXISTS `fm_sessions`;
+DROP TABLE IF EXISTS `fm_permissions`;
+DROP TABLE IF EXISTS `fm_roles`;
+DROP TABLE IF EXISTS `fm_posts`;
+DROP TABLE IF EXISTS `fm_users`;
 CREATE TABLE `fm_users` (
 	`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
 	`login_name` varchar(50),
 	`display_name` varchar(50),
-	`password` varchar(64)
+	`password` varchar(64),
+        UNIQUE KEY `login_name` (`login_name`),
+        UNIQUE KEY `display_name` (`display_name`)
 );
 CREATE TABLE `fm_roles` (
 	`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`name` varchar(255)
+	`name` varchar(255),
+        UNIQUE KEY `name` (`name`)
 );
 CREATE TABLE `fm_permissions` (
 	`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`pattern` varchar(255)
+	`pattern` varchar(255),
+        UNIQUE KEY `pattern` (`pattern`)
 );
 CREATE TABLE `fm_users_roles` (
 	`user_id` int,
@@ -36,7 +53,8 @@ CREATE TABLE `fm_posts` (
 );
 CREATE TABLE `fm_tags` (
 	`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`name` varchar(255) NOT NULL
+	`name` varchar(255) NOT NULL,
+        UNIQUE KEY `name` (`name`)
 );
 CREATE TABLE `fm_posts_tags` (
 	`post_id` int,
@@ -46,7 +64,8 @@ CREATE TABLE `fm_posts_tags` (
 );
 CREATE TABLE `fm_categories` (
 	`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`name` varchar(255) NOT NULL
+	`name` varchar(255) NOT NULL,
+        UNIQUE KEY `name` (`name`)
 );
 CREATE TABLE `fm_posts_categories` (
 	`post_id` int,
@@ -70,7 +89,8 @@ CREATE TABLE `fm_user_metas` (
 );
 CREATE TABLE `fm_sessions` (
 	`id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-	`key` varchar(64) UNIQUE NOT NULL,
+	`key` varchar(64) NOT NULL,
 	`user_id` int,
-	FOREIGN KEY(`user_id`) REFERENCES `fm_users` (`id`)
+	FOREIGN KEY(`user_id`) REFERENCES `fm_users` (`id`),
+        UNIQUE KEY `key` (`key`)
 );
