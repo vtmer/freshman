@@ -5,6 +5,7 @@ notes.mkd
 system
 vendor/
 application/cache
+application/logs
 
 # for security
 application/config/config.php

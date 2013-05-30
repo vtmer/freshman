@@ -67,5 +67,9 @@
 $route['default_controller'] = 'hello';
 $route['404_override'] = '';
 
+/* backend routes */
+$route['backend/login'] = 'backend/user/login';
+$route['backend/logout'] = 'backend/user/logout';
+
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

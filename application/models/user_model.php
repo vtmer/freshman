@@ -38,6 +38,49 @@ class User_model extends CI_Model {
         return $id;
     }
 
+    function create_session($username, $token) {
+        $query = $this->db
+            ->select('id')
+            ->get($this->table, 1);
+        if (!$query->result())
+            return false;
+
+        $user_id = $query->result()[0]->id;
+        $this->db->insert('sessions', array(
+            'key' => $token,
+            'user_id' => $user_id
+        ));
+        return $this->db->insert_id();
+    }
+
+    function destory_session($username, $token) {
+        $query = $this->db
+            ->select('key')
+            ->join($this->table, 'users.id = sessions.user_id')
+            ->get('sessions');
+        if (!$query->result())
+            return false;
+
+        /* ensure the token is belongs to the user */
+        foreach ($query->result() as $session)
+            if ($session->key === $token) {
+                $this->db
+                    ->where(array('key' => $token))
+                    ->delete('sessions');
+                return true;
+            }
+        return false;
+    }
+
+    function generate_token($username) {
+        $salt = $this->config->item('encryption_key');
+        $token = $this->encrypt($username . time() . $salt);
+        if ($this->create_session($username, $token))
+            return $token;
+        else
+            return false;
+    }
+
     function validate($login_name, $display_name, $role_name) {
         /* ensure the name is unique */
         $query = $this->db
@@ -91,5 +134,33 @@ class User_model extends CI_Model {
         if ($query->result())
             return true;
         return false;
+    }
+
+    function check_session($username, $sess_token) {
+        $query = $this->db
+            ->select('key')
+            ->join('sessions', 'sessions.user_id = users.id')
+            ->get('users', array('login_name' => $username));
+        if (!$query->result())
+            return false;
+        foreach ($query->result() as $token)
+            if ($sess_token == $token->key)
+                return true;
+        return false;
+    }
+
+    function check_password($username, $password) {
+        $salt = $this->config->item('encryption_key');
+        $encry_pass = $this->encrypt($password . $salt);
+
+        $query = $this->db
+            ->select('password')
+            ->get($this->table, 1);
+        if (!$query->result())
+            return false;
+        if (!($query->result()[0]->password === $encry_pass))
+            return false;
+
+        return true;
     }
 }

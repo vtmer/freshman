@@ -79,7 +79,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'email', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('database');
+$autoload['libraries'] = array('database', 'twig');
 
 
 /*
@@ -95,7 +95,7 @@ $autoload['libraries'] = array('database');
 |	$autoload['drivers'] = array('session', 'cache');
 */
 
-$autoload['drivers'] = array();
+$autoload['drivers'] = array('session');
 
 
 /*
