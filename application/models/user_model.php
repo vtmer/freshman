@@ -1,5 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
+/*
+ * freshman
+ *
+ * 新生网后台
+ *
+ * @author     hbc
+ */
+
 class User_model extends CI_Model {
     private $table = 'users';
 
