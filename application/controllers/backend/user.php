@@ -62,8 +62,6 @@ class User extends CI_Controller {
                     'username' => $payload['username'],
                     'token' => $token
                 ));
-                var_dump($this->session->all_userdata());
-                return;
                 redirect($next);
             } else {
                 // 登录失败
