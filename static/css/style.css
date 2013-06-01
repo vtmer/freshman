@@ -1,0 +1,169 @@
+body {
+  background-color: #fefefe; }
+
+i[class^="icon-"] {
+  vertical-align: baseline; }
+
+.span-merge {
+  margin-left: 0; }
+
+.modal {
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px; }
+  .modal form {
+    margin-bottom: 10px; }
+    .modal form input[type=text],
+    .modal form input[type=password] {
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      height: 14px;
+      font-size: 14px;
+      border: 1px solid #f0f0f0; }
+  .modal .form-horizontal .control-group {
+    margin-bottom: 10px; }
+  .modal .form-horizontal .control-label {
+    width: 50px;
+    text-align: right; }
+  .modal .form-horizontal .controls {
+    margin-left: 60px; }
+    .modal .form-horizontal .controls input[type=password],
+    .modal .form-horizontal .controls input[type=text] {
+      /* FIXME fullfill */
+      width: 97.5%; }
+    .modal .form-horizontal .controls .btn {
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      padding: 5px 10px;
+      margin-left: 10px; }
+    .modal .form-horizontal .controls .btn-inverse {
+      color: #000;
+      background-color: #f6f6f6; }
+
+.modal-header {
+  padding: 10px 15px;
+  border-bottom: 0px; }
+  .modal-header .close {
+    margin-top: 0;
+    font-size: 15px;
+    line-height: 15px; }
+  .modal-header h3 {
+    font-weight: normal;
+    font-size: 22.5px;
+    line-height: 22.5px; }
+
+#login {
+  display: -webkit-flex;
+  display: flex;
+  height: 650px; }
+
+#login-form {
+  margin: auto; }
+  #login-form input {
+    margin: 5px auto;
+    border-color: #f0f0f0; }
+    #login-form input:focus {
+      border-color: #3498db; }
+  #login-form input[type="text"],
+  #login-form input[type="password"] {
+    background-color: #f0f0f0; }
+
+#gb-nav {
+  /* fix global nav height */
+  height: 40px;
+  font-size: 14px;
+  background-color: #f0f0f0; }
+  #gb-nav .navbar-inner {
+    background-color: #fefefe;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
+  #gb-nav .logo:hover {
+    color: #e74c3c; }
+
+#posts {
+  -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  padding-left: 20px;
+  padding-right: 20px;
+  min-height: 575px; }
+  #posts header {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #efefef; }
+    #posts header h1 {
+      display: inline;
+      font-weight: normal; }
+    #posts header .btn-group .btn {
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      border-radius: 2px;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1px; }
+  #posts .articles tr:hover a {
+    color: #1d6fa5; }
+  #posts .articles td {
+    width: 1%;
+    white-space: nowrap;
+    font-size: 12px;
+    border: 0; }
+    #posts .articles td.title {
+      width: 99%;
+      font-size: 16px; }
+    #posts .articles td a {
+      color: #000;
+      text-decoration: none; }
+    #posts .articles td .tag {
+      border-radius: 4px;
+      background-color: #bdc3c7;
+      color: #fff;
+      cursor: pointer;
+      margin-right: 5px;
+      margin-left: 5px;
+      line-height: 15px;
+      padding: 6px 8px 5px 8px;
+      position: relative; }
+
+#command-nav {
+  border: 1px solid #dedede;
+  min-height: 575px;
+  -webkit-box-shadow: 0px 1px -10px 1px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 1px -10px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 1px -10px 1px rgba(0, 0, 0, 0.1); }
+  #command-nav ul {
+    margin-top: 70px; }
+    #command-nav ul li a {
+      height: 55px;
+      -webkit-border-radius: 0;
+      -moz-border-radius: 0;
+      border-radius: 0;
+      -webkit-transition: 0.75s;
+      -moz-transition: 0.75s;
+      -o-transition: 0.75s;
+      transition: 0.75s;
+      color: #34495e;
+      text-decoration: none;
+      font-size: 25px;
+      line-height: 55px;
+      text-align: center;
+      border-top: 1px solid #ededed; }
+      #command-nav ul li a:hover {
+        color: #fff;
+        background-color: #e74c3c; }
+    #command-nav ul li.active a {
+      margin-right: -3px;
+      background-color: #fefefe; }
+      #command-nav ul li.active a:hover {
+        margin-left: 0;
+        color: #34495e; }
+    #command-nav ul li:last-child {
+      border-bottom: 1px solid #ededed; }

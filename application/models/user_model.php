@@ -138,14 +138,15 @@ class User_model extends CI_Model {
 
     function check_session($username, $sess_token) {
         $query = $this->db
-            ->select('key')
-            ->join('sessions', 'sessions.user_id = users.id')
-            ->get('users', array('login_name' => $username));
+            ->select('sessions.key')
+            ->join('users', 'sessions.user_id = users.id')
+            ->get_where('sessions', array('login_name' => $username));
         if (!$query->result())
             return false;
-        foreach ($query->result() as $token)
-            if ($sess_token == $token->key)
+        foreach ($query->result() as $token) {
+            if ($sess_token === $token->key)
                 return true;
+        }
         return false;
     }
 

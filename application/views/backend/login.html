@@ -1,37 +1,24 @@
 {% extends 'backend/skel.html' %}
 
 {% block title %}
-login
+登录
 {% endblock %}
 
 {% block main %}
-<div class="login-wrapper">
-  <div class="container">
-    <div class="login-form">
-      {% if error %}
-      <p>{{ error }}</p>
-      {% endif %}
-      {{ form|raw }}
-        <div class="control-group">
-          <label for="username" class="control-label">Username:</label>
-          <div class="controls">
-            <input type="text" name="username" />
-          </div>
+    <div class="container">
+      <div id="login" class="row">
+        <div id="login-form" class="span4 offset4">
+          {{ form|raw }}
+            <input type="text" name="username"class="span4" placeholder="登录名" />
+            <input type="password" name="password" class="span4" placeholder="密码" />
+            {% if error %}
+            <input type="submit" class="btn btn-large btn-block btn-danger" value="{{ error }}" />
+            {% else %}
+            <input type="submit" class="btn btn-large btn-block btn-info" value="✔" />
+            {% endif %}
+          </form>
         </div>
-        <div class="control-group">
-          <label for="password" class="control-label">Password:</label>
-          <div class="controls">
-            <input type="password" name="password" />
-          </div>
-        </div>
-        <div class="control-group">
-          <div class="controls">
-            <input type="submit" class="btn" value="（\-_-)\┯━┯"/>
-          </div>
-        </div>
-      </form>
-      <!-- form end -->
+      </div>
     </div>
-  </div>
-</div>
+  </body>
 {% endblock %}
