@@ -54,10 +54,10 @@ class User extends CI_Controller {
 
         if ($this->form_validation->run()) {
             $payload = $this->input->post();
-            if ($this->model
-                ->check_password($payload['username'], $payload['password'])) {
+            $token = $this->model
+                ->login($payload['username'], $payload['password']);
+            if ($token) {
                 // 登录成功
-                $token = $this->model->generate_token($payload['username']);
                 $this->session->set_userdata(array(
                     'username' => $payload['username'],
                     'token' => $token
@@ -79,7 +79,7 @@ class User extends CI_Controller {
 
         $token = $this->session->userdata('token');
         $username = $this->session->userdata('username');
-        $this->model->destory_session($username, $token);
+        $this->model->logout($username, $token);
         $this->session->unset_userdata(array(
             'username' => '',
             'token' => ''
@@ -129,6 +129,6 @@ class User extends CI_Controller {
         $token = $this->session->userdata('token');
         $username = $this->session->userdata('username');
 
-        return $this->model->check_session($username, $token);
+        return $this->model->is_login($username, $token);
     }
 }
