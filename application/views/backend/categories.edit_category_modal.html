@@ -1,0 +1,23 @@
+    <div id="edit-category-modal-{{ category.id }}" class="modal hide fade edit-category">
+      <div class="modal-header">
+        <button type="button" data-dismiss="modal" class="close" aria-hidden="true">&times;</button>
+        <h3>修改栏目</h3>
+      </div>
+      <div class="modal-body">
+        <form action="" class="form-horizontal">
+          <div class="control-group">
+            <label class="control-label" for="name">栏目名</label>
+            <div class="controls">
+              <input placeholder="栏目名" type="text" name="name" value="{{ category.name }}"/>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="controls">
+              <a class="btn btn-success pull-left submit" href="#" data-category-id="{{ category.id }}">保存</a>
+              <button class="btn btn-inverse pull-left" type="button" data-dismiss="modal">取消</button>
+              <a class="btn btn-info remove pull-right" href="#" data-category-id="{{ category.id }}">删除</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>

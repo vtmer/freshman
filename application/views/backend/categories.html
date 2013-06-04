@@ -1,0 +1,40 @@
+{% extends 'backend/dashboard.admin.html' %}
+
+{% set current = 'categories' %}
+
+{% block main_section %}
+        <section id="categories" class="lists-wrapper span9 span-merge">
+          <header class="clearfix">
+            <h1>栏目分类</h1>
+            <div class="btn-group pull-right">
+              <a href="#create-category-modal" data-toggle="modal" role="button" class="btn btn-danger"><i class="icon-fixed-width icon-file"></i><span>创建</span></a>
+            </div>
+          </header>
+          <section>
+            <table class="lists categories table">
+              {% for category in categories %}
+              <tr>
+                <td class="icon">
+                  <i class="icon-large icon-folder-close"></i>
+                </td>
+                <td class="name">
+                  <a href="#edit-category-modal-{{ category.id }}" data-toggle="modal" role="button">{{ category.name }}</a>
+                </td>
+                <td class="posts-count">
+                  <p>有 {{ category.posts | length }} 篇文章</p>
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </section>
+        </section>
+      </section>
+{% endblock %}
+
+{% block modal %}
+  {{ parent() }}
+  {% include 'backend/categories.create_category_modal.html' %}
+  {% for category in categories %}
+  {% include 'backend/categories.edit_category_modal.html' %}
+  {% endfor %}
+{% endblock %}

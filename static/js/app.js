@@ -201,6 +201,100 @@
 
     })();
 
+    // create category 模块
+    (function() {
+        var modal, inpName;
+
+        modal = $('#create-category-modal');
+        inpName = $('input[name="name"]', modal);
+
+        $('a.submit', modal).click(function(e) {
+            var data, ok = true;
+
+            remove_errors();
+
+            if (!inpName.val()) {
+                set_error(inpName);
+                ok = false;
+            }
+            
+            if (!ok) {
+                e.preventDefault();
+                return;
+            }
+
+            data = {
+                name: inpName.val()
+            };
+
+            $.post(basic_uri + '/backend/category/create', data).success(function(resp) {
+                modal.modal('hide');
+                location.reload();
+            }).error(function(resp) {
+                var err = resp.responseJSON;
+
+                if (err.error === 'name')
+                    set_error(inpName);
+
+                e.preventDefault();
+            });
+        });
+    })();
+
+    // edit category 模块
+    (function () {
+        $('.edit-category a.submit').click(function(e) {
+            var cate_id = $(this).attr('data-category-id'),
+                modal, inpName, ok = true, data;
+
+            modal = $('#edit-category-modal-' + cate_id);
+            inpName = $('input[name="name"]', modal);
+
+            remove_errors();
+
+            if (!inpName.val()) {
+                set_error(inpName);
+                ok = false;
+            }
+
+            if (!ok) {
+                e.preventDefault();
+                return;
+            }
+            data = {
+                'name': inpName.val()
+            };
+
+            $.post(basic_uri + '/backend/category/' + cate_id + '/update', data)
+                .success(function(resp) {
+                    modal.modal('hide');
+                    location.reload();
+                }).error(function(resp) {
+                    console.log(resp);
+                    var err = resp.responseJSON;
+
+                    if (err.error === 'name') {
+                        set_error(inpName);
+                    }
+                });
+
+            e.preventDefault();
+        });
+
+        $('.edit-category a.remove').click(function(e) {
+            var cate_id = $(this).attr('data-category-id');
+
+            $.post(basic_uri + '/backend/category/' + cate_id + '/remove')
+                .success(function(resp) {
+                    location.reload();
+                }).error(function(resp) {
+                    console.log(resp);
+                });
+
+            e.preventDefault();
+        });
+    })();
+
     $('select[name="roles"]').select2({
         placeholder: "设定用户的角色",
         allowClear: true

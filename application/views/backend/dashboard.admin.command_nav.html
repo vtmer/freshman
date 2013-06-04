@@ -4,7 +4,7 @@
               <a href="#"><i class="icon-book"></i>{% if current != 'posts' %} 文章{% endif %}</a>
             </li>
             <li class={% if current == 'categories' %}"active"{% endif %}>
-              <a href="#"><i class="icon-th-large"></i>{% if current != 'categories' %} 类别{% endif %}</a>
+              <a href="{{ site_url('/backend/categories') }}"><i class="icon-th-large"></i>{% if current != 'categories' %} 类别{% endif %}</a>
             </li>
             <li class={% if current == 'users' %}"active"{% endif %}>
               <a href="{{ site_url('/backend/users') }}"><i class="icon-user"></i>{% if current != 'users' %} 用户{% endif %}</a>

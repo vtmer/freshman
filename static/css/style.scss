@@ -105,7 +105,13 @@ i[class^="icon-"] {
                 border-radius: 2px;
               
         padding: 5px 10px;
-        margin-left: 10px;
+
+        &.pull-right {
+          margin-left: 10px;
+        }
+        &.pull-left {
+          margin-right: 10px;
+        }
       }
 
       .btn-inverse {
@@ -287,6 +293,13 @@ i[class^="icon-"] {
 }
 
 #users {
+  td.name {
+    width: 99%;
+    font-size: 16px;
+  }
+}
+
+#categories {
   td.name {
     width: 99%;
     font-size: 16px;

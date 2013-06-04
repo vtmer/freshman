@@ -77,6 +77,11 @@ $route['backend/user/create'] = 'backend/admin_dashboard/user_create';
 $route['backend/user/(:num)/update'] = 'backend/admin_dashboard/user_edit/$1';
 $route['backend/users'] = 'backend/admin_dashboard/users';
 
+$route['backend/category/create'] = 'backend/admin_dashboard/category_create';
+$route['backend/category/(:num)/update'] = 'backend/admin_dashboard/category_edit/$1';
+$route['backend/category/(:num)/remove'] = 'backend/admin_dashboard/category_remove/$1';
+$route['backend/categories'] = 'backend/admin_dashboard/categories';
+
 $route['backend'] = 'backend/dashboard/index';
 $route['backend/admin'] = 'backend/admin_dashboard/index';
 

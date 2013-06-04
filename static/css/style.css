@@ -68,8 +68,11 @@ i[class^="icon-"] {
       -webkit-border-radius: 2px;
       -moz-border-radius: 2px;
       border-radius: 2px;
-      padding: 5px 10px;
-      margin-left: 10px; }
+      padding: 5px 10px; }
+      .modal .form-horizontal .controls .btn.pull-right {
+        margin-left: 10px; }
+      .modal .form-horizontal .controls .btn.pull-left {
+        margin-right: 10px; }
     .modal .form-horizontal .controls .btn-inverse {
       color: #000;
       background-color: #f6f6f6; }
@@ -176,6 +179,10 @@ i[class^="icon-"] {
   font-size: 16px; }
 
 #users td.name {
+  width: 99%;
+  font-size: 16px; }
+
+#categories td.name {
   width: 99%;
   font-size: 16px; }
 

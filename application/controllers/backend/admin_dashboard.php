@@ -27,6 +27,9 @@ class Admin_Dashboard extends Auth_Controller {
         redirect(site_url('/backend/users'));
     }
 
+    // user 部分
+    // --------------------------------------------------------------------
+
     // /backend/users
     public function users() {
         $admin_name = $this->config->item('role_name')['admin'];
@@ -175,6 +178,140 @@ class Admin_Dashboard extends Auth_Controller {
         $this->output->set_output(json_encode(
             array(
                 'ret' => 'update ok',
+                'id' => $id
+            )
+        ));
+    }
+    
+    // category 部分
+    // --------------------------------------------------------------------
+
+    // /backend/categries
+    public function categories() {
+        $this->load->model('category_model');
+        $categories = $this->category_model->get_all();
+
+        foreach ($categories as $category) {
+            $category->posts = $this->category_model->get_posts($category->id);
+        }
+
+        $display = array(
+            'user' => $this->user,
+            'categories' => $categories
+        );
+
+        $this->twig->display('backend/categories.html', $display);
+    }
+
+    // /backend/category/create
+    public function category_create() {
+        $this->output
+            ->set_content_type('application/json')
+            ->set_status_header('200');
+
+        $payload = $this->input->post();
+        $this->load->model('category_model');
+
+        if (!$this->category_model->is_unique($payload['name'])) {
+            $this->output->set_status_header('403');
+            $this->output->set_output(json_encode(
+                array('error' => 'name')
+            ));
+            return;
+        }
+
+        $category_id = $this->category_model->create($payload['name']);
+
+        if (!$category_id) {
+            $this->output->set_status_header('403');
+            $this->output->set_output(json_encode(
+                array('error' => 'create')
+            ));
+            return;
+        }
+        
+        $this->output->set_output(json_encode(
+            array(
+                'ret' => 'create ok',
+                'id' => $category_id
+            )
+        ));
+    }
+
+    // /backend/category/(num:id)/edit
+    public function category_edit($id) {
+        $this->output
+            ->set_content_type('application/json')
+            ->set_status_header('200');
+
+        $this->load->model('category_model');
+        $category = $this->category_model->get_by_id($id);
+        if (!$category) {
+            $this->output->set_status_header('404');
+            $this->output->set_output(json_encode(
+                array('error' => 'category not found')
+            ));
+            return;
+        }
+        $category = $category[0];
+
+        $payload = $this->input->post();
+
+        if ($category->name !== $payload['name'] && !$this->category_model
+            ->is_unique($payload['name'])) {
+            $this->output->set_status_header('403');
+            $this->output->set_output(json_encode(
+                array('error' => 'name')
+            ));
+            return;
+        }
+
+        $ret = $this->category_model->update($id, $payload['name']);
+        if (!$ret) {
+            $this->output->set_status_header('403');
+            $this->output->set_output(json_encode(
+                array('error' => 'update')
+            ));
+            return;
+        }
+        
+        $this->output->set_output(json_encode(
+            array(
+                'ret' => 'update ok',
+                'id' => $id
+            )
+        ));
+    }
+    
+    // /backend/category/(num:id)/remove
+    public function category_remove($id) {
+        $this->output
+            ->set_content_type('application/json')
+            ->set_status_header('200');
+
+        $this->load->model('category_model');
+        $category = $this->category_model->get_by_id($id);
+        if (!$category) {
+            $this->output->set_status_header('404');
+            $this->output->set_output(json_encode(
+                array('error' => 'category not found')
+            ));
+            return;
+        }
+        $category = $category[0];
+
+        $ret = $this->category_model->remove($category->id);
+        if (!$ret) {
+            $this->output->set_status_header('403');
+            $this->output->set_output(json_encode(
+                array('error' => 'remove')
+            ));
+            return;
+        }
+        
+        $this->output->set_output(json_encode(
+            array(
+                'ret' => 'removed',
                 'id' => $id
             )
         ));
