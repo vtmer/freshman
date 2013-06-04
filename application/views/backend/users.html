@@ -1,0 +1,41 @@
+{% extends 'backend/dashboard.admin.html' %}
+
+{% set current = 'users' %}
+
+{% block main_section %}
+        <section id="users" class="lists-wrapper span9 span-merge">
+          <header class="clearfix">
+            <h1>用户</h1>
+            <div class="btn-group pull-right">
+              <a href="#create-user-modal" data-toggle="modal" role="button" class="btn btn-danger"><i class="icon-fixed-width icon-file"></i><span>创建</span></a>
+            </div>
+          </header>
+          <section>
+            <table class="lists users table">
+              {% for user in users %}
+              <tr>
+                <td class="icon">
+                  {% if user.is_admin %}
+                  <i class="icon-large icon-user-md"></i>
+                  {% else %}
+                  <i class="icon-large icon-user"></i>
+                  {% endif %}
+                </td>
+                <td class="name">
+                  <a href="#edit-user-modal-{{ user.id }}" data-toggle="modal" role="button">{{ user.login_name }} / {{ user.display_name }}</a>
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </section>
+        </section>
+      </section>
+{% endblock %}
+
+{% block modal %}
+  {{ parent() }}
+  {% include 'backend/users.create_user_modal.html' %}
+  {% for user in users %}
+  {% include 'backend/users.edit_user_modal.html' %}
+  {% endfor %}
+{% endblock %}

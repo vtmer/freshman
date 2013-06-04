@@ -35,6 +35,15 @@ class User_model extends CI_Model {
             return $user;
     }
 
+    public function get_by_id($user_id) {
+        return $this->db
+            ->get_where('users', array('id' => $user_id))->result();
+    }
+
+    public function get_all_users() {
+        return $this->db->get('users')->result();
+    }
+
     /*
      * login
      *
@@ -73,11 +82,118 @@ class User_model extends CI_Model {
             ->delete('sessions');
     }
 
+    public function create($lname, $dname, $pwd, $roles) {
+        if (!$this->is_unique_login_name($lname))
+            return false;
+        if (!$this->is_unique_display_name($dname))
+            return false;
+
+        $this->db->insert('users', array(
+            'login_name' => $lname,
+            'display_name' => $dname,
+            'password' => $this->encrypt($pwd)
+        ));
+        $user_id = $this->db->insert_id();
+        if (!$user_id)
+            return false;
+
+        for ($i = 0;$i < count($roles);$i++) {
+            $this->db->insert('users_roles', array(
+                'user_id' => $user_id,
+                'role_id' => $roles[$i]
+            ));
+        }
+        return $user_id;
+    }
+
+    public function update($user_id, $lname, $dname, $pwd, $roles) {
+        $update = array(
+            'login_name' => $lname,
+            'display_name' => $dname
+        );
+        if ($pwd)
+            $update['password'] = $this->encrypt($pwd);
+        $this->db
+            ->where('id', $user_id)
+            ->update('users', $update);
+
+        // 先把之前的用户组信息删除
+        $this->db
+            ->where('user_id', $user_id)
+            ->delete('users_roles');
+        for ($i = 0;$i < count($roles);$i++) {
+            $this->db->insert('users_roles', array(
+                'user_id' => $user_id,
+                'role_id' => $roles[$i]
+            ));
+        }
+
+        return $user_id;
+    }
+
+    public function update_display_name($user_id, $display_name) {
+        if (!$this->is_unique_display_name($display_name))
+            return false;
+
+        $this->db
+            ->where('id', $user_id)
+            ->update('users', array('display_name' => $display_name));
+        return true;
+    }
+
+    public function update_password($user_id, $password) {
+        $this->db
+            ->where('id', $user_id)
+            ->update('users', array('password' => $this->encrypt($password)));
+        return true;
+    }
+
     public function is_login($username, $token) {
         $ret = $this->get_by_token($username, $token);
         if ($ret)
             return true;
         return false;
+    }
+
+    public function get_roles($user_id) {
+        $query = $this->db
+            ->join('roles', 'roles.id = users_roles.role_id')
+            ->get_where('users_roles', array('users_roles.user_id' => $user_id));
+        return $query->result();
+    }
+
+    public function is_role($user_id, $role_name) {
+        $roles = $this->get_roles($user_id);
+
+        foreach ($roles as $role)
+            if ($role->name === $role_name)
+                return true;
+        return false;
+    }
+
+    public function is_active($user_id) {
+        $query = $this->db
+            ->select('active')
+            ->get_where('users', array('id' => $user_id), 1);
+        if (!$query->result())
+            return false;
+        return (intval($query->result()[0]->active) === 1);
+    }
+
+    protected function is_unique($field, $value) {
+        $query = $this->db
+            ->get_where('users', array($field => $value));
+        if ($query->result())
+            return false;
+        return true;
+    }
+
+    public function is_unique_display_name($display_name) {
+        return $this->is_unique('display_name', $display_name);
+    }
+
+    public function is_unique_login_name($login_name) {
+        return $this->is_unique('login_name', $login_name);
     }
 
     private function encrypt($raw) {

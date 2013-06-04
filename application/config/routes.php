@@ -70,6 +70,15 @@ $route['404_override'] = '';
 /* backend routes */
 $route['backend/login'] = 'backend/user/login';
 $route['backend/logout'] = 'backend/user/logout';
+$route['backend/deactive'] = 'backend/user/deactive';
+
+$route['backend/self/update'] = 'backend/dashboard/self_update';
+$route['backend/user/create'] = 'backend/admin_dashboard/user_create';
+$route['backend/user/(:num)/update'] = 'backend/admin_dashboard/user_edit/$1';
+$route['backend/users'] = 'backend/admin_dashboard/users';
+
+$route['backend'] = 'backend/dashboard/index';
+$route['backend/admin'] = 'backend/admin_dashboard/index';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

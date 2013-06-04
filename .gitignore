@@ -5,6 +5,7 @@ notes.mkd
 
 system
 vendor/
+components/
 application/cache
 application/logs
 

@@ -1,0 +1,19 @@
+    <div class="container">
+      <header id="gb-nav" class="navbar">
+        <div class="navbar-inner">
+          <ul class="nav">
+            <li><a class="logo" href="{{ site_url('/') }}"><i class="icon-2x icon-rocket"></i> freshman</a></li>
+          </ul>
+          <ul class="nav pull-right">
+            <li>
+              <a href="#personal-info-modal" role="button" data-toggle="modal">
+                <i class="icon-fixed-width icon-smile"></i> {{ user.display_name }}
+              </a>
+            </li>
+            <li>
+              <a href="{{ site_url('/backend/logout') }}"><i class="icon-signout"></i> 登出</a>
+            </li>
+          </ul>
+        </div>
+      </header>
+    </div>

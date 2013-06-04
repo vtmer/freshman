@@ -26,7 +26,9 @@ class User extends CI_Controller {
         $display = array();
 
         // 获取登录后跳转地址
-        $next = $this->input->get('next') or '/';
+        $next = $this->input->get('next');
+        if (!$next)
+            $next = site_url('backend');
         if ($this->is_login())
             redirect($next);
 
@@ -73,7 +75,7 @@ class User extends CI_Controller {
 
     // /backend/logout
     public function logout() {
-        $next = $this->input->get('next') or '/';
+        $next = $this->input->get('next') or site_url('/');
         if (!$this->is_login())
             redirect(site_url('/backend/login'));
 
@@ -88,41 +90,10 @@ class User extends CI_Controller {
         redirect($next);
     }
 
-    // /backend/user/create
-    public function create() {
-        if (!$this->is_login())
-            redirect(site_url('/backend/login'));
-
+    // /backend/deactive
+    public function deactive() {
         $display = array();
-
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-        $this->form_validation->set_rules(array(
-            array(
-                'field' => 'loginname',
-                'label' => 'Login name:',
-                'rules' => 'required|xss_clean'
-            ),
-            array(
-                'field' => 'displayname',
-                'label' => 'Display name:',
-                'rules' => 'required|xss_clean'
-            ),
-            array(
-                'field' => 'password',
-                'label' => 'Password:',
-                'rules' => 'required|xss_clean'
-            )
-        ));
-        $display['form'] = form_open(
-            site_url('backend/user/create')
-        );
-
-        if ($this->form_validation->run()) {
-            $loginname = $this->input->post('loginname');
-            $displayname = $this->input->post('displayname');
-            $password = $this->input->post('password');
-        }
+        $this->twig->display('backend/deactive.html', $display);
     }
 
     private function is_login() {

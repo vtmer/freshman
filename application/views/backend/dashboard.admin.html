@@ -1,0 +1,66 @@
+{% extends 'backend/dashboard.html' %}
+
+{% block main_content %}
+    <div class="container">
+      <section role="main" class="row">
+        {% include 'backend/dashboard.admin.command_nav.html' %}
+        {% block main_section %}
+        <section id="posts" class="lists-wrapper span9 span-merge">
+          <header class="clearfix">
+            <h1>文章</h1>
+            <div class="btn-group pull-right">
+              <a href="#" class="btn btn-danger"><i class="icon-fixed-width icon-file"></i><span>写新的</span></a>
+            </div>
+          </header>
+          <section>
+            <table class="lists articles table">
+              <tr>
+                <td class="icon">
+                  <i class="icon-large icon-file-alt"></i>
+                </td>
+                <td class="title">
+                  <a href="#">Hello, world</a>
+                </td>
+                <td class="category">
+                  <span class="tag">321开学啦</span>
+                </td>
+                <td class="date">
+                  2013-05-31
+                </td>
+              </tr>
+              <tr>
+                <td class="icon">
+                  <i class="icon-large icon-file-alt"></i>
+                </td>
+                <td class="title">
+                  <a href="#">Hello, world</a>
+                </td>
+                <td class="category">
+                  <span class="tag">321开学啦</span>
+                </td>
+                <td class="date">
+                  2013-05-31
+                </td>
+              </tr>
+              <tr>
+                <td class="icon">
+                  <i class="icon-large icon-file-alt"></i>
+                </td>
+                <td class="title">
+                  <a href="#">Hello, world</a>
+                </td>
+                <td class="category">
+                  <span class="tag">321开学啦</span>
+                  <span class="tag">321开学啦</span>
+                </td>
+                <td class="date">
+                  2013-05-31
+                </td>
+              </tr>
+            </table>
+          </section>
+        </section>
+      </section>
+      {% endblock %}
+    </div>
+{% endblock %}

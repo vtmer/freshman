@@ -1,0 +1,13 @@
+        <aside id="command-nav" class="span3">
+          <ul class="nav nav-stacked">
+            <li class={% if current == 'posts' %}"active"{% endif %}>
+              <a href="#"><i class="icon-book"></i>{% if current != 'posts' %} 文章{% endif %}</a>
+            </li>
+            <li class={% if current == 'categories' %}"active"{% endif %}>
+              <a href="#"><i class="icon-th-large"></i>{% if current != 'categories' %} 类别{% endif %}</a>
+            </li>
+            <li class={% if current == 'users' %}"active"{% endif %}>
+              <a href="{{ site_url('/backend/users') }}"><i class="icon-user"></i>{% if current != 'users' %} 用户{% endif %}</a>
+            </li>
+          </ul>
+        </aside>

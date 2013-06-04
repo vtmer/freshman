@@ -23,7 +23,9 @@ i[class^="icon-"] {
     margin-bottom: 10px;
 
     input[type=text],
-    input[type=password] {
+    input[type=password],
+    .uneditable-input,
+    .select2-choices {
       -webkit-border-radius: 2px;
          -moz-border-radius: 2px;
               border-radius: 2px;
@@ -31,24 +33,68 @@ i[class^="icon-"] {
       height: 14px;
       font-size: 14px;
       border: 1px solid $bg-color;
+
+      &.error {
+        border-color: #e74c3c;
+      }
+    }
+
+    .uneditable-input {
+      line-height: 14px;
+    }
+
+    .select2-choices {
+      box-shadow: none;
+      background-image: none;
+
+      .select2-search-choice {
+        padding: 5px 5px;
+
+        font-size: 13px;
+        line-height: 13px;
+        box-shadow: none;
+        border-radius: 2px;
+        background-image: none;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+      }
+
+      /* TODO select2-search-choice-close */
+      .select2-search-choice-close {
+        display: none;
+      }
+    }
+
+    .select2-container-active .select2-choices {
+      border: 1px solid $bg-color;
+      box-shadow: none;
+      background-image: none;
     }
   }
 
   .form-horizontal {
+    $control-label-width: 60px;
+
     .control-group {
       margin-bottom: 10px;
     }
 
     .control-label {
-      width: 50px;
+      width: $control-label-width;
       text-align: right;
     }
 
     .controls {
-      margin-left: 60px;
+      margin-left: $control-label-width + 10px;
+
+      .select2-container {
+        width: 100%;
+      }
 
       input[type=password],
-      input[type=text] {
+      input[type=text],
+      .uneditable-input {
         /* FIXME fullfill */
         width: 97.5%;
       }
@@ -60,7 +106,6 @@ i[class^="icon-"] {
               
         padding: 5px 10px;
         margin-left: 10px;
-
       }
 
       .btn-inverse {
@@ -117,6 +162,25 @@ i[class^="icon-"] {
   }
 }
 
+#deactive {
+  margin-top: 125px;
+
+  .alert {
+    h4 {
+      margin: 5px 0 10px;
+
+      font-size: 25px;
+      line-height: 25px;
+    }
+  }
+
+  .alert-error {
+    a {
+      color: #b94a48;
+    }
+  }
+}
+
 #gb-nav {
   $nav-font-size: 14px;
 
@@ -145,7 +209,7 @@ i[class^="icon-"] {
   }
 }
 
-#posts {
+.lists-wrapper {
   -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
@@ -179,7 +243,7 @@ i[class^="icon-"] {
     }
   }
 
-  .articles {
+  .lists {
     tr {
       &:hover {
         a {
@@ -193,11 +257,6 @@ i[class^="icon-"] {
       white-space: nowrap;
       font-size: 12px;
       border: 0;
-
-      &.title {
-        width: 99%;
-        font-size: 16px;
-      }
 
       a {
         color: #000;
@@ -216,6 +275,21 @@ i[class^="icon-"] {
         position: relative;
       }
     }
+  }
+}
+
+// FIXME use mixin
+#posts {
+  td.title {
+    width: 99%;
+    font-size: 16px;
+  }
+}
+
+#users {
+  td.name {
+    width: 99%;
+    font-size: 16px;
   }
 }
 
@@ -275,4 +349,12 @@ i[class^="icon-"] {
       }
     }
   }
+}
+
+.select2-drop {
+  border: 1px solid $bg-color;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
 }
