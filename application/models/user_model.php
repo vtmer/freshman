@@ -132,7 +132,7 @@ class User_model extends CI_Model {
     }
 
     public function update_display_name($user_id, $display_name) {
-        if (!$this->is_unique_display_name($display_name))
+        if (!$this->is_unique_display_name($display_name, $user_id))
             return false;
 
         $this->db
@@ -180,20 +180,20 @@ class User_model extends CI_Model {
         return (intval($query->result()[0]->active) === 1);
     }
 
-    protected function is_unique($field, $value) {
+    protected function is_unique($field, $value, $user_id = 0) {
         $query = $this->db
             ->get_where('users', array($field => $value));
-        if ($query->result())
+        if ($query->result() && $query->result()[0]->id != $user_id)
             return false;
         return true;
     }
 
-    public function is_unique_display_name($display_name) {
-        return $this->is_unique('display_name', $display_name);
+    public function is_unique_display_name($display_name, $user_id = 0) {
+        return $this->is_unique('display_name', $display_name, $user_id);
     }
 
-    public function is_unique_login_name($login_name) {
-        return $this->is_unique('login_name', $login_name);
+    public function is_unique_login_name($login_name, $user_id = 0) {
+        return $this->is_unique('login_name', $login_name, $user_id);
     }
 
     private function encrypt($raw) {
