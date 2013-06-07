@@ -1,0 +1,19 @@
+INSERT INTO `fm_roles`
+(`name`)
+VALUES
+('admin');
+
+INSERT INTO `fm_roles`
+(`name`)
+VALUES
+('editor');
+
+INSERT INTO `fm_users`
+(`login_name`, `display_name`, `password`, `active`) 
+VALUES
+('admin', 'admin', SHA1('password_and_your_encrypt_key_here'), 1);
+
+INSERT INTO `fm_users_roles`
+(`user_id`, `role_id`)
+VALUES
+(1, 1);

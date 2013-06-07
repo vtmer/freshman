@@ -12,3 +12,4 @@ application/logs
 # for security
 application/config/config.php
 application/config/database.php
+data.sql

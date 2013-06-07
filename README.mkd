@@ -6,7 +6,7 @@
 
 ## 开发环境搭建
 
-数据表导入请使用 schema.sql
+数据表导入请使用 schema.sql 和 data.sql.example (自行设置管理员密码和加密盐)
 
 请另外复制 [CodeIgniter](https://github.com/EllisLab/CodeIgniter) 的 `system/`
 文件夹到根目录下。
