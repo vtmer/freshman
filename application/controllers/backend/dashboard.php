@@ -61,13 +61,16 @@ class Dashboard extends Auth_Controller {
 
     // /backend/posts
     public function posts() {
-        $this->load->model('post_model');
-
         $display = array(
             'user' => $this->user,
-            'is_admin' => $this->is_admin,
-            'posts' => $this->post_model->get_all_posts()
+            'is_admin' => $this->is_admin
         );
+
+        $this->load->model('post_model');
+        if ($this->is_admin)
+            $display['posts'] = $this->post_model->get_all_posts();
+        else
+            $display['posts'] = $this->post_model->get_self_posts($this->user->id);
 
         $this->twig->display('backend/posts.html', $display);
     }

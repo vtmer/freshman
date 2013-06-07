@@ -9,7 +9,7 @@
  */
 
 class Post_model extends CI_Model {
-    function validate($author_id, $content, $title, $source) {
+    public function validate($author_id, $content, $title, $source) {
         if ($content === '' || $title === '')
             return false;
 
@@ -21,7 +21,7 @@ class Post_model extends CI_Model {
         return true;
     }
 
-    function create($author_id, $content, $title, $source) {
+    public function create($author_id, $content, $title, $source) {
         $this->db->insert('posts', array(
             'author_id' => $author_id,
             'content' => $content,
@@ -31,11 +31,7 @@ class Post_model extends CI_Model {
         return $this->db->insert_id();
     }
 
-    function get_all_posts() {
-        $posts = $this->db
-            ->get('posts')
-            ->result();
-
+    private function pack_posts($posts) {
         foreach ($posts as $post) {
             $post->author = $this->get_author($post->author_id);
             $post->categories = $this->get_categories($post->id);
@@ -45,7 +41,23 @@ class Post_model extends CI_Model {
         return $posts;
     }
 
-    function get_author($author_id) {
+    public function get_all_posts() {
+        $posts = $this->db
+            ->get('posts')
+            ->result();
+
+        return $this->pack_posts($posts);
+    }
+
+    public function get_self_posts($author_id) {
+        $posts = $this->db
+            ->get_where('posts', array('author_id' => $author_id))
+            ->result();
+        
+        return $this->pack_posts($posts);
+    }
+
+    public function get_author($author_id) {
         $query = $this->db
             ->get_where('users', array('id' => $author_id), 1);
         if ($query->result())
@@ -53,7 +65,7 @@ class Post_model extends CI_Model {
         return null;
     }
 
-    function get_categories($post_id) {
+    public function get_categories($post_id) {
         return $this->db
             ->select('categories.*')
             ->join('categories', 'posts_categories.category_id = categories.id')
@@ -61,7 +73,7 @@ class Post_model extends CI_Model {
             ->result();
     }
 
-    function get_tags($post_id) {
+    public function get_tags($post_id) {
         return $this->db
             ->select('tags.*')
             ->join('tags', 'posts_tags.tag_id = tags.id')
