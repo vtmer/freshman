@@ -30,4 +30,42 @@ class Post_model extends CI_Model {
         ));
         return $this->db->insert_id();
     }
+
+    function get_all_posts() {
+        $posts = $this->db
+            ->get('posts')
+            ->result();
+
+        foreach ($posts as $post) {
+            $post->author = $this->get_author($post->author_id);
+            $post->categories = $this->get_categories($post->id);
+            $post->tags = $this->get_tags($post->id);
+        }
+
+        return $posts;
+    }
+
+    function get_author($author_id) {
+        $query = $this->db
+            ->get_where('users', array('id' => $author_id), 1);
+        if ($query->result())
+            return $query->result()[0];
+        return null;
+    }
+
+    function get_categories($post_id) {
+        return $this->db
+            ->select('categories.*')
+            ->join('categories', 'posts_categories.category_id = categories.id')
+            ->get_where('posts_categories', array('post_id' => $post_id))
+            ->result();
+    }
+
+    function get_tags($post_id) {
+        return $this->db
+            ->select('tags.*')
+            ->join('tags', 'posts_tags.tag_id = tags.id')
+            ->get_where('posts_tags', array('post_id' => $post_id))
+            ->result();
+    }
 }

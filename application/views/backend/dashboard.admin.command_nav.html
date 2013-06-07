@@ -1,7 +1,7 @@
         <aside id="command-nav" class="span3">
           <ul class="nav nav-stacked">
             <li class={% if current == 'posts' %}"active"{% endif %}>
-              <a href="#"><i class="icon-book"></i>{% if current != 'posts' %} 文章{% endif %}</a>
+              <a href="{{ site_url('/backend/posts') }}"><i class="icon-book"></i>{% if current != 'posts' %} 文章{% endif %}</a>
             </li>
             <li class={% if current == 'categories' %}"active"{% endif %}>
               <a href="{{ site_url('/backend/categories') }}"><i class="icon-th-large"></i>{% if current != 'categories' %} 类别{% endif %}</a>

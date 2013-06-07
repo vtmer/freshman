@@ -20,11 +20,8 @@ class Dashboard extends Auth_Controller {
     public function index() {
         if ($this->is_admin)
             redirect(site_url('/backend/admin'));
-
-        $display = array(
-            'user' => $this->user
-        );
-        $this->twig->display('backend/dashboard.html', $display);
+        else
+            redirect(site_url('/backend/posts'));
     }
     
     // /backend/self/update
@@ -60,5 +57,18 @@ class Dashboard extends Auth_Controller {
         $this->output->set_output(json_encode(
             array('ret' => 'update ok')
         ));
+    }
+
+    // /backend/posts
+    public function posts() {
+        $this->load->model('post_model');
+
+        $display = array(
+            'user' => $this->user,
+            'is_admin' => $this->is_admin,
+            'posts' => $this->post_model->get_all_posts()
+        );
+
+        $this->twig->display('backend/posts.html', $display);
     }
 }

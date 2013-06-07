@@ -82,6 +82,8 @@ $route['backend/category/(:num)/update'] = 'backend/admin_dashboard/category_edi
 $route['backend/category/(:num)/remove'] = 'backend/admin_dashboard/category_remove/$1';
 $route['backend/categories'] = 'backend/admin_dashboard/categories';
 
+$route['backend/posts'] = 'backend/dashboard/posts';
+
 $route['backend'] = 'backend/dashboard/index';
 $route['backend/admin'] = 'backend/admin_dashboard/index';
 

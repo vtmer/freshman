@@ -1,0 +1,51 @@
+{% extends 'backend/dashboard.html' %}
+
+{% block title %}
+文章列表
+{% endblock %}
+
+{% block main_content %}
+    <div class="container">
+      <section role="main" class="row">
+        {% if is_admin %}
+        {% set current = 'posts' %}
+        {% include 'backend/dashboard.admin.command_nav.html' %}
+        {% endif %}
+        <section id="posts" class="lists-wrapper {% if is_admin %}span9 span-merge{% else %}span12{% endif %}">
+          <header class="clearfix">
+            <h1>文章</h1>
+            <div class="btn-group pull-right">
+              <a href="#" class="btn btn-danger"><i class="icon-fixed-width icon-file"></i><span>写新的</span></a>
+            </div>
+          </header>
+          <section>
+            <table class="lists articles table">
+              {% for post in posts %}
+              <tr>
+                <td class="icon">
+                  <i class="icon-large icon-file-alt"></i>
+                  {% if post.status %}
+                  <i class="icon-large icon-ok" title="已发布"></i>
+                  {% else %}
+                  <i class="icon-large icon-remove" title="未发布"></i>
+                  {% endif %}
+                </td>
+                <td class="title">
+                  <a href="#" title="{{ post.author.display_name }}">{{ post.title }}</a>
+                </td>
+                <td class="category">
+                  {% for category in post.categories %}
+                  <span class="tag">{{ category.name }}</span>
+                  {% endfor %}
+                </td>
+                <td class="date">
+                  {{ post.created_date }}
+                </td>
+              </tr>
+              {% endfor %}
+            </table>
+          </section>
+        </section>
+      </section>
+    </div>
+{% endblock %}
