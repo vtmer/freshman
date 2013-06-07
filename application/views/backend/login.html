@@ -12,7 +12,7 @@
             <input type="text" name="username"class="span4" placeholder="登录名" />
             <input type="password" name="password" class="span4" placeholder="密码" />
             {% if error %}
-            <input type="submit" class="btn btn-large btn-block btn-danger" value="{{ error }}" />
+            <input title="点我再登录一遍" type="submit" class="btn btn-large btn-block btn-danger" value="{{ error }}" />
             {% else %}
             <input type="submit" class="btn btn-large btn-block btn-info" value="✔" />
             {% endif %}
