@@ -48,7 +48,7 @@ class Twig
                     $base_url = $CI->config->item('base_url');
                     $static = $CI->config->item('static_path');
                     if (!$static)
-                        $static = 'static/';
+                        $static = '/static/';
                     return $base_url . $static . $file;
                 });
                 $this->_twig->addFunction($static_url);
