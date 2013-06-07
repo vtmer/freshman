@@ -16,7 +16,7 @@ CREATE TABLE `fm_users` (
 	`login_name` varchar(50),
 	`display_name` varchar(50),
 	`password` varchar(64),
-        `active` TINYINT(1),
+        `active` TINYINT(1) NOT NULL DEFAULT '1',
         UNIQUE KEY `login_name` (`login_name`),
         UNIQUE KEY `display_name` (`display_name`)
 );
