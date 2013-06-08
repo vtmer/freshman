@@ -8,6 +8,7 @@ vendor/
 components/
 application/cache
 application/logs
+static/uploads
 
 # for security
 application/config/config.php

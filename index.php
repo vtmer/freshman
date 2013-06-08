@@ -265,6 +265,7 @@ switch (ENVIRONMENT)
         define('VIEWPATH', $view_folder);
         
 define('VENDORPATH', dirname(SELF) . '/vendor/');
+define('STATICPATH', dirname(SELF) . '/static/');
 
 /*
  * --------------------------------------------------------------------

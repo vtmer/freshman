@@ -84,6 +84,8 @@ $route['backend/categories'] = 'backend/admin_dashboard/categories';
 
 $route['backend/posts'] = 'backend/dashboard/posts';
 
+$route['backend/file/upload'] = 'backend/file_upload/save';
+
 $route['backend'] = 'backend/dashboard/index';
 $route['backend/admin'] = 'backend/admin_dashboard/index';
 
