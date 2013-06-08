@@ -8,8 +8,8 @@
  * @author     hbc
  */
 
-class Hello extends CI_Controller {
-    public function index() {
-        $this->twig->display('hello.html');
+class Errors extends CI_Controller {
+    public function not_found() {
+        $this->twig->display('errors/404.html');
     }
 }

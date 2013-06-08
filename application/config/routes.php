@@ -65,7 +65,7 @@
 */
 
 $route['default_controller'] = 'hello';
-$route['404_override'] = '';
+$route['404_override'] = 'errors/not_found';
 
 /* backend routes */
 $route['backend/login'] = 'backend/user/login';
