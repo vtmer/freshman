@@ -27,19 +27,14 @@ class Dashboard extends Auth_Controller {
     // /backend/self/update
     // 更新用户个人信息
     public function self_update() {
-        $this->output
-            ->set_content_type('application/json')
-            ->set_status_header('200');
-
         $payload = $this->input->post();
         if (array_key_exists('display_name', $payload)) {
             $ret = $this->user_model
                 ->update_display_name($this->user->id, $payload['display_name']);
             if (!$ret) {
-                $this->output->set_status_header('403');
-                $this->output->set_output(json_encode(
-                    array('error' => 'display_name')
-                ));
+                $this->json_resp->display(array(
+                    'error' => 'display_name'
+                ), 403);
                 return;
             }
         }
@@ -47,16 +42,15 @@ class Dashboard extends Auth_Controller {
             $ret = $this->user_model
                 ->update_password($this->user->id, $payload['password']);
             if (!$ret) {
-                $this->output->set_status_header('403');
-                $this->output->set_output(json_encode(
-                    array('error' => 'password')
-                ));
+                $this->json_resp->display(array(
+                    'error' => 'password'
+                ), 403);
                 return;
             }
         }
-        $this->output->set_output(json_encode(
-            array('ret' => 'update ok')
-        ));
+        $this->json_resp->display(array(
+            'ret' => 'update ok'
+        ), 200);
     }
 
     // /backend/posts

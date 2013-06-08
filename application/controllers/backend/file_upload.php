@@ -26,23 +26,18 @@ class File_upload extends Auth_Controller {
     // 上传失败：返回错误信息
     // 上传成功：返回附件完整地址
     public function save() {
-        $this->output
-            ->set_content_type('application/json')
-            ->set_status_header('200');
-
         $this->load->library('upload');
         $this->load->config('upload');
 
         if (!$this->upload->do_upload($this->config->item('field_name'))) {
-            $this->output->set_status_header('403');
-            $this->output->set_output(json_encode(
-                array('error' => $this->upload->display_errors())
-            ));
+            $this->json_resp->display(array(
+                'error' => $this->upload->display_errors()
+            ), 403);
             return;
         }
 
-        $this->output->set_output(json_encode(
-            array('url' => $this->upload->data()['full_path'])
+        $this->json_resp->display(array(
+            'url' => $this->upload->data()['full_path']
         ));
     }
 }
