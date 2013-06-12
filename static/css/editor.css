@@ -1,0 +1,255 @@
+body {
+    margin:  0;
+    padding: 0;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+    float: left;
+}
+
+.pull-right {
+    float: right;
+    padding: 15px 0;
+}
+
+#editor-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 49px;
+    z-index: 20;
+    background-color: #fff;
+}
+
+#top-nav {
+    float: left;
+    margin: 0;
+    padding: 0;
+}
+
+#top-nav > li {
+    padding: 0 20px;
+    margin: 0;
+    height: 50px;
+}
+
+#top-nav > li:hover {
+    background-color: #555;
+}
+
+#top-nav > li:hover a {
+    color: white;
+}
+
+#top-nav > li > a {
+    color: #555;
+    font-size: 24px;
+    line-height: 63px;
+}
+
+#top-nav > li > a:hover {
+    text-decoration: none;
+}
+
+.save-show {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.button-group {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.button-group a {
+    border: 1px solid #ccc;
+    padding: 7px 14px;
+    color: #333;
+}
+
+#toolbar {
+    background-color: #555;
+    height: 34px;
+    position: fixed;
+    top: 49px;
+    left: 0;
+    right: 0;
+    z-index: 9;
+}
+
+.toolbar-buttons {
+    height: 34px;
+    margin-left: 0;
+}
+
+.toolbar-buttons a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.toolbar-buttons a:hover {
+    text-decoration: none;
+}
+
+.toolbar-buttons > li:hover {
+    background-color: #ffffff;
+}
+
+.toolbar-buttons > li:hover a {
+    color: #555;
+}
+
+.publish-button {
+    margin-right: 0;
+}
+
+.draft-button {
+    margin-right: 0;
+    background-color: #ccc;
+}
+
+.toolbar-buttons {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+.toolbar-buttons li {
+    padding: 0 10px;
+    line-height: 34px;
+}
+
+.toolbar-buttons.pull-right {
+    padding: 0;
+}
+
+.dropdown-menu {
+    padding: 0;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+    border: 0;
+    min-width: 150px;
+    left: -10px;
+}
+
+.dropdown-menu > li {
+    float: none;
+    padding: 0;
+}
+
+.dropdown-menu > li > a {
+    padding: 5px 15px 5px 10px;
+}
+
+.dropdown-menu > li > hr {
+    margin: 0;
+    height: 0;
+}
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    background-color: rgba(0, 0, 0, 0.2);
+    background-image: none;
+}
+
+.format-buttons h1,
+.format-buttons h2,
+.format-buttons h3,
+.format-buttons h4 {
+  margin-bottom: 0;
+}
+
+#editwrap {
+    clear: both;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-top: 49px;
+}
+
+.editarea {
+    padding-top: 45px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.article {
+    margin: 0 auto;
+    width: 768px;
+    min-height: 1024px;
+    background-color: #fff;
+    padding: 70px;
+    box-shadow: 0 0 0 1px #ccc;
+    margin-top: 3px;
+    margin-bottom: 60px;
+}
+
+.article .title[data-click="false"] {
+  color: #999;
+}
+
+.article:focus {
+    outline: 0;
+}
+
+.article li {
+    float: none;
+}
+
+.modal {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+}
+
+.modal form {
+    margin-bottom: 10px;
+}
+
+.modal form input[type=text] {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    height: 14px;
+    font-size: 14px;
+    border: 1px solid #f0f0f0;
+    box-shadow: none;
+    border-color: none;
+    width: 85%;
+}
+
+.modal form input[type=text]:focus {
+    box-shadow: none;
+    border-color: none;
+}
+
+.modal-header {
+    padding: 10px 15px;
+    border-bottom: 0px;
+}
+
+.modal-header .close {
+    margin-top: 0;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.modal-header h3 {
+    font-weight: normal;
+    font-size: 22.5px;
+    line-height: 22.5px;
+}

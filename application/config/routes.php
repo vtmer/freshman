@@ -83,6 +83,9 @@ $route['backend/category/(:num)/remove'] = 'backend/admin_dashboard/category_rem
 $route['backend/categories'] = 'backend/admin_dashboard/categories';
 
 $route['backend/posts'] = 'backend/dashboard/posts';
+$route['backend/post/(:num)'] = 'backend/post/edit/$1';
+$route['backend/post/create'] = 'backend/post/create';
+$route['backend/post/autosave'] = 'backend/post/autosave';
 
 $route['backend/file/upload'] = 'backend/file_upload/save';
 

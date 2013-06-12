@@ -1,0 +1,10 @@
+{% extends 'backend/post.create.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block post_meta %}data-id="{{ post.id }}" data-status="{{ post.status }}"{% endblock %}
+
+{% block post_content %}
+<h1 class="title" data-click="true">{{ post.title}}</h1>
+{{ post.content | raw }}
+{% endblock %}

@@ -21,21 +21,19 @@ class Post_model extends CI_Model {
         return true;
     }
 
-    public function create($author_id, $content, $title, $source) {
-        $this->db->insert('posts', array(
-            'author_id' => $author_id,
-            'content' => $content,
-            'title' => $title,
-            'source' => $source
-        ));
-        return $this->db->insert_id();
+    private function pack_post($post) {
+        if (!$post)
+            return $post;
+
+        $post->author = $this->get_author($post->author_id);
+        $post->categories = $this->get_categories($post->id);
+        $post->tags = $this->get_tags($post->id);
+        return $post;
     }
 
     private function pack_posts($posts) {
         foreach ($posts as $post) {
-            $post->author = $this->get_author($post->author_id);
-            $post->categories = $this->get_categories($post->id);
-            $post->tags = $this->get_tags($post->id);
+            $post = $this->pack_post($post);
         }
 
         return $posts;
@@ -55,6 +53,16 @@ class Post_model extends CI_Model {
             ->result();
         
         return $this->pack_posts($posts);
+    }
+
+    public function get_by_id($post_id) {
+        $query = $this->db
+            ->get_where('posts', array('id' => $post_id))
+            ->result();
+        if ($query) {
+            return $this->pack_post($query[0]);
+        }
+        return null;
     }
 
     public function get_author($author_id) {
@@ -79,5 +87,17 @@ class Post_model extends CI_Model {
             ->join('tags', 'posts_tags.tag_id = tags.id')
             ->get_where('posts_tags', array('post_id' => $post_id))
             ->result();
+    }
+
+    public function create($value) {
+        $this->db->insert('posts', $value);
+        return $this->get_by_id($this->db->insert_id());
+    }
+
+    public function update($post_id, $value) {
+        $this->db
+            ->where('id', $post_id)
+            ->update('posts', $value);
+        return $this->get_by_id($post_id);
     }
 }
