@@ -102,7 +102,7 @@
                 that.attr('data-id', resp.post_id);
             }
             that.attr('data-status', resp.status);
-            $('.save-show').html('已保存');
+            $('.save-show').html('已保存').fadeIn().delay(2500).fadeOut();
             $('title').html(value.title);
         }).fail(function(resp) {
             $('.save-show').html('保存失败').addClass('error');
