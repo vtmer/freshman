@@ -1,0 +1,43 @@
+        <div id="publish-modal" class="modal hide fade">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close" aria-hidden="true">&times;</button>
+                <h3>发布</h3>
+            </div>
+            <div class="modal-body">
+                <form class="form">
+                    <label for="category">类别</label>
+                    <select multiple name="categories">
+                        {% for category in categories %}
+                        <option
+                        {% if post %}
+                        {% for p_cate in post.categories %}
+                        {% if p_cate.name == category.name %}
+                        selected
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        value="{{ category.id }}">{{ category.name }}</option>
+                        {% endfor %}
+                        {% for c in post.categories %}
+                        {% endfor %}
+                    </select>
+                    <label for="campus">校区</label>
+                    <select multiple name="campus">
+                        <option {% if post and 0 in post.campus %}selected {% endif %}value="0">大学城</option>
+                        <option {% if post and 1 in post.campus %}selected {% endif %}value="1">东风路</option>
+                        <option {% if post and 2 in post.campus %}selected {% endif %}value="2">龙洞</option>
+                    </select>
+                    <label for="tags">标签</label>
+                    <input class="select2-input" name="tags" placeholder="添加标签" value="{% if post %}{% for tag in post.tags %}{{ tag.name }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"/>
+                    <label for="status">状态</label>
+                    <select name="status">
+                        <option {% if post and post.status == 0 %}selected{% endif %} value="0">草稿</option>
+                        <option {% if post and post.status == 1 %}selected{% endif %} value="1">发布</option>
+                    </select>
+                </form>
+                <div class="pull-right">
+                    <a href="#" class="btn submit">发布</a>
+                    <a href="#" class="btn" data-dismiss="modal">取消</a>
+                </div>
+            </div>
+        </div>

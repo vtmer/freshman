@@ -9,7 +9,7 @@
  */
 
 /*
- * Categoriy 模型
+ * Category 模型
  */
 class Category_model extends CI_Model {
     public function is_unique($name) {

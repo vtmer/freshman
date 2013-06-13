@@ -19,13 +19,19 @@ class Post extends Auth_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('post_model', 'model');
+        $this->load->model('category_model');
+
+        // XXX 抽离出来，不要污染全局环境
+        $this->categories = $this->category_model->get_all();
     }
 
     // /backend/post/create
     public function create() {
+        // XXX 抽离出来，不要污染全局环境
         $display = array(
             'user' => $this->user,
-            'is_admin' => $this->is_admin
+            'is_admin' => $this->is_admin,
+            'categories' => $this->categories
         );
         $this->twig->display('backend/post.create.html', $display);
     }
@@ -33,7 +39,8 @@ class Post extends Auth_Controller {
     // /backend/post/(:num)
     public function edit($post_id) {
         $post = $this->model->get_by_id($post_id);
-        if (!$post) {
+        if (!$post ||
+            !($this->is_admin || $post->author->id === $this->user->id)) {
             redirect('404');
             return;
         }
@@ -41,9 +48,33 @@ class Post extends Auth_Controller {
         $display = array(
             'user' => $this->user,
             'is_admin' => $this->is_admin,
+            'categories' => $this->categories,
             'post' => $post
         );
         $this->twig->display('backend/post.edit.html', $display);
+    }
+
+    // /backend/post/(:num)/publish
+    public function publish($post_id) {
+        $post = $this->model->get_by_id($post_id);
+        if (!$post ||
+            !($this->is_admin || $post->author->id === $this->user->id)) {
+            $this->json_resp->display(array('error' => 'post not found'), 404);
+            return;
+        }
+
+        $payload = $this->input->post();
+
+        $this->model->update($post_id, array(
+            'title' => $payload['title'],
+            'content' => $payload['content'],
+            'status' => $payload['status']
+        ));
+        $this->model->update_categories($post_id, $payload['categories']);
+        $this->model->update_tags($post_id, $payload['tags']);
+        $this->model->update_campus($post_id, $payload['campus']);
+
+        $this->json_resp->display(array('msg' => 'ok'));
     }
 
     // /backend/post/autosave
@@ -76,5 +107,13 @@ class Post extends Auth_Controller {
                 'status' => $post->status
             ));
         }
+    }
+
+    // /backend/post/tags
+    // ajax 获取所有 tags 接口
+    public function get_tags() {
+        $this->load->model('tag_model');
+        $tags = $this->tag_model->get_all_array();
+        $this->json_resp->display($tags);
     }
 }

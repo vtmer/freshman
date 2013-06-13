@@ -8,3 +8,7 @@
 <h1 class="title" data-click="true">{{ post.title}}</h1>
 {{ post.content | raw }}
 {% endblock %}
+
+{% block draft_button %}
+<a class="draft-button {% if post.status == 0%}active-button{% endif %}" href="#" title="">草稿</a>
+{% endblock %}

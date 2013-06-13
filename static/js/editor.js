@@ -3,6 +3,7 @@
     // e.g.
     //      http://exmaple.com/index.php
     //      http://exmaple.com/subpath/index.php
+    // XXX 模块化这个组件
     var basic_uri = (function() {
         var index_script = 'index.php';
 
@@ -17,9 +18,32 @@
         }
     })();
 
-    var Editor = function(selector) {
+    var StatusBar = function(selector, _default) {
+        this._statusBar = $(selector);
+        this.context = $(selector);
+        this._default = _default || ' ';
+        this.kick();
+    };
+    StatusBar.prototype.kick = function() {
+        this.display(this._default);
+    };
+    StatusBar.prototype.display = function(str) {
+        this._statusBar
+            .html((str === undefined) ? (this._default) : (str));
+        // 链式引用
+        return this;
+    };
+    StatusBar.prototype.setDefault = function(_default) {
+        this._default = _default;
+        this.kick();
+        return this;
+    };
+
+    var Editor = function(selector, statusBar) {
         this._editor = $(selector);
         this.context = $(selector);
+        this.statusBar = statusBar;
+        this.changed = false;
         this.kick();
     };
     Editor.prototype.kick = function() {
@@ -34,6 +58,7 @@
                 // 换行用的是 p 而不是 div
                 document.execCommand('formatblock', false, 'p');
             }
+            that.changed = true;
         });
 
         $('h1.title', this.context).bind('click', function(e) {
@@ -45,7 +70,10 @@
 
         // 每 15 秒保存一次
         setInterval(function() {
-            that.autosave();
+            if (that.changed) {
+                that.autosave();
+                that.changed = false;
+            }
         }, 15000);
     };
     Editor.prototype.value = function() {
@@ -102,10 +130,11 @@
                 that.attr('data-id', resp.post_id);
             }
             that.attr('data-status', resp.status);
-            $('.save-show').html('已保存').fadeIn().delay(2500).fadeOut();
             $('title').html(value.title);
+            that.statusBar.display('已保存');
+            setTimeout(function() { that.statusBar.display(); }, 2500);
         }).fail(function(resp) {
-            $('.save-show').html('保存失败').addClass('error');
+            that.statusBar.display('保存失败');
             console.log(resp);
         });
     };
@@ -150,6 +179,94 @@
         });
     };
 
-    var editor = new Editor('#editwrap article'),
+    var status = new StatusBar('#status-bar'),
+        editor = new Editor('#editwrap article', status),
         toolbar = new Toolbar('#editor-commands', editor);
+
+    if (editor.attr('data-status') === '1') {
+        status.setDefault('已发表');
+    } else {
+        status.setDefault('草稿');
+    }
+
+    // FIXME just some dummy code
+    $('.save-draft').click(function(e) {
+        e.preventDefault();
+
+        editor.autosave();
+    });
+
+    $('.publish').click(function(e) {
+        e.preventDefault();
+    });
+
+    $('#insert-link-modal a.submit').click(function(e) {
+        var modal, text, link,
+            sel = document.getSelection();
+
+        e.preventDefault();
+
+        modal = $('#insert-link-modal');
+        console.log(modal);
+        link = $('input[name="uri"]', modal).val();
+        text = $('input[name="text"]', modal).val() || link;
+        editor.execute('insertHTML', '<a href="' + link + '">' + text + '</a>');
+        console.log(sel);
+        console.log(document.getSelection());
+
+        //$('input[name="uri"]', modal).val('');
+        //$('input[name="text"]', modal).val('');
+        $('#insert-link-modal').modal('hide');
+    });
+
+    // select2 设置
+    $('select[name="categories"]').select2();
+
+    $('select[name="campus"]').select2({
+        placeholder: '选择校区',
+        maximumSelectionSize: 3
+    });
+
+    $('select[name="status"]').select2();
+
+    $.get(basic_uri + '/backend/post/tags', function(resp) {
+        var tags = [];
+
+        resp.forEach(function(v, i) {
+            tags.push(v.name);
+        });
+
+        $('input[name="tags"]').select2({
+            tags: tags
+        });
+    });
+
+    $('#publish-modal a.submit').click(function(e) {
+        var value, post_id;
+
+        e.preventDefault();
+
+        post_id = editor.attr('data-id');
+        value = editor.value();
+        value.tags = $('input[name="tags"]').val().split(',');
+        if (!value.tags) {
+            return;
+        }
+        value.status = $('select[name="status"]').val();
+        if (!value.status) {
+            return;
+        }
+        value.categories = $('select[name="categories"]').val();
+        if (!value.categories) {
+            return;
+        }
+        value.campus = $('select[name="campus"]').val();
+        if (!value.campus) {
+            return;
+        }
+
+        $.post('/backend/post/' + post_id + '/publish', value, function(resp) {
+            $('#publish-modal').modal('hide');
+        }).fail(function(resp) { console.log(resp); });
+    });
 })();

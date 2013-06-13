@@ -9,59 +9,9 @@ a {
     text-decoration: none;
 }
 
-li {
-    list-style: none;
-    float: left;
-}
-
 .pull-right {
     float: right;
     padding: 15px 0;
-}
-
-#editor-topbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 49px;
-    z-index: 20;
-    background-color: #fff;
-}
-
-#top-nav {
-    float: left;
-    margin: 0;
-    padding: 0;
-}
-
-#top-nav > li {
-    padding: 0 20px;
-    margin: 0;
-    height: 50px;
-}
-
-#top-nav > li:hover {
-    background-color: #555;
-}
-
-#top-nav > li:hover a {
-    color: white;
-}
-
-#top-nav > li > a {
-    color: #555;
-    font-size: 24px;
-    line-height: 63px;
-}
-
-#top-nav > li > a:hover {
-    text-decoration: none;
-}
-
-.save-show {
-    display: inline-block;
-    margin-right: 10px;
 }
 
 .button-group {
@@ -79,7 +29,7 @@ li {
     background-color: #555;
     height: 34px;
     position: fixed;
-    top: 49px;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 9;
@@ -100,6 +50,11 @@ li {
     text-decoration: none;
 }
 
+.toolbar-buttons > li {
+  list-style: none;
+  float: left;
+}
+
 .toolbar-buttons > li:hover {
     background-color: #ffffff;
 }
@@ -108,13 +63,12 @@ li {
     color: #555;
 }
 
-.publish-button {
-    margin-right: 0;
+.toolbar-buttons li.status {
+    color: white;
 }
 
-.draft-button {
-    margin-right: 0;
-    background-color: #ccc;
+.toolbar-buttons li.status:hover {
+    background-color: #555;
 }
 
 .toolbar-buttons {
@@ -175,11 +129,11 @@ li {
     left: 0;
     right: 0;
     bottom: 0;
-    margin-top: 49px;
+    margin-top: 10px;
 }
 
 .editarea {
-    padding-top: 45px;
+    padding-top: 35px;
     position: absolute;
     top: 0;
     left: 0;
@@ -214,22 +168,23 @@ li {
     -moz-border-radius: 2px;
     border-radius: 2px;
     box-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
 }
 
 .modal form {
-    margin-bottom: 10px;
+    width: 100%;
 }
 
 .modal form input[type=text] {
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
-    height: 14px;
+    height: 20px;
     font-size: 14px;
     border: 1px solid #f0f0f0;
     box-shadow: none;
     border-color: none;
-    width: 85%;
+    width: 97.5%;
 }
 
 .modal form input[type=text]:focus {
@@ -237,8 +192,17 @@ li {
     border-color: none;
 }
 
+.modal form input.select2-input {
+  width: 0;
+}
+
+.modal form .select2-container {
+  margin-bottom: 15px;
+  width: 100%;
+}
+
 .modal-header {
-    padding: 10px 15px;
+    padding: 10px 15px 5px;
     border-bottom: 0px;
 }
 
@@ -250,6 +214,23 @@ li {
 
 .modal-header h3 {
     font-weight: normal;
-    font-size: 22.5px;
-    line-height: 22.5px;
+    font-size: 15px;
+    line-height: 15px;
+}
+
+.modal .btn {
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 1px;
+
+    box-shadow: none;
+    background-image: none;
+}
+
+.modal-body {
+    padding: 5px 15px 10px;
 }
