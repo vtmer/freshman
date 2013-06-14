@@ -30,7 +30,13 @@ class Auth_Controller extends CI_Controller {
 
         $this->load->helper('url');
         $this->load->model('user_model');
-        $this->config->load('roles');
+        $this->load->model('site_metas_model');
+
+        $roles = array();
+        foreach ($this->site_metas_model->get('role') as $value) {
+            $role = explode(':', $value->value);
+            $roles[$role[0]] = $role[1];
+        }
 
         $token = $this->session->userdata('token');
         $username = $this->session->userdata('username');
@@ -44,7 +50,7 @@ class Auth_Controller extends CI_Controller {
         $this->user_roles = $this->user_model->get_roles($this->user->id);
         $this->is_admin = false;
         foreach ($this->user_roles as $role)
-            if ($role->name === $this->config->item('role_name')['admin']) {
+            if ($role->name === $roles['admin']) {
                 $this->is_admin = true;
                 break;
             }

@@ -1,3 +1,24 @@
+INSERT INTO `fm_site_metas`
+(`key`, `value`)
+VALUES
+('campus', '大学城');
+INSERT INTO `fm_site_metas`
+(`key`, `value`)
+VALUES
+('campus', '东风路');
+INSERT INTO `fm_site_metas`
+(`key`, `value`)
+VALUES
+('campus', '龙洞');
+INSERT INTO `fm_site_metas`
+(`key`, `value`)
+VALUES
+('role', 'admin:admin');
+INSERT INTO `fm_site_metas`
+(`key`, `value`)
+VALUES
+('role', 'editor:editor');
+
 INSERT INTO `fm_roles`
 (`name`)
 VALUES

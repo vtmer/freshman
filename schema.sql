@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `fm_site_metas`;
 DROP TABLE IF EXISTS `fm_users_roles`;
 DROP TABLE IF EXISTS `fm_user_metas`;
 DROP TABLE IF EXISTS `fm_post_metas`;
@@ -94,4 +95,9 @@ CREATE TABLE `fm_sessions` (
 	`user_id` int,
 	FOREIGN KEY(`user_id`) REFERENCES `fm_users` (`id`),
         UNIQUE KEY `key` (`key`)
+) CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE TABLE `fm_site_metas` (
+        `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        `key` varchar(1000) NOT NULL,
+        `value` varchar(1000) NOT NULL
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
