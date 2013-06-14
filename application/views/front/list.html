@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>GDUT 新生网</title>
+    <link rel="stylesheet" href="{{ static_url('css/bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ static_url('css/typo.css') }}" />
+    {% block afterhead %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="typo container">
+      <div class="row" style="margin-top: 50px;">
+        {% for post in posts %}
+        <article class="span8 offset2">
+          <header>
+            <h1>{{ post.title }}</h1>
+          </header>
+          <section role="main">
+            {{ post.content | raw }}
+          </section>
+          <footer>
+            <p>{{ post.created_date }} x {{ post.author.display_name }}</p>
+          </footer>
+        </article>
+        {% endfor %}
+        <a href="{{ site_url('backend/login') }}">后台传送门</a>
+      </div>
+    </div>
+  </body>
+</html>

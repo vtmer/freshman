@@ -10,6 +10,9 @@
 
 class Hello extends CI_Controller {
     public function index() {
-        $this->twig->display('hello.html');
+        $this->load->model('post_model');
+        $this->twig->display('front/list.html', array(
+            'posts' => $this->post_model->get_all_posts()
+        ));
     }
 }
