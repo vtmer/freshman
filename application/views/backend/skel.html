@@ -17,10 +17,7 @@
     {% block modal %}
     {% endblock %}
   </body>
-  <script src="{{ static_url('js/jquery.min.js') }}" type="text/javascript"></script>
-  <script src="{{ static_url('js/select2.min.js') }}" type="text/javascript"></script>
-  <script src="{{ static_url('js/bootstrap-modal.js') }}" type="text/javascript"></script>
-  <script src="{{ static_url('js/modal.js') }}" type="text/javascript"></script>
+  <script type="text/javascript" data-main="{{ static_url('js/backend') }}" src="{{ static_url('js/libs/require.js') }}"></script>
   {% block afterbody %}
   {% endblock %}
 </html>

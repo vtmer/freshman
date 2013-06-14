@@ -31,8 +31,8 @@
                     <input class="select2-input" name="tags" placeholder="添加标签" value="{% if post %}{% for tag in post.tags %}{{ tag.name }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"/>
                     <label for="status">状态</label>
                     <select name="status">
-                        <option {% if post and post.status == 0 %}selected{% endif %} value="0">草稿</option>
-                        <option {% if post and post.status == 1 %}selected{% endif %} value="1">发布</option>
+                        <option value="0">草稿</option>
+                        <option selected value="1">发布</option>
                     </select>
                 </form>
                 <div class="pull-right">

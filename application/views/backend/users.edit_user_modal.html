@@ -28,7 +28,7 @@
             <div class="controls">
               <select multiple name="roles">
                 {% for role in roles %}
-                <option {% if role.id in user.role_ids %}checked{% endif %} value="{{ role.id }}">{{ role.name }}</option>
+                <option {% if role.id in user.role_ids %}selected{% endif %} value="{{ role.id }}">{{ role.name }}</option>
                 {% endfor %}
               </select>
             </div>

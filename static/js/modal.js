@@ -1,29 +1,10 @@
-(function() {
-    // 清除所有错误
-    var remove_errors = function() {
-        $('.error').removeClass('error');
-    };
-
-    // 网站根地址
-    // e.g.
-    //      http://exmaple.com/index.php
-    //      http://exmaple.com/subpath/index.php
-    var basic_uri = (function() {
-        var index_script = 'index.php';
-
-        if (location.href.lastIndexOf(index_script) !== -1) {
-            return location.href.split(index_script)[0] + index_script;
-        } else {
-            // FIXME
-            // 默认使用根地址
-            //
-            // 应该从 config/config.php 的配置来确定？
-            return location.origin;
-        }
-    })();
-
+define([
+    'jquery',
+    'bootmodal',
+    'misc'
+], function($, bootmodal, misc) {
     // Input 类
-    // 提供 modal 下表单 input 的逻辑支持
+    // 提供 modal 下表单 input 的逻辑验证
     // 
     // @set_error   设置错误
     // @validate    验证元素
@@ -34,21 +15,23 @@
     // selector     选择器路径
     // context      父级元素选择器
     var Input = function(selector, context) {
-        this.input = $(selector, context);
-        this.name = this.input.attr('name');
+        this._input = $(selector, context);
+        this.name = this._input.attr('name');
     };
-    Input.prototype.set_error = function() {
-        this.input.addClass('error');
+    Input.prototype.setError = function() {
+        this._input.addClass('error');
         return this;
     };
+    // 验证表单内容
     Input.prototype.validate = function() {
-        if (!this.grab()) {
+        if (!this.getValue()) {
             return false;
         }
         return true;
     };
-    Input.prototype.grab = function() {
-        return this.input.val();
+    // 获取表单值
+    Input.prototype.getValue = function() {
+        return this._input.val();
     };
 
     // Modal 类
@@ -62,74 +45,81 @@
     // @constructor
     //
     // uri          数据保存地址
-    // name         modal 名字
+    // selector     modal 选择器
     // inputs       子 input 组件名字
-    var Modal = function(uri, name, inputs) {
-        var _modal, _inputs;
+    // submit       提交选择器
+    // cbSubmit     提交回调
+    var Modal = function(uri, selector, inputs, submit, cbSubmit) {
+        var that = this;
 
-        this.uri = basic_uri + uri;
+        this.uri = misc.basic_uri + uri;
 
-        _modal = $('#' + name);
-        this.modal = _modal;
+        this._modal = $(selector);
         this.context = this.modal;
 
-        _inputs = [];
+        this._inputs = [];
         inputs.forEach(function(name, idx, arr) {
-            _inputs.push(new Input('[name=' + name + ']', _modal));
-        });
-        this.inputs = _inputs;
-    };
-    Modal.prototype.get_input = function(name) {
-        var input = null;
+            this._inputs.push(new Input('[name=' + name + ']', this._modal));
+        }, this);
 
-        this.inputs.forEach(function(value, idx, arr) {
-            if (value.name === name)
-                input = value;
-        });
-        return input;
+        if (submit) {
+            $(submit, this.context).click(cbSubmit || function(e) {
+                e.preventDefault();
+                that.send();
+            });
+        }
+    };
+    Modal.prototype.getInput = function(name) {
+        for (var i = 0;i < this._inputs.length;i++) {
+            if (this._inputs[i].name === name) {
+                return this._inputs[i];
+            }
+        }
+        return null;
     };
     Modal.prototype.validate = function() {
         var flag = true;
 
-        remove_errors();
-        this.inputs.forEach(function(value, idx, arr) {
+        misc.remove_errors();
+        this._inputs.forEach(function(value, idx, arr) {
             if (!value.validate()) {
                 flag = false;
-                value.set_error();
+                value.setError();
             }
         }, this);
 
         return flag;
     };
-    Modal.prototype.grab = function() {
+    Modal.prototype.getValue = function() {
         var data = {}, inputs, i;
 
         if (!this.validate())
             return null;
 
-        this.inputs.forEach(function(value, idx, arr) {
-            data[value.name] = value.grab();
+        this._inputs.forEach(function(value, idx, arr) {
+            data[value.name] = value.getValue();
         });
         return data;
     };
-    Modal.prototype.send = function() {
-        var payload = this.grab();
+    Modal.prototype.send = function(success, error) {
+        var payload = this.getValue();
 
-        if (!payload)
+        if (!payload) {
             return;
+        }
         $.post(this.uri, payload)
-            .success(this.send_success())
-            .error(this.send_error());
+            .success(success || this.cbSendSuccess())
+            .error(error || this.cbSendError());
     };
-    Modal.prototype.send_success = function() {
+    Modal.prototype.cbSendSuccess = function() {
         var that = this;
 
         return function(resp) {
-            that.modal.modal('hide');
+            that._modal.modal('hide');
             location.reload();
         };
     };
-    Modal.prototype.send_error = function() {
+    Modal.prototype.cbSendError = function() {
         var that = this;
 
         return function(resp) {
@@ -138,92 +128,16 @@
             if (!err || !err.error)
                 return;
 
-            that.inputs.forEach(function(value, idx, arr) {
+            that._inputs.forEach(function(value, idx, arr) {
                 if (value.name === err.error) {
-                    value.set_error();
+                    value.setError();
                 }
             });
         };
     };
 
-    $('[role="button"]').click(remove_errors);
-
-    // personal info 模块
-    var personal = new Modal('/backend/self/update', 'personal-info-modal',
-                             ['display_name', 'password']);
-    personal.get_input('password').validate = function() { return true; };
-    $('a.submit', personal.context).click(function(e) {
-        e.preventDefault();
-        personal.send();
-    });
-
-    // create user 模块
-    var user_create = new Modal('/backend/user/create', 'create-user-modal',
-                                ['login_name', 'display_name', 'password', 'roles']);
-    $('a.submit', user_create.context).click(function(e) {
-        e.preventDefault();
-        user_create.send();
-    });
-
-    // edit user 模块
-    $('.edit-user select[name="roles"]').each(function(k, v) {
-        var selected = [];
-
-        $('option[checked]', $(v)).each(function(key, value) {
-            selected.push($(value).attr('value'));
-        });
-
-        $(v).val(selected);
-    });
-    $('.edit-user a.submit').click(function (e) {
-        var user_id = $(this).attr('data-user-id'),
-            modal;
-
-        e.preventDefault();
-
-        modal = new Modal('/backend/user/' + user_id + '/update',
-                          'edit-user-modal-' + user_id,
-                          ['login_name', 'display_name', 'password', 'roles']);
-        modal.get_input('password').validate = function() { return true; };
-        modal.send();
-    });
-
-    // create category 模块
-    create_modal = new Modal('/backend/category/create', 'create-category-modal',
-                             ['name']);
-    $('a.submit', create_modal.context).click(function(e) {
-        e.preventDefault();
-        create_modal.send();
-    });
-
-    // edit category 模块
-    $('.edit-category a.submit').click(function(e) {
-        var cate_id = $(this).attr('data-category-id'),
-            modal;
-
-        e.preventDefault();
-
-        modal = new Modal('/backend/category/' + cate_id + '/update',
-                          'edit-category-modal-' + cate_id,
-                          ['name']);
-        modal.send();
-    });
-    $('.edit-category a.remove').click(function(e) {
-        var cate_id = $(this).attr('data-category-id');
-
-        e.preventDefault();
-
-        $.post(basic_uri + '/backend/category/' + cate_id + '/remove')
-            .success(function(resp) {
-                location.reload();
-            }).error(function(resp) {
-                console.log(resp);
-            });
-    });
-
-    // select2 设置
-    $('select[name="roles"]').select2({
-        placeholder: "设定用户的角色",
-        allowClear: true
-    });
-})();
+    return {
+        Input: Input,
+        Modal: Modal
+    };
+});

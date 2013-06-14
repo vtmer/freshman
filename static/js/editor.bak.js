@@ -1,7 +1,23 @@
-define([
-       'jquery',
-       'misc'
-], function($, misc) {
+(function() {
+    // 网站根地址
+    // e.g.
+    //      http://exmaple.com/index.php
+    //      http://exmaple.com/subpath/index.php
+    // XXX 模块化这个组件
+    var basic_uri = (function() {
+        var index_script = 'index.php';
+
+        if (location.href.lastIndexOf(index_script) !== -1) {
+            return location.href.split(index_script)[0] + index_script;
+        } else {
+            // FIXME
+            // 默认使用根地址
+            //
+            // 应该从 config/config.php 的配置来确定？
+            return location.origin;
+        }
+    })();
+
     var StatusBar = function(selector, _default) {
         this._statusBar = $(selector);
         this.context = $(selector);
@@ -23,8 +39,7 @@ define([
         return this;
     };
 
-    var Editor = function(uri, selector, statusBar) {
-        this._uri = uri;
+    var Editor = function(selector, statusBar) {
         this._editor = $(selector);
         this.context = $(selector);
         this.statusBar = statusBar;
@@ -52,6 +67,14 @@ define([
                 $(this).attr('data-click', 'true');
             }
         });
+
+        // 每 15 秒保存一次
+        setInterval(function() {
+            if (that.changed) {
+                that.autosave();
+                that.changed = false;
+            }
+        }, 15000);
     };
     Editor.prototype.value = function() {
         return {
@@ -97,13 +120,13 @@ define([
 
         $.ajax({
             type: 'POST',
-            url: misc.basic_uri + this._uri,
+            url: basic_uri + '/backend/post/autosave',
             data: value,
             dataType: 'json'
         }).done(function(resp) {
             if (that.attr('data-status') === '-1') {
                 window.history.pushState('new', value.title,
-                                         misc.basic_uri + '/backend/post/' + resp.post_id);
+                                         basic_uri + '/backend/post/' + resp.post_id);
                 that.attr('data-id', resp.post_id);
             }
             that.attr('data-status', resp.status);
@@ -156,9 +179,94 @@ define([
         });
     };
 
-    return {
-        StatusBar: StatusBar,
-        Toolbar: Toolbar,
-        Editor: Editor
-    };
-});
+    var status = new StatusBar('#status-bar'),
+        editor = new Editor('#editwrap article', status),
+        toolbar = new Toolbar('#editor-commands', editor);
+
+    if (editor.attr('data-status') === '1') {
+        status.setDefault('已发表');
+    } else {
+        status.setDefault('草稿');
+    }
+
+    // FIXME just some dummy code
+    $('.save-draft').click(function(e) {
+        e.preventDefault();
+
+        editor.autosave();
+    });
+
+    $('.publish').click(function(e) {
+        e.preventDefault();
+    });
+
+    $('#insert-link-modal a.submit').click(function(e) {
+        var modal, text, link,
+            sel = document.getSelection();
+
+        e.preventDefault();
+
+        modal = $('#insert-link-modal');
+        console.log(modal);
+        link = $('input[name="uri"]', modal).val();
+        text = $('input[name="text"]', modal).val() || link;
+        editor.execute('insertHTML', '<a href="' + link + '">' + text + '</a>');
+        console.log(sel);
+        console.log(document.getSelection());
+
+        //$('input[name="uri"]', modal).val('');
+        //$('input[name="text"]', modal).val('');
+        $('#insert-link-modal').modal('hide');
+    });
+
+    // select2 设置
+    $('select[name="categories"]').select2();
+
+    $('select[name="campus"]').select2({
+        placeholder: '选择校区',
+        maximumSelectionSize: 3
+    });
+
+    $('select[name="status"]').select2();
+
+    $.get(basic_uri + '/backend/post/tags', function(resp) {
+        var tags = [];
+
+        resp.forEach(function(v, i) {
+            tags.push(v.name);
+        });
+
+        $('input[name="tags"]').select2({
+            tags: tags
+        });
+    });
+
+    $('#publish-modal a.submit').click(function(e) {
+        var value, post_id;
+
+        e.preventDefault();
+
+        post_id = editor.attr('data-id');
+        value = editor.value();
+        value.tags = $('input[name="tags"]').val().split(',');
+        if (!value.tags) {
+            return;
+        }
+        value.status = $('select[name="status"]').val();
+        if (!value.status) {
+            return;
+        }
+        value.categories = $('select[name="categories"]').val();
+        if (!value.categories) {
+            return;
+        }
+        value.campus = $('select[name="campus"]').val();
+        if (!value.campus) {
+            return;
+        }
+
+        $.post('/backend/post/' + post_id + '/publish', value, function(resp) {
+            $('#publish-modal').modal('hide');
+        }).fail(function(resp) { console.log(resp); });
+    });
+})();
