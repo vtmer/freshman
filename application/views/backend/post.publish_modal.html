@@ -22,11 +22,7 @@
                         {% endfor %}
                     </select>
                     <label for="campus">校区</label>
-                    <select multiple name="campus">
-                        <option {% if post and 0 in post.campus %}selected {% endif %}value="0">大学城</option>
-                        <option {% if post and 1 in post.campus %}selected {% endif %}value="1">东风路</option>
-                        <option {% if post and 2 in post.campus %}selected {% endif %}value="2">龙洞</option>
-                    </select>
+                    <input class="select2-input" placeholder="选择校区" name="campus" type="text" value="{% if post %}{% for campus in post.campus %}{{ campus }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"/>
                     <label for="tags">标签</label>
                     <input class="select2-input" name="tags" placeholder="添加标签" value="{% if post %}{% for tag in post.tags %}{{ tag.name }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"/>
                     <label for="status">状态</label>

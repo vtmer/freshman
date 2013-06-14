@@ -125,6 +125,7 @@ define([
         return function(resp) {
             var err = resp.responseJSON;
 
+            console.log(resp);
             if (!err || !err.error)
                 return;
 

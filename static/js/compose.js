@@ -54,6 +54,7 @@ define([
                                             '#publish-modal',
                                             ['tags', 'status', 'categories', 'campus'],
                                             'a.submit');
+        publish_modal.getInput('campus').getValue =
         publish_modal.getInput('tags').getValue = function() {
             return this._input.val().split(',');
         };
@@ -75,11 +76,12 @@ define([
     });
    
     $('select[name="categories"]').select2();
-    $('select[name="campus"]').select2({
-        placeholder: '选择校区',
-        maximumSelectionSize: 3
-    });
     $('select[name="status"]').select2();
+    $.get(misc.basic_uri + '/backend/post/campus', function(campus) {
+        $('input[name="campus"]').select2({
+            tags: campus
+        });
+    });
     $.get(misc.basic_uri + '/backend/post/tags', function(resp) {
         var tags = [];
 

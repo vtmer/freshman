@@ -116,4 +116,15 @@ class Post extends Auth_Controller {
         $tags = $this->tag_model->get_all_array();
         $this->json_resp->display($tags);
     }
+
+    // /backend/post/campus
+    // ajax 获取所有 学校 接口
+    public function get_campus() {
+        $this->load->model('site_metas_model');
+        $campus = array();
+        foreach ($this->site_metas_model->get('campus') as $value) {
+            $campus[] = $value->value;
+        }
+        $this->json_resp->display($campus);
+    }
 }

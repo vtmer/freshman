@@ -157,7 +157,7 @@ class Post_model extends CI_Model {
                 ->insert('post_metas', array(
                     'post_id' => $post_id,
                     'key' => 'campus',
-                    'value' => (string) $c
+                    'value' => $c
                 ));
         }
     }
