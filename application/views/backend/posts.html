@@ -40,6 +40,9 @@
                 <td class="date">
                   {{ post.created_date }}
                 </td>
+                <td class="remove">
+                  <a href="{{ site_url('/backend/post/') }}/{{ post.id }}/remove" class="danger" title="删除">X</a>
+                </td>
               </tr>
               {% endfor %}
             </table>

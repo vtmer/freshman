@@ -109,6 +109,18 @@ class Post extends Auth_Controller {
         }
     }
 
+    // /backend/post/(:num)/remove
+    public function remove($post_id) {
+        $post = $this->model->get_by_id($post_id);
+        if (!$post ||
+            !($this->is_admin || $post->author->id === $this->user->id)) {
+            redirect('404');
+            return;
+        }
+        $this->model->remove($post_id);
+        redirect(site_url('/backend/posts'));
+    }
+
     // /backend/post/tags
     // ajax 获取所有 tags 接口
     public function get_tags() {

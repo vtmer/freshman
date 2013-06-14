@@ -161,4 +161,15 @@ class Post_model extends CI_Model {
                 ));
         }
     }
+
+    public function remove($post_id) {
+        $this->db
+            ->delete('posts_categories', array('post_id' => $post_id));
+        $this->db
+            ->delete('posts_tags', array('post_id' => $post_id));
+        $this->db
+            ->delete('post_metas', array('post_id' => $post_id));
+        $this->db
+            ->delete('posts', array('id' => $post_id));
+    }
 }

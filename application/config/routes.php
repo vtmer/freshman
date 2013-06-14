@@ -86,6 +86,7 @@ $route['backend/posts'] = 'backend/dashboard/posts';
 $route['backend/post/(:num)'] = 'backend/post/edit/$1';
 $route['backend/post/create'] = 'backend/post/create';
 $route['backend/post/(:num)/publish'] = 'backend/post/publish/$1';
+$route['backend/post/(:num)/remove'] = 'backend/post/remove/$1';
 $route['backend/post/autosave'] = 'backend/post/autosave';
 $route['backend/post/tags'] = 'backend/post/get_tags';
 $route['backend/post/campus'] = 'backend/post/get_campus';
