@@ -49,7 +49,7 @@ CREATE TABLE `fm_posts` (
 	`content` varchar(100000) NOT NULL,
 	`source` varchar(255) DEFAULT '',      /* 来源 */
 	`author_id` int,
-	`created_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+	`created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`status` int NOT NULL DEFAULT '0',
 	FOREIGN KEY(`author_id`) REFERENCES `fm_users` (`id`)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
