@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <title>首页</title>
+    <link href="{{ static_url('front/css/base.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ static_url('front/css/index.css') }}" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <!--container是一个总的容器，包含header,main,footer子DIV    -->
+    <div id="container">
+      {% include('front/header.part.html') %}
+      <!--  main为各页面内容 -->
+      <div id="main">
+        <div id="new">
+          <img src="{{ static_url('front/images/index/new.gif') }}" />
+          <div>
+            <div class="left">
+              <p class="hotTitle"><img src="{{ static_url('front/images/index/hot.gif') }}" />
+                <a href="#">【即将到来的军训，你准备好了么？】</a>
+              </p>
+              <div>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 加一排好看点把是不是呢？</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 加一排好看点把是不是呢？</a>
+                  </li>
+                </ul>
+                <a class="more" href="#"><img src="{{ static_url('front/images/index/more.gif') }}" /></a>
+              </div>
+            </div>
+
+            <div class="right"><img src="{{ static_url('front/images/index/tv.gif') }}" /></div>
+          </div>
+        </div><!-- 321开学啦 -->
+
+        <div class="information">
+          <img src="{{ static_url('front/images/index/321.gif') }}" />
+          <div>
+            <div class="left">
+              <!--  标题列表： -->
+              <div>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="right">
+              <img src="{{ static_url('front/images/index/1.gif') }}" />
+            </div>
+            <a class="more" href="#">
+              <img src="{{ static_url('front/images/index/morew.gif') }}" />
+            </a>
+          </div>
+        </div><!-- 学习攻略 -->
+        <div class="information">
+          <img src="{{ static_url('front/images/index/study.gif') }}" />
+          <div>
+            <div class="left">
+              <!--  标题列表： -->
+              <div>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="right">
+              <img src="{{ static_url('front/images/index/2.gif') }}" />
+            </div>
+            <a class="more" href="#">
+              <img src="{{ static_url('front/images/index/morew.gif') }}" />
+            </a>
+          </div>
+        </div><!-- 生活Tips -->
+        <div class="information">
+          <img src="{{ static_url('front/images/index/tips.gif') }}" />
+          <div>
+            <div class="left">
+              <!--  标题列表： -->
+              <div>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="right">
+              <img src="{{ static_url('front/images/index/3.gif') }}" />
+            </div>
+            <a class="more" href="#">
+              <img src="{{ static_url('front/images/index/morew.gif') }}" />
+            </a>
+          </div>
+        </div><!-- 校园Views -->
+        <div class="information">
+          <img src="{{ static_url('front/images/index/views.gif') }}" />
+          <div>
+            <div class="left">
+              <!--  标题列表： -->
+              <div>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+                <ul>
+                  <li>
+                    <a href="#">&gt; 发现原来所有标题都是乱打的</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 而且都是乱打得挺没有质量啊</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 长度又都是一样12或者13个字</a>
+                  </li>
+                  <li>
+                    <a href="#">&gt; 呃，无奈之下我也乱打好了</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="right">
+              <img src="{{ static_url('front/images/index/4.gif') }}" />
+            </div>
+            <a class="more" href="#">
+              <img src="{{ static_url('front/images/index/morew.gif') }}" />
+            </a>
+          </div>
+        </div>
+      </div><!--  for main  -->
+      {% include 'front/footer.part.html' %}
+    </div><!-- for container  -->
+  </body>
+</html>

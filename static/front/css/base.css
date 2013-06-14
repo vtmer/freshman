@@ -1,0 +1,65 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/*    通用声明      */
+* { 
+	margin:0;
+	padding:0;
+	list-style:none;
+	font-size:12px;
+	
+	}
+
+body { 
+	background:#fff;
+	background-image: url(../images/body_bg.gif);	
+}
+img {
+	border:0;
+}
+a {	text-decoration:none; 
+    color: #333;}
+
+a:hover { text-decoration:none; color:#333;}
+
+p { color:#333;}
+
+.clear {
+	clear:both;}
+	
+
+	
+#container {
+	margin:0 auto;
+	height:1000px;
+	width:960px;
+	}
+	
+#header {text-align:right; height:200px; }
+
+#headerUp {margin-right:81px;}
+#headerUp img{ margin-right:10px;}
+#headerUp a { margin:0 5px;}
+#headerUp a:hover {text-decoration:underline;}
+#headerUp .gdut { margin:0 50px 0 0; font: "Verdana"; font-weight:bold; height:20px;}
+
+#headerDown { height:39px; background-image:url(../images/headerbg.gif); text-align:right; padding-top:84px}
+#headerDown ul { margin:0px 0 0 360px; height:30px;overflow:hidden}
+#headerDown li { float:left; margin:0 5px;}
+#headerDown a {height:30px; width:75px; /*background:none; */display:block}
+#headerDown a:hover,.nav_circle  {
+height:30px; width:75px; background-image:url(../images/circle.png);
+/*IE6 Hack - 针对ie6png不能透明的CSS解决办法*/
+_background:none;
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="images/circle.png");/*IE6*/
+}
+#school { float:left; border-bottom:dashed 2px #CCC; padding:2px; margin:10px 0 0 50px;}
+#school p {font-size:15px;}
+#school a { color:#F00; font-size:15px; font-weight:bold;}
+#school span,#school span a { color:#aaa; font-size:12px; margin-left:3px;}
+
+#main { width:960px;}
+
+#footer { width:960px; height:120px; text-align:center;}
+#footer p { margin-right:480px; display:inline; color:#666;}
+#footer a { color:#666; margin:0 6px;}

@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+#main{height:750px; width:910px; padding-left:50px; padding-top:20px}
+#main ul li{ list-style:none}
+#main ul li a{ display:block; text-decoration:none; color:#000; text:12px}
+/* left-begins */
+#left{width:210px; float:left; margin-right:70px}
+#nav{width:207px; height:400px; background:url(../images/list-nav.gif) no-repeat; padding-top:30px; padding-left:35px}
+#nav ul li{ margin-bottom:14px; }
+#nav li a{ color:#000; width:109px; height:22px; line-height:22px;}
+.h1,#nav1:hover {text-decoration:none; background:url(../images/list-nav-a.gif); border:none}
+.h2,#nav2:hover {text-decoration:none; background:url(../images/list-nav-b.gif); border:none}
+.h3,#nav3:hover {text-decoration:none; background:url(../images/list-nav-c.gif); border:none}
+.h4,#nav4:hover {text-decoration:none; background:url(../images/list-nav-d.gif); border:none}
+.h5,#nav5:hover {text-decoration:none; background:url(../images/list-nav-e.gif); border:none}
+
+/* left-ends */
+
+/* right-begins */
+#right{width:510px; float:left; padding-top:0px}
+#right ul { height:150px; margin-top:20px; margin-left:15px}
+#right ul li{ margin-bottom:15px; margin-top:0px}
+#right ul li a{ display:inline; margin-left:15px}
+
+#right-down{ height:25px; float: right; }
+#right-down ul{height:0; float:left;}
+#right-down ul li{ float:left}
+#right-down a,#right-down span{ display:block; padding:4px; border: solid 1px #ccc; float:left; height:15px; color:#aaa;}
+#right-down a:hover,#right-down span{ background-color:#d9ab0e; color:#fff !important;}
+
+/* right-ends */
