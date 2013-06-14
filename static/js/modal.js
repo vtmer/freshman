@@ -55,7 +55,7 @@ define([
         this.uri = misc.basic_uri + uri;
 
         this._modal = $(selector);
-        this.context = this.modal;
+        this.context = this._modal;
 
         this._inputs = [];
         inputs.forEach(function(name, idx, arr) {

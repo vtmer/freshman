@@ -30,7 +30,7 @@ require([
                                       'a.submit');
 
     $('.edit-user a.submit').click(function(e) {
-        var user_id = $(this).attr('dadta-user-id'),
+        var user_id = $(this).attr('data-user-id'),
             user;
 
         e.preventDefault();
@@ -38,6 +38,7 @@ require([
         user = new modal.Modal('/backend/user/' + user_id + '/update',
                          '#edit-user-modal-' + user_id,
                          ['login_name', 'display_name', 'password', 'roles']);
+        user.getInput('password').validate = function() { return true; };
         user.send();
     });
 
