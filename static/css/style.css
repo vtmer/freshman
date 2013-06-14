@@ -173,6 +173,12 @@ i[class^="icon-"] {
       line-height: 15px;
       padding: 6px 8px 5px 8px;
       position: relative; }
+      .lists-wrapper .lists td .tag:nth-child(3n + 1) {
+        background-color: #e74c3c; }
+      .lists-wrapper .lists td .tag:nth-child(3n + 2) {
+        background-color: #f1c40f; }
+      .lists-wrapper .lists td .tag:nth-child(3n + 3) {
+        background-color: #23cc71; }
 
 #posts td.title {
   width: 99%;

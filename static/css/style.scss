@@ -279,6 +279,16 @@ i[class^="icon-"] {
         line-height: 15px;
         padding: 6px 8px 5px 8px;
         position: relative;
+
+        &:nth-child(3n + 1) {
+          background-color: #e74c3c;
+        }
+        &:nth-child(3n + 2) {
+          background-color: #f1c40f;
+        }
+        &:nth-child(3n + 3) {
+          background-color: #23cc71;
+        }
       }
     }
   }
