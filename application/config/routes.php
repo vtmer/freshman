@@ -64,7 +64,7 @@
 |
 */
 
-$route['default_controller'] = 'hello';
+$route['default_controller'] = 'front/home';
 $route['404_override'] = 'errors/not_found';
 
 /* backend routes */
@@ -95,6 +95,12 @@ $route['backend/file/upload'] = 'backend/file_upload/save';
 
 $route['backend'] = 'backend/dashboard/index';
 $route['backend/admin'] = 'backend/admin_dashboard/index';
+
+/* frontend route */
+$route['/'] = 'front/home/index';
+
+/* test route */
+$route['/test'] = 'test/index';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

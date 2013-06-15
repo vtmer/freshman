@@ -44,15 +44,19 @@ class Category_model extends CI_Model {
         return true;
     }
 
-    public function get_posts($cate_id) {
+    public function get_posts($cate_id, $cond = array()) {
         return $this->db
             ->join('posts', 'posts_categories.post_id = posts.id')
+            ->where($cond)
             ->get_where('posts_categories', array('posts_categories.category_id' => $cate_id))
             ->result();
     }
 
     public function get_all() {
-        return $this->db->get('categories')->result();
+        return $this->db
+            ->order_by('id', 'asc')
+            ->get('categories')
+            ->result();
     }
 
     public function get_by_id($cate_id) {

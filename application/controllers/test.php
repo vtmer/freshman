@@ -14,7 +14,7 @@ require_once('backend/auth.php');
 // 导入测试数据
 class Test extends Auth_Controller {
     private $faker;
-    private $category_count = 5;
+    private $category_count = 4;
     private $tag_count = 15;
     private $author_count = 5;
 
@@ -57,7 +57,7 @@ class Test extends Auth_Controller {
     private function create_posts($limit = 50, $tags_limit = 3) {
         for ($i = 0;$i < $limit;$i += 1) {
             $post = $this->post_model->create(array(
-                'title' => $this->faker->text(15),
+                'title' => $this->faker->word(15),
                 'content' => $this->faker->text(2500),
                 'status' => 1,
                 'author_id' => 1
@@ -83,7 +83,7 @@ class Test extends Auth_Controller {
 
     private function create_tags($limit = 15) {
         for ($i = 0;$i < $limit;$i += 1) {
-            $this->tag_model->create($this->faker->text(5));
+            $this->tag_model->create($this->faker->word(5));
         }
         return $limit;
     }

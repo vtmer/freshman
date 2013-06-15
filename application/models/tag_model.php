@@ -34,6 +34,12 @@ class Tag_model extends CI_Model {
             ->result();
     }
 
+    public function get_by_id($tag_id) {
+        return $this->db
+            ->get_where('tags', array('id' => $tag_id))
+            ->result();
+    }
+
     public function get_all() {
         return $this->db->get('tags')->result();
     }

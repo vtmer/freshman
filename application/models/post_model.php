@@ -32,7 +32,7 @@ class Post_model extends CI_Model {
         return $post;
     }
 
-    private function pack_posts($posts) {
+    public function pack_posts($posts) {
         foreach ($posts as $post) {
             $post = $this->pack_post($post);
         }

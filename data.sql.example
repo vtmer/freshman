@@ -47,11 +47,6 @@ VALUES
 INSERT INTO `fm_categories`
 (`name`)
 VALUES
-('E 眼工大');
-
-INSERT INTO `fm_categories`
-(`name`)
-VALUES
 ('学习攻略');
 
 INSERT INTO `fm_categories`

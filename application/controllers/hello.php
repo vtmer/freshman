@@ -11,7 +11,7 @@
 class Hello extends CI_Controller {
     public function index() {
         $this->load->model('post_model');
-        $this->twig->display('front/list.html', array(
+        $this->twig->display('front/index.html', array(
             'posts' => $this->post_model->get_all_posts()
         ));
     }
