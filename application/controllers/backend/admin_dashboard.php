@@ -32,7 +32,14 @@ class Admin_Dashboard extends Auth_Controller {
 
     // /backend/users
     public function users() {
-        $admin_name = $this->config->item('role_name')['admin'];
+        $this->load->model('site_metas_model');
+        $roles = array();
+        foreach ($this->site_metas_model->get('role') as $value) {
+            $role = explode(':', $value->value);
+            $roles[$role[0]] = $role[1];
+        }
+
+        $admin_name = $roles['admin'];
         $users = $this->user_model->get_all_users();
         foreach ($users as $user) {
             $user->is_admin = $this->user_model
