@@ -38,3 +38,28 @@ INSERT INTO `fm_users_roles`
 (`user_id`, `role_id`)
 VALUES
 (1, 1);
+
+INSERT INTO `fm_categories`
+(`name`)
+VALUES
+('321 开学啦');
+
+INSERT INTO `fm_categories`
+(`name`)
+VALUES
+('E 眼工大');
+
+INSERT INTO `fm_categories`
+(`name`)
+VALUES
+('学习攻略');
+
+INSERT INTO `fm_categories`
+(`name`)
+VALUES
+('生活 Tips');
+
+INSERT INTO `fm_categories`
+(`name`)
+VALUES
+('校园 Views');
