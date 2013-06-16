@@ -5,7 +5,7 @@ ul{list-style-type:none; padding:0; margin:0;}
 #school { margin-left: 0; }
 
 /*-------left begin-----*/
-#left{width:600px; float:left; margin-top:10px;}
+#left{width:600px; margin-top:10px auto 0; padding-right:265px;}
 /*--------left-top begin----*/
 #left-top .title{ height:26px; width:600px; background:#fdd856;}
 #left-top .title a,
@@ -51,7 +51,7 @@ ul{list-style-type:none; padding:0; margin:0;}
 /*-------left end-------*/
 
 /*-----right begin-------*/
-#right{width:265px; float:left; margin-left:50px;}
+#right{width:265px; position:absolute; top:210px; right:0;}
 /*-----right-top begin----------*/
 #right .right-top{width:265px;}
 #right .right-top .title{ width:265px; line-height:26px; height:26px; font-size:14px; font-weight:bold; color:#272726; border-bottom:#fdd856 dashed 1px;}
