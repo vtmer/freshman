@@ -16,11 +16,11 @@
         <div id="nav">
           <ul>
             <li>
-              <a href="{{ site_url('/c/all') }}"></a>
+              <a id="nav1" href="{{ site_url('/c/all') }}"></a>
             </li>
             {% for cate in categories %}
             <li>
-              <a href="{{ site_url('c') }}/{{ cate.id }}" id="nav{{ cate.id }}" name="nav{{ cate.id }}"></a>
+              <a href="{{ site_url('c') }}/{{ cate.id }}" id="nav{{ cate.id + 1 }}" name="nav{{ cate.id }}"></a>
             </li>
             {% endfor %}
           </ul>
@@ -33,7 +33,7 @@
             {% for post in category.posts %}
             <li>
               <img src="{{ static_url('front/images/list-right-point.gif') }}" />
-              <a href="{{ static_url('p') }}/{{ post.id }}">{{ post.title }}</a>
+              <a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a>
             </li>
             {% if loop.index % 5 == 0 %}
             {% if loop.index != loop.length %}
