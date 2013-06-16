@@ -51,26 +51,28 @@ class Category extends Skel {
     private function posts($cate_id, $campus) {
         return $this->post_model->pack_posts(
             $this->post_model->db
-            ->join('posts_categories', 'posts_categories.post_id = posts.id')
-            ->join('post_metas', 'post_metas.post_id = posts.id')
-            ->where('post_metas.key', 'campus')
-            ->where('post_metas.value', $campus)
-            ->where('posts.status', 1)
-            ->where('posts_categories.category_id', $cate_id)
-            ->get('posts')
-            ->result()
+                ->select('posts.*')
+                ->join('posts_categories', 'posts_categories.post_id = posts.id')
+                ->join('post_metas', 'post_metas.post_id = posts.id')
+                ->where('post_metas.key', 'campus')
+                ->where('post_metas.value', $campus)
+                ->where('posts.status', 1)
+                ->where('posts_categories.category_id', $cate_id)
+                ->get('posts')
+                ->result()
         );
     }
 
     private function all_posts($campus) {
         return $this->post_model->pack_posts(
             $this->post_model->db
-            ->join('post_metas', 'post_metas.post_id = posts.id')
-            ->where('post_metas.key', 'campus')
-            ->where('post_metas.value', $campus)
-            ->where('posts.status', 1)
-            ->get('posts')
-            ->result()
+                ->select('posts.*')
+                ->join('post_metas', 'post_metas.post_id = posts.id')
+                ->where('post_metas.key', 'campus')
+                ->where('post_metas.value', $campus)
+                ->where('posts.status', 1)
+                ->get('posts')
+                ->result()
         );
     }
 }
