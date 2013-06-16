@@ -30,6 +30,7 @@ p { color:#333;}
 
 	
 #container {
+	position:relative;
 	margin:0 auto;
 	height:1000px;
 	width:960px;
