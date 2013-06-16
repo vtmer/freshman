@@ -48,14 +48,16 @@ class Home extends Skel {
         foreach ($this->category_model->get_all() as $category) {
             $category->posts = $this->post_model->pack_posts(
                 $this->post_model->db
-                ->limit($count)
-                ->join('post_metas', 'post_metas.post_id = posts.id')
-                ->where('status', 1)
-                ->where('key', 'campus')
-                ->where('value', $campus)
-                ->order_by('created_date', 'desc')
-                ->get('posts')
-                ->result()
+                    ->limit($count)
+                    ->join('post_metas', 'post_metas.post_id = posts.id')
+                    ->join('posts_categories', 'posts_categories.post_id = posts.id')
+                    ->where('posts_categories.category_id', $category->id)
+                    ->where('posts.status', 1)
+                    ->where('post_metas.key', 'campus')
+                    ->where('post_metas.value', $campus)
+                    ->order_by('posts.created_date', 'desc')
+                    ->get('posts')
+                    ->result()
             );
             $categories[] = $category;
         }
