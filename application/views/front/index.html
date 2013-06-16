@@ -16,9 +16,11 @@
           <img src="{{ static_url('front/images/index/new.gif') }}" />
           <div>
             <div class="left">
+              {% if hottest | length %}
               <p class="hotTitle"><img src="{{ static_url('front/images/index/hot.gif') }}" />
-                <a href="#">【即将到来的军训，你准备好了么？】</a>
+                <a href="{{ site_url('p') }}/{{ hottest[0].id }}">{{ hottest[0].title }}</a>
               </p>
+              {% endif %}
               <div>
                 <ul>
                   {% for post in latest %}
