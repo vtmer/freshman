@@ -31,6 +31,7 @@ class Home extends Skel {
     protected function latest($campus, $count = 10) {
         return $this->post_model->pack_posts(
             $this->post_model->db
+                ->select('posts.*')
                 ->limit($count)
                 ->join('post_metas', 'post_metas.post_id = posts.id')
                 ->where('status', 1)
@@ -48,6 +49,7 @@ class Home extends Skel {
         foreach ($this->category_model->get_all() as $category) {
             $category->posts = $this->post_model->pack_posts(
                 $this->post_model->db
+                    ->select('posts.*')
                     ->limit($count)
                     ->join('post_metas', 'post_metas.post_id = posts.id')
                     ->join('posts_categories', 'posts_categories.post_id = posts.id')

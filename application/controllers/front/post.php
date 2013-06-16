@@ -27,6 +27,7 @@ class Post extends Skel {
             show_404();
             return;
         }
+        $this->post_model->update_viewtimes($post->id);
 
         $this->display('front/article.html', array(
             'post' => $post,
@@ -41,6 +42,7 @@ class Post extends Skel {
         foreach ($this->category_model->get_all() as $category) {
             $category->posts = $this->post_model->pack_posts(
                 $this->post_model->db
+                    ->select('posts.*')
                     ->limit($count)
                     ->join('post_metas', 'post_metas.post_id = posts.id')
                     ->join('posts_categories', 'posts_categories.post_id = posts.id')
@@ -70,6 +72,7 @@ class Post extends Skel {
         }
         return $this->post_model->pack_posts(
             $this->post_model->db
+                ->select('posts.*')
                 ->limit($count)
                 ->join('post_metas', 'post_metas.post_id = posts.id')
                 ->join('posts_tags', 'posts_tags.post_id = posts.id')

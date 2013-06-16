@@ -29,6 +29,7 @@ class Post_model extends CI_Model {
         $post->categories = $this->get_categories($post->id);
         $post->tags = $this->get_tags($post->id);
         $post->campus = $this->get_campus($post->id);
+        $post->viewtimes = $this->get_viewtimes($post->id);
         return $post;
     }
 
@@ -105,6 +106,24 @@ class Post_model extends CI_Model {
             ->result();
     }
 
+    public function get_viewtimes($post_id) {
+        $times = $this->db
+            ->where('post_id', $post_id)
+            ->where('key', 'viewtimes')
+            ->get('post_metas')
+            ->result();
+        if ($times) {
+            return (int) $times[0]->value;
+        } else {
+            $this->db->insert('post_metas', array(
+                'post_id' => $post_id,
+                'key' => 'viewtimes',
+                'value' => 0
+            ));
+            return 0;
+        }
+    }
+
     public function create($value) {
         $this->db->insert('posts', $value);
         return $this->get_by_id($this->db->insert_id());
@@ -160,6 +179,16 @@ class Post_model extends CI_Model {
                     'value' => $c
                 ));
         }
+    }
+
+    public function update_viewtimes($post_id) {
+        $this->db
+            ->update('post_metas', array(
+                'value' => $this->get_viewtimes($post_id) + 1
+            ), array(
+                'post_id' => $post_id,
+                'key' => 'viewtimes'
+            ));
     }
 
     public function remove($post_id) {
