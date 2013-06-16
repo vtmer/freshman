@@ -24,7 +24,7 @@ class Post extends Skel {
         $post = $this->post_model->get_by_id($post_id);
         if (!$post || $post->status !== '1') {
             // FIXME  统一的 404 页面
-            redirect('404');
+            show_404();
             return;
         }
 

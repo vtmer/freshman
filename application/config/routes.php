@@ -99,6 +99,8 @@ $route['backend/admin'] = 'backend/admin_dashboard/index';
 /* frontend route */
 $route['/'] = 'front/home/index';
 $route['p/(:num)'] = 'front/post/post/$1';
+$route['c/(:num)'] = 'front/category/category/$1';
+$route['c/all'] = 'front/category/all';
 
 /* test route */
 $route['/test'] = 'test/index';
