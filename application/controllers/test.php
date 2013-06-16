@@ -82,7 +82,8 @@ class Test extends Auth_Controller {
 
     private function create_tags($limit = 15) {
         for ($i = 0;$i < $limit;$i += 1) {
-            $this->tag_model->create($this->faker->word(5));
+            $this->tag_model
+                ->create($this->faker->word(2) . $this->faker->word(3));
         }
         return $limit;
     }
