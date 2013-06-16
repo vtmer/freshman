@@ -2,27 +2,28 @@
 <html>
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-  <title>内容页</title>
+  <title>{{ post.title }} - GDUT 新生网</title>
   <link href="{{ static_url('front/css/base.css') }}" rel="stylesheet" type="text/css" />
   <link href="{{ static_url('front/css/detail.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--container是一个总的容器，包含header,main,footer子DIV    -->
-  {% include 'front/header.part.html' %}
   <div id="container">
+    {% include 'front/header.part.html' %}
     <div id="left">
       <!--这个是左边的新闻部分 begin-->
       <div id="left-top">
         <div class="title">
-          <a href="#">321开学啦</a><span>&gt;</span><a href="#">圣诞树上的</a>
+          <!-- FIXME 统一的网站名称 -->
+          <a href="#">新生网</a><span>&gt;</span><a href="{{ site_url('c') }}/{{ post.categories[0].id }}">{{ post.categories[0].name }}</a>
         </div>
         <div class="kong"></div>
         <div class="content">
           <div class="header">
-            {{ post.title }}
+            {{ post.title}}
           </div>
           <div class="center">
-            <span>来源：在德国和</span>
+            <span>来源：新生网</span>
             <span class="a">
               <a href="#">大</a>
               <a href="#">中</a>
@@ -49,25 +50,11 @@
 
         <div class="middle">
           <ul>
+            {% for rpost in relatives %}
             <li>
-              <span>&gt;</span><a href="#">&nbsp;是淡黄色的黑降低肯德基ijwidjsijd可是觉</a>
+              <span>&gt;</span><a href="{{ site_url('p') }}/{{ rpost.id }}">&nbsp;{{ rpost.title }}</a>
             </li>
-
-            <li>
-              <span>&gt;</span><a href="#">&nbsp;五花肉诶我结婚水晶滴胶俄军事基地外撒娇</a>
-            </li>
-
-            <li>
-              <span>&gt;</span><a href="#">&nbsp;史蒂文很多世界第五阶段圣诞节我idjwjedwj</a>
-            </li>
-
-            <li>
-              <span>&gt;</span><a href="#">&nbsp;大家分开的肌肤加快地方艰苦的肌肤</a>
-            </li>
-
-            <li>
-              <span>&gt;</span><a href="#">&nbsp;放进空间非公开发来看反馈给了分开</a>
-            </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -76,139 +63,74 @@
         <div class="title">
           <p>&nbsp;&nbsp;相关评论</p>
         </div>
-
         <div class="middle">
           <ul>
             <li class="height">
               <div class="person">
                 <a href="#">顺风耳</a>&nbsp;说
               </div>
-
               <p>他回忆uyykuiku预计哭了溃烂ulililiiuyky尽快uyk</p>
             </li>
-
             <li class="height">
               <div class="person">
                 <a href="#">顺风耳</a>&nbsp;说
               </div>
-
               <p>他回忆uyykuiku预计哭了溃烂ulililiiuyky尽快uyk</p>
             </li>
-
             <li class="height">
               <div class="person">
                 <a href="#">顺风耳</a>&nbsp;说
               </div>
-
               <p>他回忆uyykuiku预计哭了溃烂ulililiiuyky尽快uyk</p>
             </li>
           </ul>
         </div>
       </div>
-
       <div class="none"></div><!--这个是相关文章和相关评论 end-->
       <!--下面是提交评论的框-->
-
       <div id="left-below">
-        <p><span>昵称：</span>&nbsp;&nbsp;<input class="one" name="name" type=
-        "text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>验证码：</span>&nbsp;&nbsp;<input class="two"
-        name="keyword" type="text" /></p>
-
-        <p><span class="pl">评论：</span>&nbsp;&nbsp;
-        <textarea class="three" name="pl" rows="5">
-</textarea></p>
+        <p>
+          <span>昵称：</span>&nbsp;&nbsp;
+          <input class="one" name="name" type="text" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <span>验证码：</span>&nbsp;&nbsp;
+          <input class="two" name="keyword" type="text" />
+        </p>
+        <p>
+          <span class="pl">评论：</span>&nbsp;&nbsp;
+          <textarea class="three" name="pl" rows="5"></textarea>
+        </p>
       </div>
     </div><!--右边部分-->
-
     <div id="right">
+      {% for category in categories %}
+      {% if category.id != post.categories[0].id %}
       <div class="right-top">
         <div class="title">
-          学习攻略
+          {{ category.name }}
         </div>
         <div class="middle">
           <ul>
+            {% for cpost in category.posts | slice(0, 5) %}
             <li>
-              <span>1</span><a href="#">&nbsp;是淡黄色的黑降低肯德基ijwidjsijd可是觉</a>
+              <span {% if loop.index > 3 %}class="color"{% endif %}>{{ loop.index }}</span>
+              &nbsp;<a href="{{ site_url('p') }}/{{ cpost.id }}">{{ cpost.title }}</a>
             </li>
-            <li>
-              <span>2</span><a href="#">&nbsp;五花肉诶我结婚水晶滴胶俄军事基地外撒娇</a>
-            </li>
-            <li>
-              <span>3</span><a href="#">&nbsp;史蒂文很多世界第五阶段圣诞节我idjwjedwj</a>
-            </li>
-            <li>
-              <span class="color">4</span><a href=
-              "#">&nbsp;大家分开的肌肤加快地方艰苦的肌肤</a>
-            </li>
-            <li>
-              <span class="color">5</span><a href=
-              "#">&nbsp;放进空间非公开发来看反馈给了分开</a>
-            </li>
+            {% endfor %}
           </ul>
         </div>
         <div class="below"></div>
       </div>
-      <div class="right-top">
-        <div class="title">
-          生活Tips
-        </div>
-        <div class="middle">
-          <ul>
-            <li>
-              <span>1</span><a href="#">&nbsp;是淡黄色的黑降低肯德基ijwidjsijd可是觉</a>
-            </li>
-            <li>
-              <span>2</span><a href="#">&nbsp;五花肉诶我结婚水晶滴胶俄军事基地外撒娇</a>
-            </li>
-            <li>
-              <span>3</span><a href="#">&nbsp;史蒂文很多世界第五阶段圣诞节我idjwjedwj</a>
-            </li>
-            <li>
-              <span class="color">4</span><a href=
-              "#">&nbsp;大家分开的肌肤加快地方艰苦的肌肤</a>
-            </li>
-            <li>
-              <span class="color">5</span><a href=
-              "#">&nbsp;放进空间非公开发来看反馈给了分开</a>
-            </li>
-          </ul>
-        </div>
-        <div class="below"></div>
-      </div>
-      <div class="right-top">
-        <div class="title">
-          校园Views
-        </div>
-        <div class="middle">
-          <ul>
-            <li>
-              <span>1</span><a href="#">&nbsp;是淡黄色的黑降低肯德基ijwidjsijd可是觉</a>
-            </li>
-            <li>
-              <span>2</span><a href="#">&nbsp;五花肉诶我结婚水晶滴胶俄军事基地外撒娇</a>
-            </li>
-            <li>
-              <span>3</span><a href="#">&nbsp;史蒂文很多世界第五阶段圣诞节我idjwjedwj</a>
-            </li>
-            <li>
-              <span class="color">4</span><a href=
-              "#">&nbsp;大家分开的肌肤加快地方艰苦的肌肤</a>
-            </li>
-            <li>
-              <span class="color">5</span><a href=
-              "#">&nbsp;放进空间非公开发来看反馈给了分开</a>
-            </li>
-          </ul>
-        </div>
-        <div class="below"></div>
-      </div>
+      {% endif %}
+      {% endfor %}
       <div class="map">
         <div class="title">
           E眼工大
         </div>
-        <div class="picture"><img src="images/map.gif" /></div>
+        <div class="picture">
+          <img src="{{ static_url('front/images/map.gif') }}" />
+        </div>
         <div class="below">
-          <img src="images/map-point.gif" />&nbsp;&nbsp;<a href="#">工大地图详解</a>
+          <img src="{{ static_url('front/images/map-point.gif') }}" />&nbsp;&nbsp;<a href="#">工大地图详解</a>
         </div>
       </div>
     </div>
