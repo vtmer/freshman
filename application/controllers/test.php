@@ -47,7 +47,6 @@ class Test extends Auth_Controller {
     public function index() {
         echo 'start';
 
-        $this->create_users($this->author_count);
         $this->create_tags($this->tag_count);
         $this->create_posts();
 
@@ -57,7 +56,7 @@ class Test extends Auth_Controller {
     private function create_posts($limit = 50, $tags_limit = 3) {
         for ($i = 0;$i < $limit;$i += 1) {
             $post = $this->post_model->create(array(
-                'title' => $this->faker->word(15),
+                'title' => $this->faker->word(25),
                 'content' => $this->faker->text(2500),
                 'status' => 1,
                 'author_id' => 1
