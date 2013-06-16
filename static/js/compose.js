@@ -17,8 +17,9 @@ define([
        'select2',
        'misc',
        'modal',
+       'bootdrop',
        'editor'
-], function($, select2, misc, modal, Editor) {
+], function($, select2, misc, modal, dropdown, Editor) {
     var status = new Editor.StatusBar('#status-bar'),
         editor = new Editor.Editor('/backend/post/autosave',
                                    '#editwrap article', status),
