@@ -79,7 +79,9 @@ class Post extends Skel {
                 ->where('posts.status', 1)
                 ->where('post_metas.key', 'campus')
                 ->where('post_metas.value', $campus)
+                ->where('posts.id <>', $post_id)
                 ->where_in('posts_tags.tag_id', $tag_ids)
+                ->distinct()
                 ->get('posts')
                 ->result()
         );
