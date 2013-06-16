@@ -33,7 +33,7 @@
             {% for post in category.posts %}
             <li>
               <img src="{{ static_url('front/images/list-right-point.gif') }}" />
-              <a href="{{ static_url('p') }}/{{ post.id }}">{{ post.id }}</a>
+              <a href="{{ static_url('p') }}/{{ post.id }}">{{ post.title }}</a>
             </li>
             {% if loop.index % 5 == 0 %}
             {% if loop.index != loop.length %}
