@@ -101,6 +101,7 @@ $route['/'] = 'front/home/index';
 $route['p/(:num)'] = 'front/post/post/$1';
 $route['c/(:num)'] = 'front/category/category/$1';
 $route['c/all'] = 'front/category/all';
+$route['map'] = 'front/map/index';
 
 /* test route */
 $route['/test'] = 'test/index';
