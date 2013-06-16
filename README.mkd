@@ -2,8 +2,6 @@
 
 **施工中 WIP**
 
-[测试地址](http://alpha.youknowmymind.com/)
-
 -----------------
 
 ## 开发环境搭建
