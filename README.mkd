@@ -17,22 +17,35 @@
 
 `fm_` 为数据表前缀
 
+
 `site_metas`        网站元数据，如校区信息、用户组信息
 
+
 `users`             用户信息
+
 `users_roles`       用户权限组别记录 (many2many)
+
 `user_metas`        用户附加信息 (one2many)
+
 `sessions`          用户 session 信息 (one2many)
 
 `roles`             用户权限组信息
+
 `permissions`       用户权限信息
+
 `roles_permissions` 用户权限记录 (many2many)
 
+
 `posts`             文章信息
+
 `post_metas`        文章附加信息，如校区、浏览数 (ony2many)
+
 `categories`        文章组别信息
+
 `posts_categories`  文章组别记录 (many2many)
+
 `tags`              文章标签信息
+
 `posts_tags`        文章标签记录 (many2many)
 
 ## 开发环境搭建
