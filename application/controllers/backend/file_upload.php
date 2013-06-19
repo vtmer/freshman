@@ -13,7 +13,7 @@ require_once 'auth.php';
 /*
  * Upload 控制器
  *
- * 提供文件上传功能
+ * 提供文件 ajax 上传功能
  */
 class File_upload extends Auth_Controller {
     public function __construct() {
@@ -21,10 +21,12 @@ class File_upload extends Auth_Controller {
         $this->load->helper(array('form', 'url'));
     }
 
-    // /backend/file/upload
-    //
-    // 上传失败：返回错误信息
-    // 上传成功：返回附件完整地址
+    /* 
+     * /backend/file/upload
+     *
+     * 上传失败：返回错误信息
+     * 上传成功：返回附件完整地址
+     */
     public function save() {
         $this->load->library('upload');
         $this->load->config('upload');

@@ -32,6 +32,8 @@ class Auth_Controller extends CI_Controller {
         $this->load->model('user_model');
         $this->load->model('site_metas_model');
 
+        // 获取所有用户权限信息
+        // TODO 抽取常用模块
         $roles = array();
         foreach ($this->site_metas_model->get('role') as $value) {
             $role = explode(':', $value->value);

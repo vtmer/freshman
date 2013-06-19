@@ -10,6 +10,8 @@
 
 /*
  * User 模型
+ *
+ * 用户密码加密方法：SHA1(原始密码 + 加密盐)
  */
 class User_model extends CI_Model {
     private $salt;

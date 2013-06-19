@@ -8,6 +8,9 @@
  * @author     hbc
  */
 
+/*
+ * 文章模型
+ */
 class Post_model extends CI_Model {
     public function validate($author_id, $content, $title, $source) {
         if ($content === '' || $title === '')
@@ -21,7 +24,11 @@ class Post_model extends CI_Model {
         return true;
     }
 
-    private function pack_post($post) {
+    /*
+     * 对文章记录进行包装
+     * 添加作者、类别、标签、校区和阅读数等信息
+     */
+    public function pack_post($post) {
         if (!$post)
             return $post;
 
@@ -49,6 +56,9 @@ class Post_model extends CI_Model {
         return $this->pack_posts($posts);
     }
 
+    /*
+     * 获取用户自身的文章
+     */
     public function get_self_posts($author_id) {
         $posts = $this->db
             ->get_where('posts', array('author_id' => $author_id))

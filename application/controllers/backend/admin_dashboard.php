@@ -21,17 +21,23 @@ class Admin_Dashboard extends Auth_Controller {
             redirect(site_url('404'));
     }
 
-    // /backend/admin
+    /*
+     * /backend/admin
+     */
     public function index() {
         // 临时跳转
-        redirect(site_url('/backend/users'));
+        redirect(site_url('/backend/posts'));
     }
 
     // user 部分
     // --------------------------------------------------------------------
 
-    // /backend/users
+    /* 
+     * /backend/users
+     */
     public function users() {
+        // 获取所有用户权限信息
+        // TODO 抽取常用模块
         $this->load->model('site_metas_model');
         $roles = array();
         foreach ($this->site_metas_model->get('role') as $value) {
@@ -61,7 +67,9 @@ class Admin_Dashboard extends Auth_Controller {
         $this->twig->display('backend/users.html', $display);
     }
 
-    // /backend/user/create
+    /*
+     * /backend/user/create
+     */
     public function user_create() {
         $payload = $this->input->post();
 
@@ -112,13 +120,15 @@ class Admin_Dashboard extends Auth_Controller {
         ));
     }
 
-    // /backend/user/(num:id)/edit
+    /*
+     * /backend/user/(num:id)/edit
+     */
     public function user_edit($id) {
         $user = $this->user_model->get_by_id($id);
         if (!$user) {
             $this->json_resp->display(array(
                 'error' => 'user not found'
-            ));
+            ), 404);
             return;
         }
         $user = $user[0];
@@ -172,7 +182,9 @@ class Admin_Dashboard extends Auth_Controller {
     // category 部分
     // --------------------------------------------------------------------
 
-    // /backend/categries
+    /*
+     * /backend/categries
+     */
     public function categories() {
         $this->load->model('category_model');
         $categories = $this->category_model->get_all();
@@ -189,7 +201,9 @@ class Admin_Dashboard extends Auth_Controller {
         $this->twig->display('backend/categories.html', $display);
     }
 
-    // /backend/category/create
+    /* 
+     * /backend/category/create
+     */
     public function category_create() {
         $payload = $this->input->post();
         $this->load->model('category_model');
@@ -216,7 +230,9 @@ class Admin_Dashboard extends Auth_Controller {
         ));
     }
 
-    // /backend/category/(num:id)/edit
+    /*
+     * /backend/category/(num:id)/edit
+     */
     public function category_edit($id) {
         $this->load->model('category_model');
         $category = $this->category_model->get_by_id($id);
@@ -252,7 +268,9 @@ class Admin_Dashboard extends Auth_Controller {
         ));
     }
     
-    // /backend/category/(num:id)/remove
+    /*
+     * /backend/category/(num:id)/remove
+     */
     public function category_remove($id) {
         $this->load->model('category_model');
         $category = $this->category_model->get_by_id($id);

@@ -10,13 +10,17 @@
 
 require_once 'skel.php';
 
-// E 眼工大控制器
+/*
+ * E 眼工大控制器
+ */
 class Map extends Skel {
     public function __construct() {
         parent::__construct();
     }
 
-    // /map
+    /*
+     * /map
+     */
     public function index() {
         $this->display('front/map.html');
     }

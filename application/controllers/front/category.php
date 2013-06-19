@@ -10,7 +10,9 @@
 
 require_once 'skel.php';
 
-// 分类控制器
+/*
+ * 分类控制器
+ */
 class Category extends Skel {
     public function __construct() {
         parent::__construct();
@@ -19,7 +21,10 @@ class Category extends Skel {
         $this->load->model('category_model');
     }
 
-    // /c/(:num)
+    /*
+     * /c/(:num)
+     * TODO 分页
+     */
     public function category($cate_id) {
         $category = $this->category_model->get_by_id($cate_id);
         if (!$category) {
@@ -36,7 +41,11 @@ class Category extends Skel {
         ));
     }
 
-    // /c/all
+    /* 
+     * /c/all
+     * 所有分类页面
+     *TODO 分页
+     */
     public function all() {
         $category = array(
             'name' => '所有文章',
@@ -48,6 +57,7 @@ class Category extends Skel {
         ));
     }
 
+    // TODO 更好的封装
     private function posts($cate_id, $campus) {
         return $this->post_model->pack_posts(
             $this->post_model->db
@@ -63,6 +73,7 @@ class Category extends Skel {
         );
     }
 
+    // TODO 更好的封装
     private function all_posts($campus) {
         return $this->post_model->pack_posts(
             $this->post_model->db

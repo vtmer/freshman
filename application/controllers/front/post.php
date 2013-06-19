@@ -10,7 +10,9 @@
 
 require_once 'skel.php';
 
-// 文章控制器
+/*
+ * 文章控制器
+ */
 class Post extends Skel {
     public function __construct() {
         parent::__construct();
@@ -18,7 +20,9 @@ class Post extends Skel {
         $this->load->helper('url');
     }
 
-    // /p/(:num)
+    /*
+     * /p/(:num)
+     */
     public function post($post_id) {
         $this->load->model('post_model');
         $post = $this->post_model->get_by_id($post_id);
@@ -27,6 +31,7 @@ class Post extends Skel {
             show_404();
             return;
         }
+        // 更新 viewtimes
         $this->post_model->update_viewtimes($post->id);
 
         $this->display('front/article.html', array(
@@ -36,7 +41,13 @@ class Post extends Skel {
         ));
     }
 
-    // 分类推荐
+    /* 
+     * 获取分类推荐文章
+     *
+     * 到指定的分类下读取前 $count 篇文章
+     *
+     * TODO 更好的封装
+     */
     private function categories($campus, $count) {
         $categories = array();
         foreach ($this->category_model->get_all() as $category) {
@@ -59,8 +70,15 @@ class Post extends Skel {
         return $categories;
     }
 
-    // 相关文章
+    /*
+     * 获取相关文章
+     *
+     * 获取具有相同标签(tag)的文章
+     *
+     * TODO 更好的封装
+     */
     private function relatives($post_id, $campus, $count) {
+        // 获取该篇文章所有 tag 的 id
         $tags = $this->post_model->db
             ->join('posts_tags', 'posts_tags.tag_id = tags.id')
             ->where('posts_tags.post_id', $post_id)
@@ -70,6 +88,7 @@ class Post extends Skel {
         foreach ($tags as $tag) {
             $tag_ids[] = $tag->id;
         }
+        // 获取具有相同 tag 的文章
         return $this->post_model->pack_posts(
             $this->post_model->db
                 ->select('posts.*')

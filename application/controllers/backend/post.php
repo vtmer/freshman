@@ -21,11 +21,13 @@ class Post extends Auth_Controller {
         $this->load->model('post_model', 'model');
         $this->load->model('category_model');
 
-        // XXX 抽离出来，不要污染全局环境
+        // FIXME 抽离出来，不要污染全局环境
         $this->categories = $this->category_model->get_all();
     }
 
-    // /backend/post/create
+    /*
+     * /backend/post/create
+     */
     public function create() {
         // XXX 抽离出来，不要污染全局环境
         $display = array(
@@ -36,7 +38,9 @@ class Post extends Auth_Controller {
         $this->twig->display('backend/post.create.html', $display);
     }
 
-    // /backend/post/(:num)
+    /*
+     * /backend/post/(:num)
+     */
     public function edit($post_id) {
         $post = $this->model->get_by_id($post_id);
         if (!$post ||
@@ -54,7 +58,11 @@ class Post extends Auth_Controller {
         $this->twig->display('backend/post.edit.html', $display);
     }
 
-    // /backend/post/(:num)/publish
+    /*
+     * /backend/post/(:num)/publish
+     *
+     * 发表文章，保存文章的分类、标签、校区信息
+     */
     public function publish($post_id) {
         $post = $this->model->get_by_id($post_id);
         if (!$post ||
@@ -77,11 +85,13 @@ class Post extends Auth_Controller {
         $this->json_resp->display(array('msg' => 'ok'));
     }
 
-    // /backend/post/autosave
-    //
-    // 只保存标题, 内容, 作者
-    // 如果是新建的文章（不带 post_id），创建新的
-    // 如果是已有的文章（带 post_id），更新
+    /* 
+     * /backend/post/autosave
+     *
+     * 只保存标题, 内容, 作者
+     * 如果是新建的文章（不带 post_id），创建新的，并返回新的 post_id
+     * 如果是已有的文章（带 post_id），更新
+     */
     public function autosave() {
         $payload = $this->input->post();
 
@@ -109,7 +119,9 @@ class Post extends Auth_Controller {
         }
     }
 
-    // /backend/post/(:num)/remove
+    /*
+     * /backend/post/(:num)/remove
+     */
     public function remove($post_id) {
         $post = $this->model->get_by_id($post_id);
         if (!$post ||
@@ -121,16 +133,22 @@ class Post extends Auth_Controller {
         redirect(site_url('/backend/posts'));
     }
 
-    // /backend/post/tags
-    // ajax 获取所有 tags 接口
+    /* 
+     * /backend/post/tags
+     *
+     * ajax 获取所有 tags 接口
+     */
     public function get_tags() {
         $this->load->model('tag_model');
         $tags = $this->tag_model->get_all_array();
         $this->json_resp->display($tags);
     }
 
-    // /backend/post/campus
-    // ajax 获取所有 学校 接口
+    /*
+     * /backend/post/campus
+     *
+     * ajax 获取所有 校区 接口
+     */
     public function get_campus() {
         $this->load->model('site_metas_model');
         $campus = array();

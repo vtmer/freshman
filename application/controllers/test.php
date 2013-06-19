@@ -11,7 +11,11 @@
 require_once(VENDORPATH . 'autoload.php');
 require_once('backend/auth.php');
 
-// 导入测试数据
+/*
+ * Test Controller
+ *
+ * 生成测试数据
+ */
 class Test extends Auth_Controller {
     private $faker;
     private $category_count = 4;

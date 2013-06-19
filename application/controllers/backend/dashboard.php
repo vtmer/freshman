@@ -24,8 +24,10 @@ class Dashboard extends Auth_Controller {
             redirect(site_url('/backend/posts'));
     }
     
-    // /backend/self/update
-    // 更新用户个人信息
+    /*
+     * /backend/self/update
+     * 更新用户个人信息
+     */
     public function self_update() {
         $payload = $this->input->post();
         if (array_key_exists('display_name', $payload)) {
@@ -53,7 +55,9 @@ class Dashboard extends Auth_Controller {
         ), 200);
     }
 
-    // /backend/posts
+    /*
+     * /backend/posts
+     */
     public function posts() {
         $display = array(
             'user' => $this->user,
@@ -61,10 +65,12 @@ class Dashboard extends Auth_Controller {
         );
 
         $this->load->model('post_model');
+        // 只有管理员可以查看所有文章
         if ($this->is_admin)
             $display['posts'] = $this->post_model->get_all_posts();
         else
-            $display['posts'] = $this->post_model->get_self_posts($this->user->id);
+            $display['posts'] = $this->post_model
+                ->get_self_posts($this->user->id);
 
         $this->twig->display('backend/posts.html', $display);
     }

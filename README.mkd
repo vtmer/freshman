@@ -1,8 +1,32 @@
 # GDUT 新生网
 
-**施工中 WIP**
+**测试中**
+
+[测试地址](http://alpha.youknowmymind.com/)
 
 -----------------
+
+## 数据表说明
+
+`fm_` 为数据表前缀
+
+`site_metas`        网站元数据，如校区信息、用户组信息
+
+`users`             用户信息
+`users_roles`       用户权限组别记录 (many2many)
+`user_metas`        用户附加信息 (one2many)
+`sessions`          用户 session 信息 (one2many)
+
+`roles`             用户权限组信息
+`permissions`       用户权限信息
+`roles_permissions` 用户权限记录 (many2many)
+
+`posts`             文章信息
+`post_metas`        文章附加信息，如校区、浏览数 (ony2many)
+`categories`        文章组别信息
+`posts_categories`  文章组别记录 (many2many)
+`tags`              文章标签信息
+`posts_tags`        文章标签记录 (many2many)
 
 ## 开发环境搭建
 
@@ -11,9 +35,55 @@
 请另外复制 [CodeIgniter](https://github.com/EllisLab/CodeIgniter) 的 `system/`
 文件夹到根目录下。
 
-本地数据库配置请修改 `application/config/database.php.example` 到 `database.php`
+建议使用最新版
 
-session 加密盐请自行设置，修改 `application/config/config.php.example`
-到 `config.php` 并设置 `encryption_key`
+### 本地数据库配置
+
+请修改 `application/config/database.php.example` 到 `database.php`
+
+### Session 加密盐
+
+请自行设置，复制 `application/config/config.php.example` 到 `config.php` 并设置
+`encryption_key`
 
 请使用 [composer](http://getcomposer.org) 安装依赖。
+
+## 三方依赖
+
+[Twig](http://twig.sensiolabs.org)
+
+模板渲染
+
+[Faker](https://github.com/fzaninotto/Faker)
+
+生成测试数据
+
+## Random Notes
+
+### 模板
+
+模板文件在 `application/views` 下
+
+其中 `backend` 为后台模板，`front` 为网站前台模板
+
+[模板语法参考](http://twig.sensiolabs.org/doc/templates.html)
+
+### 静态文件
+
+静态文件在 `static` 下
+
+`css` `fonts` `imgs` `js` 为后台静态文件
+
+`front` 为网站前台静态文件
+
+`uploads` 为上传数据文件夹，需要自行建立
+
+### 后台 ajax
+
+后台部分操作使用了 `ajax`。在验证失败的时候请返回 403 的 `status_code`，并且把
+error 的值设置为错误的 field。 (TODO 例子)
+
+
+## TODO
+
+将类似查询校区、用户权限的操作包装成 [helper](http://codeigniter.org.cn/user_guide/general/helpers.html)

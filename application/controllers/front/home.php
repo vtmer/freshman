@@ -10,7 +10,9 @@
 
 require_once 'skel.php';
 
-// 主页控制器
+/*
+ * 主页控制器
+ */
 class Home extends Skel {
     public function __construct() {
         parent::__construct();
@@ -19,7 +21,10 @@ class Home extends Skel {
         $this->load->model('category_model');
     }
 
-    // /
+    /*
+     * /
+     * /home
+     */
     public function index() {
         $this->display('front/index.html', array(
             'latest' => $this->latest($this->visitor['campus']),
@@ -28,7 +33,11 @@ class Home extends Skel {
         ));
     }
 
-    // 最新动态
+    /*
+     * 获取最新动态模块文章
+     *
+     * TODO 更好的封装
+     */
     private function latest($campus, $count = 10) {
         return $this->post_model->pack_posts(
             $this->post_model->db
@@ -44,7 +53,11 @@ class Home extends Skel {
         );
     }
 
-    // 各个栏目
+    /*
+     * 获取各个栏目的文章
+     *
+     * TODO 更好的封装
+     */
     private function categories($campus, $count = 8) {
         $categories = array();
         foreach ($this->category_model->get_all() as $category) {
@@ -67,8 +80,14 @@ class Home extends Skel {
         return $categories;
     }
 
-    // hot
-    // XXX 不要使用原生 SQL 语句
+    /*
+     * 获取 hot 文章
+     *
+     * 获取 viewtimes (记录在 post_metas 表中) 最多的文章
+     *
+     * TODO 更好的封装
+     * FIXME 不要使用原生 SQL 语句
+     */
     private function hot($campus, $threshold = 15, $count = 1) {
         return $this->post_model->pack_posts(
             $this->post_model->db->query("

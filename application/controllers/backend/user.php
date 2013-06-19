@@ -21,7 +21,9 @@ class User extends CI_Controller {
         $this->load->helper('url');
     }
 
-    // /backend/login
+    /*
+     * /backend/login
+     */
     public function login() {
         $display = array();
 
@@ -73,7 +75,9 @@ class User extends CI_Controller {
         $this->twig->display('backend/login.html', $display);
     }
 
-    // /backend/logout
+    /*
+     * /backend/logout
+     */
     public function logout() {
         $next = $this->input->get('next') or site_url('/');
         if (!$this->is_login())
@@ -81,6 +85,8 @@ class User extends CI_Controller {
 
         $token = $this->session->userdata('token');
         $username = $this->session->userdata('username');
+        // 擦去登录信息
+        // TODO 过期 session 自动删除
         $this->model->logout($username, $token);
         $this->session->unset_userdata(array(
             'username' => '',
@@ -90,12 +96,17 @@ class User extends CI_Controller {
         redirect($next);
     }
 
-    // /backend/deactive
+    /*
+     * /backend/deactive
+     */
     public function deactive() {
         $display = array();
         $this->twig->display('backend/deactive.html', $display);
     }
 
+    /*
+     * 检查当前用户是否已经登录
+     */
     private function is_login() {
         $token = $this->session->userdata('token');
         $username = $this->session->userdata('username');
