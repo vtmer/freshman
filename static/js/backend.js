@@ -15,8 +15,9 @@ require.config({
 require([
         'jquery',
         'select2',
-        'modal'
-], function($, select2, modal) {
+        'modal',
+        'misc'
+], function($, select2, modal, misc) {
     var personal = new modal.Modal('/backend/self/update',
                                    '#personal-info-modal',
                                    ['display_name', 'password'],
@@ -63,9 +64,9 @@ require([
 
         e.preventDefault();
 
-        $.post(basic_uri + '/backend/category/' + cate_id + '/remove')
+        $.post(misc.basic_uri + '/backend/category/' + cate_id + '/remove')
             .success(function(resp) {
-                location.relaad();
+                location.reload();
             }).error(function(resp) {
                 console.log(resp);
             });
