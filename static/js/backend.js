@@ -72,12 +72,20 @@ require([
     });
 
     $('select[name="roles"]').select2({
-        placeholder: "设定用户的角色",
+        placeholder: '设定用户的角色',
         allowClear: true
     });
 
     // TODO 用 CSS 实现两栏等高
     $('#command-nav').height($('.lists-wrapper').height());
+
+    $('a[data-command="remove"]').click(function(e) {
+        var choice = confirm('真的要删除么？！！！！');
+
+        if (!choice) {
+            e.preventDefault();
+        }
+    });
 
     return {};
 });
