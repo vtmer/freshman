@@ -96,6 +96,7 @@ define([
         });
     });
 
+    // TODO 使用 modal 模块化
     $('.insert-link').click(function(e) {
         selection = editor.currentSelection();
         $('#insert-link-modal input').val('');
@@ -116,6 +117,12 @@ define([
         editor.execute('createLink', link.val());
 
         modal.modal('hide');
+    });
+    $('#insert-link-modal form').submit(function() { return false; });
+    $('#insert-link-modal form').keyup(function(e) {
+        if (e.which === 13) {
+            $('#insert-link-modal .submit').click();
+        }
     });
 
     $('.insert-image').click(function(e) {

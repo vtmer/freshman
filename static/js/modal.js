@@ -68,6 +68,17 @@ define([
                 that.send();
             });
         }
+
+        // 防止回车提交表单
+        $('form', this.context).submit(function() {
+            return false;
+        });
+        // 回车执行 a.submit.click
+        $('form', this.context).keyup(function(e) {
+            if (e.which === 13 && submit) {
+                $(submit, that.context).click();
+            }
+        });
     };
     Modal.prototype.getInput = function(name) {
         for (var i = 0;i < this._inputs.length;i++) {
