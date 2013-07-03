@@ -215,6 +215,10 @@ i[class^="icon-"] {
   }
 }
 
+section[role="main"] {
+  margin-bottom: 15px;
+}
+
 .lists-wrapper {
   -webkit-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.1);

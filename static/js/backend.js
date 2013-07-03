@@ -76,5 +76,8 @@ require([
         allowClear: true
     });
 
+    // TODO 用 CSS 实现两栏等高
+    $('#command-nav').height($('.lists-wrapper').height());
+
     return {};
 });
