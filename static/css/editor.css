@@ -59,6 +59,14 @@ a {
     background-color: #ffffff;
 }
 
+.toolbar-buttons > li > a {
+    padding: 2px;
+
+    display: block;
+    min-width: 31px;
+    text-align: center;
+}
+
 .toolbar-buttons > li:hover a {
     color: #555;
 }
@@ -78,7 +86,7 @@ a {
 }
 
 .toolbar-buttons li {
-    padding: 0 10px;
+    padding: 0;
     line-height: 34px;
 }
 
@@ -88,6 +96,8 @@ a {
 
 .dropdown-menu {
     padding: 0;
+    margin-left: 10px;
+
     border-radius: 2px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
     border: 0;
