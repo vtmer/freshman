@@ -149,6 +149,7 @@ define([
             if (command) {
                 value = $(this).attr('data-value') || false;
                 that.editor.execute(command, value);
+                that.editor.changed = true;
             }
         });
 

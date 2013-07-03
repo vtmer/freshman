@@ -152,5 +152,11 @@ define([
         });
     });
 
+    window.onbeforeunload = function(e) {
+        if (editor.changed) {
+            return '文章还没有保存啊！！！真的不保存了嘛？！！1';
+        }
+    };
+
     return {};
 });
