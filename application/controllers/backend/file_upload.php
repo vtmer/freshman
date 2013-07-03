@@ -28,10 +28,11 @@ class File_upload extends Auth_Controller {
      * 上传成功：返回附件完整地址
      */
     public function save() {
-        $this->load->library('upload');
         $this->load->config('upload');
+        $upload_config = $this->config->item('upload');
+        $this->load->library('upload', $upload_config);
 
-        if (!$this->upload->do_upload($this->config->item('field_name'))) {
+        if (!$this->upload->do_upload($upload_config['field_name'])) {
             $this->json_resp->display(array(
                 'error' => $this->upload->display_errors()
             ), 403);
@@ -39,7 +40,7 @@ class File_upload extends Auth_Controller {
         }
 
         $this->json_resp->display(array(
-            'url' => $this->upload->data()['full_path']
+            'url' => '/static/uploads/' . $this->upload->data()['file_name']
         ));
     }
 }

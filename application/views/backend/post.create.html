@@ -28,9 +28,9 @@
                     <li>
                         <a role="modal" class="insert-link" data-toggle="modal" href="#insert-link-modal" title="插入超链接"><i class="icon-link"></i></a>
                     </li>
-                    <!--li>
-                        <a href="#" title="插入图片"><i class="icon-camera"></i></a>
-                    </li-->
+                    <li>
+                        <a role="modal" class="insert-image "data-toggle="modal" href="#insert-image-modal" title="插入图片"><i class="icon-camera"></i></a>
+                    </li>
                     <li>
                         <a role="button" data-command="insertOrderedList" href="#" title="有序列表"><i class="icon-list-ol"></i></a>
                     </li>
@@ -90,6 +90,7 @@
             </div>
         </div>
         {% include 'backend/post.insert_link_modal.html' %}
+        {% include 'backend/post.insert_image.html' %}
         {% include 'backend/post.publish_modal.html' %}
     </body>
     <script type="text/javascript" data-main="{{ static_url('js/compose') }}" src="{{ static_url('js/libs/require.js') }}"></script>

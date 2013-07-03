@@ -115,7 +115,34 @@ define([
         editor.select(selection);
         editor.execute('createLink', link.val());
 
-        $(modal).modal('hide');
+        modal.modal('hide');
+    });
+
+    $('.insert-image').click(function(e) {
+        $('#insert-image-modal input').val('');
+    });
+    $('#insert-image-modal .submit').click(function(e) {
+        var modal = $('#insert-image-modal'),
+            upload = $('#image-form'),
+            form = new FormData(upload[0]);
+
+        e.preventDefault();
+
+        // TODO progress bar
+        $.ajax({
+            url: misc.basic_uri + '/backend/file/upload',
+            type: 'POST',
+            data: form,
+            cache: false,
+            contentType: false,
+            processData: false
+        }).done(function(e) {
+            editor.execute('insertImage', e.url);
+
+            modal.modal('hide');
+        }).fail(function(e) {
+            console.log(e.responseText);
+        });
     });
 
     return {};
