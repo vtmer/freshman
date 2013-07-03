@@ -2,6 +2,14 @@
 
 {% block title %}{{ post.title }}{% endblock %}
 
+{% block navigations %}
+{% if post.status == 1 %}
+                    <li>
+                        <a href="{{ site_url('/p')}}/{{ post.id }}" title="查看文章"><i class="icon-anchor"></i></a>
+                    </li>
+{% endif %}
+{% endblock %}
+
 {% block post_meta %}data-id="{{ post.id }}" data-status="{{ post.status }}"{% endblock %}
 
 {% block post_content %}
