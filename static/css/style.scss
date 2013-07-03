@@ -10,6 +10,14 @@ i[class^="icon-"] {
   vertical-align: baseline;
 }
 
+.select2-drop {
+  border: 1px solid $bg-color;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+     -moz-border-radius: 2px;
+          border-radius: 2px;
+}
+
 .span-merge {
   margin-left: 0;
 }
@@ -378,10 +386,20 @@ section[role="main"] {
   }
 }
 
-.select2-drop {
-  border: 1px solid $bg-color;
-  box-shadow: none;
-  -webkit-border-radius: 2px;
-     -moz-border-radius: 2px;
-          border-radius: 2px;
+footer {
+  padding: 5px 0 15px;
+
+  background-color: $page-bg-color;
+  color: #ccc;
+  font-size: 12px;
+
+  .copyleft {
+    margin: 0 auto;
+
+    text-align: center;
+  }
+
+  &:hover {
+    cursor: none;
+  }
 }

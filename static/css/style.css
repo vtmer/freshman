@@ -4,6 +4,13 @@ body {
 i[class^="icon-"] {
   vertical-align: baseline; }
 
+.select2-drop {
+  border: 1px solid #f0f0f0;
+  box-shadow: none;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px; }
+
 .span-merge {
   margin-left: 0; }
 
@@ -230,9 +237,13 @@ section[role="main"] {
     #command-nav ul li:last-child {
       border-bottom: 1px solid #ededed; }
 
-.select2-drop {
-  border: 1px solid #f0f0f0;
-  box-shadow: none;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px; }
+footer {
+  padding: 5px 0 15px;
+  background-color: #fefefe;
+  color: #ccc;
+  font-size: 12px; }
+  footer .copyleft {
+    margin: 0 auto;
+    text-align: center; }
+  footer:hover {
+    cursor: none; }
