@@ -71,6 +71,21 @@ define([
             return null;
         return sel.focusNode.parentNode;
     };
+    Editor.prototype.currentSelection = function() {
+        var sel= document.getSelection();
+
+        return sel.getRangeAt(0);
+    };
+    Editor.prototype.select = function(range) {
+        var sel = document.getSelection();
+        
+        if (!range) {
+            return;
+        }
+
+        sel.removeAllRanges();
+        sel.addRange(range);
+    };
     Editor.prototype.attr = function(name, value) {
         if (value !== undefined) {
             return this._editor.attr(name, value);

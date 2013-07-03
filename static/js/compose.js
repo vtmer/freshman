@@ -23,7 +23,8 @@ define([
     var status = new Editor.StatusBar('#status-bar'),
         editor = new Editor.Editor('/backend/post/autosave',
                                    '#editwrap article', status),
-        toolbar = new Editor.Toolbar('#editor-commands', editor);
+        toolbar = new Editor.Toolbar('#editor-commands', editor),
+        selection;
 
     if (editor.attr('data-status') === '-1') {
         $('.publish').hide();
@@ -93,6 +94,28 @@ define([
         $('input[name="tags"]').select2({
             tags: tags
         });
+    });
+
+    $('.insert-link').click(function(e) {
+        selection = editor.currentSelection();
+        $('#insert-link-modal input').val('');
+    });
+    $('#insert-link-modal .submit').click(function(e) {
+        var modal = $('#insert-link-modal'),
+            link = $('input[name="uri"]', modal);
+
+        e.preventDefault();
+
+        misc.remove_errors();
+        if (!link.val()) {
+            link.addClass('error');
+            return;
+        }
+
+        editor.select(selection);
+        editor.execute('createLink', link.val());
+
+        $(modal).modal('hide');
     });
 
     return {};

@@ -234,3 +234,10 @@ a {
 .modal-body {
     padding: 5px 15px 10px;
 }
+
+.modal form input[type=text].error,
+.modal form input[type=password].error,
+.modal form .uneditable-input.error,
+.modal form .select2-choices.error {
+    border-color: #e74c3c;
+}
