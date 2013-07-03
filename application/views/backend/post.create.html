@@ -89,19 +89,7 @@
                 </article>
             </div>
         </div>
-        <div id="insert-link-modal" class="modal hide fade">
-            <div class="modal-header">
-                <button type="button" data-dismiss="modal" class="close" aria-hidden="true">&times;</button>
-                <h3>插入超链接</h3>
-            </div>
-            <div class="modal-body">
-                <form class="form">
-                    <input name="uri" type="text" placeholder="http://" />
-                </form>
-                <a href="#" class="btn submit">添加</a>
-                <a data-dismiss="modal" href="#" class="btn">取消</a>
-            </div>
-        </div>
+        {% include 'backend/post.insert_link_modal.html' %}
         {% include 'backend/post.publish_modal.html' %}
     </body>
     <script type="text/javascript" data-main="{{ static_url('js/compose') }}" src="{{ static_url('js/libs/require.js') }}"></script>
