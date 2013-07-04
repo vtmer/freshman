@@ -19,9 +19,9 @@
             </div>
           </header>
           <section>
-            <table class="lists articles table">
+            <table class="lists articles table" data-display-category="all">
               {% for post in posts %}
-              <tr>
+              <tr data-post="{{ post.id }}" data-categories="{% for c in post.categories %}{{ c.id }}{% if not loop.last %},{% endif %}{% endfor %}" class="post-item">
                 <td class="icon">
                   {% if post.status %}
                   <a target="_blank" href="{{ site_url('/p') }}/{{ post.id }}"><i class="icon-large icon-ok" title="已发布"></i></a>
@@ -34,7 +34,7 @@
                 </td>
                 <td class="category">
                   {% for category in post.categories %}
-                  <span class="tag">{{ category.name }}</span>
+                  <span class="tag pull-right" data-category-id="{{ category.id }}">{{ category.name }}</span>
                   {% endfor %}
                 </td>
                 <td class="date">

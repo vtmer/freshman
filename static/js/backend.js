@@ -16,8 +16,9 @@ require([
         'jquery',
         'select2',
         'modal',
+        'posts.list',
         'misc'
-], function($, select2, modal, misc) {
+], function($, select2, modal, postsList, misc) {
     var personal = new modal.Modal('/backend/self/update',
                                    '#personal-info-modal',
                                    ['display_name', 'password'],
@@ -79,13 +80,8 @@ require([
 
     // TODO 用 CSS 实现两栏等高
     $('#command-nav').height($('.lists-wrapper').height());
-
-    $('a[data-command="remove"]').click(function(e) {
-        var choice = confirm('真的要删除么？！！！！');
-
-        if (!choice) {
-            e.preventDefault();
-        }
+    $('.lists-wrapper').bind('lists-wrapper-resized', function() {
+        $('#command-nav').height($('.lists-wrapper').height());
     });
 
     return {};
