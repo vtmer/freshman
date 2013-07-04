@@ -253,3 +253,7 @@ a {
 .modal form .select2-choices.error {
     border-color: #e74c3c;
 }
+
+p.error {
+    color: #e74c3c;
+}

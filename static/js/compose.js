@@ -135,10 +135,24 @@ define([
 
         e.preventDefault();
 
-        // TODO progress bar
         $.ajax({
             url: misc.basic_uri + '/backend/file/upload',
             type: 'POST',
+            xhr: function() {
+                var _ = $.ajaxSettings.xhr();
+                if (_.upload) {
+                    _.upload.addEventListener('progress', function(e) {
+                        if (e.total - e.position < 1) {
+                            $('div.progress', modal).hide();
+                        } else {
+                            $('div.progress', modal).show(); 
+                            $('div.progress .bar', modal)
+                                .width(e.position / e.total * 100 + '%');
+                        }
+                    });
+                }
+                return _;
+            },
             data: form,
             cache: false,
             contentType: false,
@@ -148,6 +162,7 @@ define([
 
             modal.modal('hide');
         }).fail(function(e) {
+            $('p.error-ret', modal).show().html('上传失败').addClass('error');
             console.log(e.responseText);
         });
     });
