@@ -144,6 +144,7 @@ define([
                     _.upload.addEventListener('progress', function(e) {
                         if (e.total - e.position < 1) {
                             $('div.progress', modal).hide();
+                            $('div.progress .bar', modal).width(0);
                         } else {
                             $('div.progress', modal).show(); 
                             $('div.progress .bar', modal)
