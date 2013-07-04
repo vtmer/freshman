@@ -24,7 +24,7 @@
               <tr>
                 <td class="icon">
                   {% if post.status %}
-                  <i class="icon-large icon-ok" title="已发布"></i>
+                  <a target="_blank" href="{{ site_url('/p') }}/{{ post.id }}"><i class="icon-large icon-ok" title="已发布"></i></a>
                   {% else %}
                   <i class="icon-large icon-exclamation-sign" title="未发布"></i>
                   {% endif %}
