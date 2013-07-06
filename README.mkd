@@ -106,4 +106,4 @@ error 的值设置为错误的 field。 (TODO 例子)
 
 ## TODO
 
-将类似查询校区、用户权限的操作包装成 [helper](http://codeigniter.org.cn/user_guide/general/helpers.html)
+<del>将类似查询校区、用户权限的操作包装成 [helper](http://codeigniter.org.cn/user_guide/general/helpers.html)</del>

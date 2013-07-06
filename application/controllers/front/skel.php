@@ -34,22 +34,18 @@ class Skel extends CI_Controller {
 
         // 设置校区 (c)
         $campus = $this->input->get('c', TRUE);
-        if ($campus) {
+        if ($campus)
             $this->session->set_userdata(array(
                 'campus' => $campus
             ));
-        };
     }
 
     protected function prepare() {
-        $this->load->model('site_metas_model');
+        $this->load->helper('campus');
         $this->load->model('category_model');
 
         // 获取所有校区信息
-        $campus = array();
-        foreach ($this->site_metas_model->get('campus') as $c) {
-            $campus[] = $c->value;
-        }
+        $campus = get_all_campus();
 
         // 获取当前浏览用户信息
         $this->visitor = array(
@@ -57,9 +53,8 @@ class Skel extends CI_Controller {
         );
         // 获取当前用户校区信息，默认为 大学城
         if (!$this->visitor['campus'] ||
-            !in_array($this->visitor['campus'], $campus)) {
-            $this->visitor['campus'] = $campus[0];
-        }
+            !in_array($this->visitor['campus'], $campus))
+            $this->visitor['campus'] = default_campus();
 
         $this->display = array(
             'campus' => $campus,

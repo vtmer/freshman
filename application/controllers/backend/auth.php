@@ -22,23 +22,19 @@
 class Auth_Controller extends CI_Controller {
     // 当前用户
     protected $user;
+    // 当前用户权限组
     protected $user_roles;
+    // 记录当前用户是否为管理员
     protected $is_admin;
 
     public function __construct() {
         parent::__construct();
 
         $this->load->helper('url');
+        $this->load->helper('role');
+
         $this->load->model('user_model');
         $this->load->model('site_metas_model');
-
-        // 获取所有用户权限信息
-        // TODO 抽取常用模块
-        $roles = array();
-        foreach ($this->site_metas_model->get('role') as $value) {
-            $role = explode(':', $value->value);
-            $roles[$role[0]] = $role[1];
-        }
 
         $token = $this->session->userdata('token');
         $username = $this->session->userdata('username');
@@ -50,11 +46,6 @@ class Auth_Controller extends CI_Controller {
             redirect(site_url('/backend/deactive'));
 
         $this->user_roles = $this->user_model->get_roles($this->user->id);
-        $this->is_admin = false;
-        foreach ($this->user_roles as $role)
-            if ($role->name === $roles['admin']) {
-                $this->is_admin = true;
-                break;
-            }
+        $this->is_admin = is_admin($this->user_roles);
     }
 }

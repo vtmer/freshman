@@ -36,22 +36,14 @@ class Admin_Dashboard extends Auth_Controller {
      * /backend/users
      */
     public function users() {
-        // 获取所有用户权限信息
-        // TODO 抽取常用模块
-        $this->load->model('site_metas_model');
-        $roles = array();
-        foreach ($this->site_metas_model->get('role') as $value) {
-            $role = explode(':', $value->value);
-            $roles[$role[0]] = $role[1];
-        }
+        $this->load->helper('role');
 
-        $admin_name = $roles['admin'];
         $users = $this->user_model->get_all_users();
         foreach ($users as $user) {
-            $user->is_admin = $this->user_model
-                                    ->is_role($user->id, $admin_name);
+            $roles = $this->user_model->get_roles($user->id);
+            $user->is_admin = is_admin($roles);
             $user->role_ids = array();
-            foreach ($this->user_model->get_roles($user->id) as $role) {
+            foreach ($roles as $role) {
                 array_push($user->role_ids, $role->id);
             }
         }
