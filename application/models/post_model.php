@@ -80,8 +80,9 @@ class Post_model extends CI_Model {
     public function get_author($author_id) {
         $query = $this->db
             ->get_where('users', array('id' => $author_id), 1);
-        if ($query->result())
-            return $query->result()[0];
+        $result = $query->result();
+        if ($result)
+            return $result[0];
         return null;
     }
 
