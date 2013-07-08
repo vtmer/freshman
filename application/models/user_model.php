@@ -23,17 +23,21 @@ class User_model extends CI_Model {
     public function get_by_token($username, $token) {
         $query = $this->db
             ->get_where('users', array('login_name' => $username));
-        if (!$query->result())
+
+        $result = $query->result();
+        if (!$result)
             return;
 
-        $user = $query->result()[0];
+        $user = $result[0];
 
         $query = $this->db
             ->select('user_id')
             ->get_where('sessions', array('key' => $token));
-        if (!$query->result())
+        $user_id_result = $query->result();
+
+        if (!$user_id_result)
             return;
-        if ($query->result()[0]->user_id == $user->id)
+        if ($user_id_result[0]->user_id == $user->id)
             return $user;
     }
 
@@ -60,7 +64,9 @@ class User_model extends CI_Model {
         if (!$query->result())
             return false;
 
-        $user = $query->result()[0];
+        $result = $query->result();
+
+        $user = $result[0];
 
         /* 创建 session */
         $token = $this->encrypt($username . time());
@@ -75,10 +81,12 @@ class User_model extends CI_Model {
         $query = $this->db
             ->select('id')
             ->get_where('users', array('login_name' => $username));
-        if (!$query->result())
+
+        $result = $query->result();
+        if (!$result)
             return;
 
-        $user_id = $query->result()[0]->id;
+        $user_id = $result[0]->id;
         $this->db
             ->where(array('key' => $token, 'user_id' => $user_id))
             ->delete('sessions');
@@ -177,15 +185,17 @@ class User_model extends CI_Model {
         $query = $this->db
             ->select('active')
             ->get_where('users', array('id' => $user_id), 1);
-        if (!$query->result())
+        $result = $query->result();
+        if (!$result)
             return false;
-        return (intval($query->result()[0]->active) === 1);
+        return (intval($result[0]->active) === 1);
     }
 
     protected function is_unique($field, $value, $user_id = 0) {
         $query = $this->db
             ->get_where('users', array($field => $value));
-        if ($query->result() && $query->result()[0]->id != $user_id)
+        $result = $query->result();
+        if ($result && $result[0]->id != $user_id)
             return false;
         return true;
     }
