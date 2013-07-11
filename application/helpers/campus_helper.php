@@ -16,6 +16,7 @@ if (!function_exists('get_all_campus')) {
 
 if (!function_exists('default_campus')) {
     function default_campus() {
-        return get_all_campus()[0];
+        $result = get_all_campus();
+            return $result[0];
     }
 }
