@@ -33,9 +33,11 @@
                   <a href="{{ site_url('/backend/post') }}/{{ post.id }}" title="{{ post.author.display_name }}">{{ post.title }}</a>
                 </td>
                 <td class="category">
-                  {% for category in post.categories %}
-                  <span class="tag pull-right" data-category-id="{{ category.id }}">{{ category.name }}</span>
-                  {% endfor %}
+                  <div class="tags pull-right">
+                    {% for category in post.categories %}
+                    <span class="tag" data-category-id="{{ category.id }}">{{ category.name }}</span>
+                    {% endfor %}
+                  </div>
                 </td>
                 <td class="date">
                   {{ post.created_date }}
