@@ -22,6 +22,6 @@ class Map extends Skel {
      * /map
      */
     public function index() {
-        $this->display('front/map.html');
+        $this->display('front/map.html',array($this->visitor['campus']));
     }
 }
