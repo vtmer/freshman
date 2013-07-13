@@ -182,6 +182,11 @@ class Post_model extends CI_Model {
     }
 
     public function update_campus($post_id, $campus) {
+        $this->db
+            ->delete('post_metas', array(
+                'post_id' => $post_id,
+                'key' => 'campus'
+            ));
         foreach ($campus as $c) {
             $this->db
                 ->insert('post_metas', array(
