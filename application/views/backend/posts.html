@@ -30,7 +30,7 @@
                   {% endif %}
                 </td>
                 <td class="title">
-                  <a href="{{ site_url('/backend/post') }}/{{ post.id }}" title="{{ post.author.display_name }}">{{ post.title }}</a>
+                  <a href="{{ site_url('/backend/post') }}/{{ post.id }}" title="{{ post.author.display_name }} ~ {{ post.title }}">{{ post.title|slice(0, 12) }}</a>
                 </td>
                 <td class="category">
                   <div class="tags pull-right">
