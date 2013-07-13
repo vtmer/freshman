@@ -88,6 +88,9 @@ class Post extends Skel {
         foreach ($tags as $tag) {
             $tag_ids[] = $tag->id;
         }
+        if (!$tag_ids) {
+            return;
+        }
         // 获取具有相同 tag 的文章
         return $this->post_model->pack_posts(
             $this->post_model->db
