@@ -7,6 +7,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/set.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/list.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/global.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/index.css')}}" />
 </head>
 <body class='list-page'>
 	{% include 'front/header.html' %}
@@ -57,7 +58,18 @@
 		  </div>
 
 	</div>
+    {% include('front/footer.part.html') %}
+    <script src="{{ static_url('front/scripts/jquery.js') }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var links = $('#nav_ul a');
+        var cat_id = '{{category.id}}';
+        if (cat_id == 1) {
+            $(links[1]).attr('id', 'choose');
+        } else {
+            $(links[parseInt(cat_id) + 1]).attr('id', 'choose');
+        }
+    });
+    </script>
 </body>
-<script src="{{static_url('scripts/nav.js')}}"></script>
-<script src="{{static_url('scripts/page.js')}}"></script>
 </html>

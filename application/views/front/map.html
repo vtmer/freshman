@@ -6,16 +6,17 @@
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/set.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/list.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/global.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/index.css')}}" />
 </head>
 <body>
   <!--container是一个总的容器，包含header,main,footer子DIV    -->
   <div id="container">
     {% include('front/header.html') %}
-    <div id="main">
-        <object id="flashcontent" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" style="margin: auto; display: block;">
+    <div id="main" style="padding:10px 0">
+        <object id="flashcontent" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="957px" height="650px" style="margin: auto; display: block;">
             <param name="movie" value="{{ static_url('front/swf') }}/{{ visitor.campus }}.swf" />
             <!--[if !IE]>-->
-            <object type="application/x-shockwave-flash" data="{{ static_url('front/swf')}}/{{ visitor.campus }}.swf" width="600" height="400">
+            <object type="application/x-shockwave-flash" data="{{ static_url('front/swf')}}/{{ visitor.campus }}.swf" width="957px" height="650px">
             <!--<![endif]-->
             <div>
                 <a href="http://www.adobe.com/go/getflashplayer">
@@ -29,5 +30,13 @@
     </div>
 
   </div><!-- for container  -->
+    {% include('front/footer.part.html') %}
+    <script src="{{ static_url('front/scripts/jquery.js') }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var links = $('#nav_ul a');
+        $(links[2]).attr('id', 'choose');
+    });
+    </script>
 </body>
 </html>
