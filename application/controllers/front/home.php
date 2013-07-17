@@ -58,7 +58,7 @@ class Home extends Skel {
      *
      * TODO 更好的封装
      */
-    private function categories($campus, $count = 8) {
+    private function categories($campus, $count = 5) {
         $categories = array();
         foreach ($this->category_model->get_all() as $category) {
             $category->posts = $this->post_model->pack_posts(
@@ -76,6 +76,12 @@ class Home extends Skel {
                     ->result()
             );
             $categories[] = $category;
+            $categories['tag'] =  array(
+                '1' => 'tag-newterm',
+                '2' => 'tag-study',
+                '3' => 'tag->tips',
+                '4' => 'tag-view'
+                );
         }
         return $categories;
     }

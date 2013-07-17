@@ -1,80 +1,100 @@
-<!doctype html>
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <title>GDUT 新生网</title>
-    <link href="{{ static_url('front/css/base.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ static_url('front/css/index.css') }}" rel="stylesheet" type="text/css" />
-  </head>
-  <body>
-    <!--container是一个总的容器，包含header,main,footer子DIV    -->
-    <div id="container">
-      {% include('front/header.part.html') %}
-      <!--  main为各页面内容 -->
-      <div id="main">
-        <div id="new">
-          <img src="{{ static_url('front/images/index/new.gif') }}" />
-          <div>
-            <div class="left">
-              {% if hottest | length %}
-              <p class="hotTitle"><img src="{{ static_url('front/images/index/hot.gif') }}" />
-                <a href="{{ site_url('p') }}/{{ hottest[0].id }}">{{ hottest[0].title }}</a>
-              </p>
-              {% endif %}
-              <div>
-                <ul>
-                  {% for post in latest %}
-                  <li>
-                    <a href="{{ site_url('p') }}/{{ post.id }}">&gt; {{ post.title }}</a>
-                  </li>
-                  {% if loop.index % 5 == 0 %}
-                </ul>
-                  {% if loop.index != loop.length %}
-                <ul>
-                  {% endif %}
-                  {% endif %}
-                  {% endfor %}
-                <a class="more" href="{{ site_url('c/all') }}"><img src="{{ static_url('front/images/index/more.gif') }}" /></a>
-              </div>
-            </div>
+<!DOCTYPE HTML>
+<!--[if IE 6]><html class="ie6 lte9 lte8 lte7 no-css3" lang="zh-cn"><![endif]-->
+<!--[if IE 7]><html class="ie7 lte9 lte8 lte7 no-css3" lang="zh-cn"><![endif]-->
+<!--[if IE 8]><html class="ie8 lte9 lte8 no-css3" lang="zh-cn"><![endif]-->
+<!--[if IE 9]><html class="ie9 lte9 no-css3" lang="zh-cn"><![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8) | !(IE 9)  ]><!--><html lang="zh-cn" class='non-ie'><!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="..." />
+		<meta name="keywords" content="..." />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /><!-- 响应式网页设计：initial-scale设定初始缩放比例 maximum-scale设定允许用户缩放到的最大比例 minimum-scale设定允许用户缩放到的最小比例 值范围从0.0到10.0 user-scalable设定是否允许用户进行手动缩放 值为yes或no -->
+		<title>index</title>
+		<link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/reset.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/index.css')}}" />
+	</head>
+	<body class='index-page'>
+		<div class='header clearfix'>
+			<ul class='clearfix'>
+				<li><a href="{{ site_url('/') }}">首页</a></li>
+				<li><a href="{{ site_url('c/1') }}">>321开学啦</a></li>
+				<li><a href="{{ site_url('/map') }}">E眼工大</a></li>
+				<li><a href="{{ site_url('c/2') }}">学习攻略</a></li>
+				<li><a href="{{ site_url('c/3') }}">生活Tips</a></li>
+				<li class='last-one'><a href="{{ site_url('c/4') }}">校园Views</a></li>
+			</ul>
+		</div>
+		<div class='main'>
+			<div class="main-header">
+				<div class="gallery">
+					<a href="#" id='prev-img' class='img-button'>prev</a>
+					<a href="#" id='next-img' class='img-button'>next</a>
+					<div id='img-block'>
+						<a href="#"><img src="{{ static_url('front/images/photo1.jpg')}}" alt='something1something1something1something1something1something1something1something1something1something1' /></a>
+						<a href="#"><img src="{{ static_url('front/images/photo2.jpg')}}" alt='something2something2something2something2something2something2something2something2something2' /></a>
+						<a href="#"><img src="{{ static_url('front/images/photo3.jpg')}}" alt='something3something3something3something3something3something3something3something3' /></a>
+						<a href="#"><img src="{{ static_url('front/images/photo4.jpg')}}" alt='something4something4something4something4something4something4something4' /></a>
+						<p id='img-description'>something1something1something1something1something1something1something1something1something1something1</p>
+					</div>
+				</div>
+				<div class='other-campus'>
+					{% for c in campus %}
+					{% if c != visitor.campus %}
+          			<a href="{{ site_url('/') }}?c={{ c }}">{{ c }}</a>
+          			{% endif %}
+         			 {% endfor %}
+				</div>
+				<p class='in-where'>{{ visitor.campus }}</p>
+			</div>
+			<div class="main-container clearfix">
+				<div class="main-content">
+					<div class='clearfix'>
+						<ul class='tag-newterm'>
+							{% for post in categories[0].posts | slice(0, 5) %}
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							{% endfor %}
+							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[0].id }}">more&gt;&gt;</a></li>
 
-            <div class="right"><img src="{{ static_url('front/images/index/tv.gif') }}" /></div>
-          </div>
-        </div>
-
-        {% for category in categories %}
-        <div class="information">
-          <img src="{{ static_url('front/images/index') }}/cate_{{ category.id }}.gif" />
-          <div>
-            <div class="left">
-              <!--  标题列表： -->
-              <div>
-                <ul>
-                  {% for post in category.posts | slice(0, 8) %}
-                  <li>
-                    <a href="{{ site_url('p') }}/{{ post.id }}">&gt; {{ post.title }}</a>
-                  </li>
-                  {% if loop.index % 4 == 0 %}
-                </ul>
-                  {% if loop.index != loop.length %}
-                <ul>
-                  {% endif %}
-                  {% endif %}
-                  {% endfor %}
-                </ul>
-              </div>
-            </div>
-            <div class="right">
-              <img src="{{ static_url('front/images/index/') }}/{{ category.id}}.gif" />
-            </div>
-            <a class="more" href="{{ site_url('c') }}/{{ category.id }}">
-              <img src="{{ static_url('front/images/index/morew.gif') }}" />
-            </a>
-          </div>
-        </div>
-        {% endfor %}
-      </div><!--  for main  -->
-      {% include 'front/footer.part.html' %}
-    </div><!-- for container  -->
-  </body>
+						</ul>
+						<ul class='tag-study'>
+							{% for post in categories[1].posts | slice(0, 5) %}
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							{% endfor %}
+							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[1].id }}">more&gt;&gt;</a></li>
+						</ul>
+					</div>
+					<div class='clearfix'>
+						<ul class='tag-tips'>
+							{% for post in categories[2].posts | slice(0, 5) %}
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							{% endfor %}
+							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[2].id }}">more&gt;&gt;</a></li>
+						</ul>
+						<ul class='tag-view'>
+							{% for post in categories[3].posts | slice(0, 5) %}
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							{% endfor %}
+							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[3].id }}">more&gt;&gt;</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="sidebar">
+					<div class="to-Eeye">
+						<h2>E眼工大</h2>
+						<img src="{{ static_url('front/images/Eeye.png')}}" alt='工大地图' />
+						<a href='#'>工大详情GO</a>
+					</div>
+					<ul>
+						<li><h2>相关链接</h2></li>
+						<li>微博：<a href="http://weibo.com/gdutol">@广东工业大学GDUTOL</a></li>
+						<li>官网：<a href="http://www.gdut.edu.cn/">广东工业大学官网</a></li>
+						<li><a href="#">录取结果查询</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+				{% include "front/footer.part.html" %}
+		<script src="{{ static_url('front/scripts/jquery.js') }}"></script>
+		<script src="{{ static_url('front/scripts/index.js') }}"></script>
+	</body>
 </html>
