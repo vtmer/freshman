@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<head>
+    <title>{{ post.title }} - GDUT 新生网</title>
+	<link rel="stylesheet" type="text/css" href="{{ static_url('css/set.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('css/content.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('css/global.css') }}">
+</head>
+<body>
+	{% include 'front/header.html' %}
+	<div class='wrapper'>
+		<div class='lefcont_wrapper'>
+			<div class='left_content'>
+				<p>首页 <strong>></strong><a href="{{ site_url('c') }}/{{ post.categories[0].id }}">{{ post.categories[0].name }}</a></p>
+					<div class='left_content_one'>
+						<h1> {{ post.title}}</h1>
+						<ul>
+							<li>来源:<a href="">新生网</a></li>
+							<li><a href=""></a><a href=""></a><a href=""></a></li>	
+							<li>发表时间:<span>{{ post.created_date | date('Y-m-d')}}</span></li>	
+						</ul>	
+			   				 <div class='content'>
+							    {{ post.content | raw }}
+			  			  	 </div>	
+					</div>
+					<div class='left_content_last'>
+						<p><span>相关文章:</span></p>
+						<ul class='left_ul'>
+						    {% for rpost in relatives %}
+							<li><a href="{{ site_url('p') }}/{{ rpost.id }}">{{ rpost.title }}</a></li>
+							{% endfor %}
+						</ul>
+	
+					</div>
+					<div class="left-middle">
+					<!-- Duoshuo Comment BEGIN -->
+					<div class="ds-thread"></div>
+        				<script type="text/javascript">
+           				 var duoshuoQuery = {short_name:"freshman"};
+            			 (function() {
+               			     var ds = document.createElement('script');
+                		     ds.type = 'text/javascript';ds.async = true;
+             	             ds.src = 'http://static.duoshuo.com/embed.js';
+                    		 ds.charset = 'UTF-8';
+                             (document.getElementsByTagName('head')[0] 
+                    			|| document.getElementsByTagName('body')[0]).appendChild(ds);
+           				  })();
+						</script>
+       				 <!-- Duoshuo Comment END -->
+       				  </div>
+
+		  
+			</div>
+		  </div>
+			<div class='rigcont_wrapper'>
+				<div id='rigcont_first'>
+					<p><a href='{{ site_url('/map') }}'>E眼工大</a></p>
+					<img src="{{ static_url('images/eMap.jpg') }}">
+					<a href='{{ site_url('/map') }}'>工大详情GO</a>
+	    		</div>
+      			{% for cate in categories %}
+     			<div >
+	     			<p><a href='{{site_url('c')}}/{{cate.id}}'>{{ cate.name }}</a></p>
+	     			<ul>
+	     	 			{% for post in cate.posts  %}
+	     	 				<li><a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+       	     			{% endfor %}
+		 			</ul>
+	    		</div>
+	  			{% endfor %}
+	  		</div>
+		
+	</div>
+</body>
+<script src="{{ static_url('scripts/nav.js')}}"></script>
+</html>

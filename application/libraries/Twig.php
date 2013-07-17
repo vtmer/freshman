@@ -58,6 +58,13 @@ class Twig {
         });
         $this->_twig->addFunction($static_url);
 
+        $current_url = new Twig_SimpleFunction('current_url',function($path) {
+            $CI = &get_instance();
+            $CI->load->helper('url');
+            return current_url($path);
+        });
+        $this->_twig->addFunction($current_url);
+
         // 站点 url 生成函数
         // FIXME site_url('abc' + obj.id) 时显示不正常
         $site_url = new Twig_SimpleFunction('site_url', function($path) {

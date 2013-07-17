@@ -1,0 +1,19 @@
+
+	<div class='nav'>
+		<ul id='nav_ul'>
+			<li class='special_head'><a id='choose' href='{{ site_url('/') }}'>首页</a></li>
+			<li><a href='{{ site_url('c/1') }}'>321开学啦</a></li>
+			<li><a href='{{ site_url('/map') }}'>E眼工大</a></li>
+			<li><a href='{{ site_url('c/2') }}'>学习攻略</a></li>
+			<li><a href='{{ site_url('c/3') }}'>生活Tips</a></li>
+			<li class='special_tail'><a href='{{ site_url('c/4') }}'>校园Views</a></li>
+		</ul>
+	</div>
+	<div class='middle_line'>
+	<span class='middle_one'>所在校区 <strong>:</strong><a href="#">{{ visitor.campus }}</a></span>
+	<span class='middle_two'>其他校区 <strong>: </strong>
+	<a href="{{ current_url('/') }}?c={{ visitor.other_campus[0] }}"> {{ visitor.other_campus[0] }}</a>
+	<strong> | </strong>
+	<a href="{{ current_url('/') }}?c={{ visitor.other_campus[1] }}"> {{ visitor.other_campus[1] }}</a>
+	</span>
+	</div>
