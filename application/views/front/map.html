@@ -3,13 +3,13 @@
 <head>
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
   <title>E 眼工大 - GDUT 新生网</title>
-  <link href="{{ static_url('front/css/base.css') }}" rel="stylesheet" type="text/css" />
-  <link href="{{ static_url('front/css/detail.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ static_url('css/set.css') }}" rel="stylesheet" type="text/css" />
+  <link href="{{ static_url('css/new.css') }}" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <!--container是一个总的容器，包含header,main,footer子DIV    -->
   <div id="container">
-    {% include('front/header.part.html') %}
+    {% include('front/header.html') %}
     <div id="main">
         <object id="flashcontent" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="600" height="400" style="margin: auto; display: block;">
             <param name="movie" value="{{ static_url('front/swf') }}/{{ visitor.campus }}.swf" />
