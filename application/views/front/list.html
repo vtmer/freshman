@@ -4,10 +4,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
 	<title>{{ category.name }} - GDUT 新生网</title>
-	<link rel="stylesheet" type="text/css" href="{{ static_url('css/set.css') }}">
-	<link rel="stylesheet" type="text/css" href="{{ static_url('css/new.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('css/set.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('css/list.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ static_url('css/global.css')}}">
 </head>
-<body>
+<body class='list-page'>
 	{% include 'front/header.html' %}
 	<div class='wrapper'>
 		<div class='lefcont_wrapper'>
@@ -28,35 +29,35 @@
           </ul>
         </div>
 	
-			<ul class='last_left'>
-				{{ pagination | raw }}
-			</ul>
-		  
+		<div id="right-down">
+          <ul>
+            {{ pagination | raw }}
+          </ul>
+        </div>
 		</div>
 	  
 		<div class='rigcont_wrapper'>
-		<div id='rigcont_first'>
-		<p><a href='#'>E眼工大</a></p>
-		<img src="{{ static_url('images/eMap.jpg') }}">
-		<a href='{{ site_url('/map') }}'>工大详情GO</a>
-	    </div>
-      {% for cate in categories %}
-      {% if cate.id != category.id %}
-	    <div >
-	     <p><a href='{{site_url('c')}}/{{cate.id}}'>{{ cate.name }}</a></p>
-	     <ul>
-	      {% for post in cate.posts  %}
-	      <li>
-              <a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a>
-          </li>
-          {% endfor %}
-		</ul>
-	    </div>
-	  	{% endif %}
-	  	{% endfor %}
-	  </div>
+			<div id='rigcont_first'>
+				<p><a href='{{ site_url('/map') }}'>E眼工大</a></p>
+				<img src="{{ static_url('images/eMap.jpg') }}">
+				<a href='{{ site_url('/map') }}'>工大详情GO</a>
+	 	    </div>
+     	        {% for cate in categories %}
+     			{% if cate.id != category.id %}
+	  		 	 	<div >
+	   				    <p><a href='{{site_url('c')}}/{{cate.id}}'>{{ cate.name }}</a></p>
+	 			        <ul>
+	    			  	    {% for post in cate.posts  %}
+	     				    <li><a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+         				    {% endfor %}
+					    </ul>
+	     			</div>
+	  			{% endif %}
+	  			{% endfor %}
+		  </div>
 
 	</div>
 </body>
-
+<script src="{{static_url('scripts/nav.js')}}"></script>
+<script src="{{static_url('scripts/page.js')}}"></script>
 </html>

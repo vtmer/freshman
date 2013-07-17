@@ -34,7 +34,7 @@ class Post extends Skel {
         // 更新 viewtimes
         $this->post_model->update_viewtimes($post->id);
 
-        $this->display('front/article.html', array(
+        $this->display('front/content.html', array(
             'post' => $post,
             'categories' => $this->categories($this->visitor['campus'], 5),
             'relatives' => $this->relatives($post_id, $this->visitor['campus'], 5)

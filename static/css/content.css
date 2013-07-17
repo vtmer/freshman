@@ -1,0 +1,134 @@
+
+.lefcont_wrapper{
+	width:580px;
+	margin:30px;
+	background-color: #fffbe4;
+	overflow: hidden;
+	float: left;
+}
+.left_content{
+	margin: 0 40px;
+}
+.left_content p{
+font-size:16px;
+padding: 10px 0;
+}
+
+.left_content .first_left{
+	margin-top:20px;
+}
+ .left_content_one{
+	min-height:800px;
+	overflow: hidden;
+}
+.left_content_one h1{
+	border-top:3px dotted #949494;
+	border-bottom:1px dashed black;
+	font-size: 18px;
+	text-align: center;
+	padding:13px 0;
+	font-weight: bold;
+}
+.left_content_one ul{
+width:502px;
+float:left;
+}
+.left_content_one li{
+float:left;
+padding:10px 45px;
+}
+.left_content_one li a{
+	letter-spacing: 2px;
+}
+.content img{
+max-width: 400px;
+max-height: 400px;
+}
+.left_content_last{
+overflow: hidden;
+}
+.left_content_last p{
+	border-bottom: 1px dashed black;
+}
+.left_content_last span{
+	background-color:#f8edad;
+	padding: 10px;
+	border-radius: 10px;
+}
+.left_ul{
+	float:left;
+	list-style-position: inside;
+}
+.right_ul{
+	float:right;
+	padding-right:20px;
+	list-style-position: inside;
+}
+.left_content_last li {
+	margin-top:10px;
+}
+.left_content_last li a{
+	display: inline-block;
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.rigcont_wrapper {
+	width: 280px;
+	float:right;
+}
+#rigcont_first{
+	margin-top: 30px;
+}
+.rigcont_wrapper div{
+	overflow: hidden;
+	width: 250px;
+	margin-top: 15px;
+}
+.rigcont_wrapper p{
+	border-bottom: 1px dashed ;
+	display: block;
+}
+.rigcont_wrapper p a
+{
+	overflow: hidden;
+	font-size: 18px;
+	float: none;
+	background-color: #fffbe4;
+	width: 97px;
+	padding: 5px;
+}
+.rigcont_wrapper  a{
+	display: block;
+	float: right;
+	font-size: 14px;
+	border-radius:10px;
+}
+
+.rigcont_wrapper li
+{
+	margin-left:3px;
+	line-height: 200%;
+	vertical-align: 0px;
+}
+
+.rigcont_wrapper ul a{
+	float: none;
+	margin-left:3px;
+	display: inline-block;
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+
+}
+
+.nav a:hover {
+background:no-repeat url('../images/underline.png') 0px 45px;
+text-decoration:none;
+}
+a:hover {
+text-decoration:underline;
+}

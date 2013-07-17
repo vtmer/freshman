@@ -1,0 +1,128 @@
+
+
+.lefcont_wrapper{
+	width:580px;
+	margin:30px;
+	background-color: #fffbe4;
+	overflow: hidden;
+	float: left;
+	min-height:800px;
+}
+.left_content{
+	margin: 0 40px;
+}
+.left_content p{
+border-bottom: 1px dashed #8d8a7d;
+font-size:16px;
+padding: 10px;
+}
+.left_content ul{
+	
+	font-size:14px;
+	margin-top: 40px;
+}
+.left_content .first_left{
+	margin-top:20px;
+}
+.left_content a{
+display: inline-block;
+width: 200px;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+position: relative;
+}
+
+.left_content li{
+	position: relative;
+}
+.left_content span{
+	position: absolute;
+	right: 40px;
+	top: 0px;
+}
+.which_page{
+	color:#88c462;
+}
+#last_left{
+	display: block;
+	text-align: center;
+	padding-bottom: 60px;
+	margin-left: 180px;
+}
+#last_left li{
+	display: inline-block;
+	float: left;
+	letter-spacing:5px;
+}
+#last_left a{
+	display: inline;
+}
+.rigcont_wrapper {
+	width: 280px;
+	float:right;
+}
+#rigcont_first{
+	margin-top: 30px;	
+}
+.rigcont_wrapper div{
+	overflow: hidden;
+	width: 250px;
+	margin-top: 15px;
+}
+.rigcont_wrapper p{
+	border-bottom: 1px dashed ;
+	display: block;
+}
+.rigcont_wrapper p a
+{
+	overflow: hidden;
+	font-size: 18px;
+	float: none;
+	background-color: #fffbe4;
+	width: 97px;
+	padding: 5px;
+}
+.rigcont_wrapper  a{
+	display: block;
+	float: right;
+	padding-top:5px;
+	font-size: 14px;
+	border-radius:10px;
+
+}
+.rigcont_wrapper img{
+	padding-left: 5px;
+	padding-top:15px;
+}
+.rigcont_wrapper li
+{
+	margin-left:3px;
+
+}
+
+.rigcont_wrapper ul a{
+	float: none;
+	display: inline-block;
+	width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+
+.nav a:hover {
+background:no-repeat url('../images/underline.png') 0px 45px;
+text-decoration:none;
+}
+
+a:hover {
+text-decoration:underline;
+}
+
+#right-down{ height:25px; float: right; }
+#right-down ul{height:0; float:left;}
+#right-down ul li{ float:left}
+#right-down a,#right-down span{ display:block; padding:4px; border: solid 1px #ccc; float:left; height:15px; color:#aaa;}
+#right-down a:hover,#right-down span{ background-color:#d9ab0e; color:#fff !important;}
