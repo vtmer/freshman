@@ -51,15 +51,17 @@ class Skel extends CI_Controller {
         $this->visitor = array(
             'campus' => $this->session->userdata('campus')
         );
-        foreach ($campus as $camp){
-        if ($camp != $this->visitor['campus'])
-        $this->visitor['other_campus'][] = $camp;
-        }
 
         // 获取当前用户校区信息，默认为 大学城
         if (!$this->visitor['campus'] ||
             !in_array($this->visitor['campus'], $campus))
             $this->visitor['campus'] = default_campus();
+
+        // 获取当前用户其它校区信息
+        foreach ($campus as $camp){
+            if ($camp != $this->visitor['campus'])
+               $this->visitor['other_campus'][] = $camp;
+        }
 
         $this->display = array(
             'campus' => $campus,

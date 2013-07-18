@@ -10,7 +10,7 @@
 		</ul>
 	</div>
 	<div class='middle_line'>
-	<span class='middle_one'>所在校区 <strong>:</strong><a href="#">{{ visitor.campus }}</a></span>
+	<span class='middle_one'>所在校区 <strong>:</strong>{{ visitor.campus }}</span>
 	<span class='middle_two'>其他校区 <strong>: </strong>
 	<a href="{{ current_url('/') }}?c={{ visitor.other_campus[0] }}"> {{ visitor.other_campus[0] }}</a>
 	<strong> | </strong>
