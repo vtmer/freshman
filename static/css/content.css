@@ -98,6 +98,7 @@ overflow: hidden;
 	background-color: #fffbe4;
 	width: 97px;
 	padding: 5px;
+        text-align: center;
 }
 .rigcont_wrapper  a{
 	display: block;
