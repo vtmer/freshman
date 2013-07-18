@@ -123,6 +123,6 @@ text-decoration:underline;
 
 #right-down{ height:25px; float: right; }
 #right-down ul{height:0; float:left;}
-#right-down ul li{ float:left}
+#right-down ul li{ float:left; margin-right:10px; margin-top:15px;}
 #right-down a,#right-down span{ display:block; padding:4px; border: solid 1px #ccc; float:left; height:15px; color:#aaa;}
 #right-down a:hover,#right-down span{ background-color:#d9ab0e; color:#fff !important;}

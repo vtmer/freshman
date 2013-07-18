@@ -19,7 +19,7 @@ class Category extends Skel {
         'base_url' => '',
         'total_rows' => 0,
         'query_string_segment' => 'p',
-        'per_page' => 15,
+        'per_page' => 25,
         'user_page_numbers' => false,
         'page_query_string' => true,
 
@@ -170,6 +170,7 @@ private function categories($campus, $count = 3) {
             ->where('post_metas.value', $campus)
             ->where('posts.status', 1)
             ->where('posts_categories.category_id', $cate_id)
+            ->distinct()
             ->get('posts')
             ->result());
     }
