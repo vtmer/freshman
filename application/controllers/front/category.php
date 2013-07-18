@@ -156,6 +156,7 @@ private function categories($campus, $count = 3) {
                 ->where('posts_categories.category_id', $cate_id)
                 ->distinct()
                 ->limit($limit, $page * $limit)
+                ->order_by('posts.created_date', 'desc')
                 ->get('posts')
                 ->result()
         );
@@ -186,6 +187,7 @@ private function categories($campus, $count = 3) {
                 ->where('posts.status', 1)
                 ->distinct()
                 ->limit($limit, $page * $limit)
+                ->order_by('posts.created_date', 'desc')
                 ->get('posts')
                 ->result()
         );
