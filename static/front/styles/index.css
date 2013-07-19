@@ -233,6 +233,16 @@ a:hover{
 	font-size:14px;
 	color:#3a3a3a;
 }
+.sidebar .copyright{
+    margin-top:140px;
+}
+.sidebar img{
+    width:200px;
+    height:100%;
+}
+.sidebar h1{
+    font-size:30px;
+}
 /*!footer
 ----------------------------------------*/
 .footer{
