@@ -51,14 +51,14 @@
 					<div class='clearfix'>
 						<ul class='tag-newterm'>
 							{% for post in categories[0].posts | slice(0, 5) %}
-							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}" title="{{ post.title }}">{{ post.title }}</a></li>
 							{% endfor %}
 							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[0].id }}">more&gt;&gt;</a></li>
 
 						</ul>
 						<ul class='tag-study'>
 							{% for post in categories[1].posts | slice(0, 5) %}
-							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}" title="{{ post.title }}">{{ post.title }}</a></li>
 							{% endfor %}
 							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[1].id }}">more&gt;&gt;</a></li>
 						</ul>
@@ -66,13 +66,13 @@
 					<div class='clearfix'>
 						<ul class='tag-tips'>
 							{% for post in categories[2].posts | slice(0, 5) %}
-							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}" title="{{ post.title }}">{{ post.title }}</a></li>
 							{% endfor %}
 							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[2].id }}">more&gt;&gt;</a></li>
 						</ul>
 						<ul class='tag-view'>
 							{% for post in categories[3].posts | slice(0, 5) %}
-							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+							<li>&gt;<a href="{{ site_url('p') }}/{{ post.id }}" title="{{ post.title }}">{{ post.title }}</a></li>
 							{% endfor %}
 							<li class='last-one'><a href="{{ site_url('c') }}/{{ categories[3].id }}">more&gt;&gt;</a></li>
 						</ul>
@@ -93,7 +93,7 @@
                     <div class="copyright">
                         <h2>制作团队</h2>
                         <br />
-                        <a href="http://e.weibo.com/gdutonline"><img src="{{static_url('images/dc_logo.png')}}" alt="" width="100px" height="100px"/></a>
+                        <a href="http://e.weibo.com/gdutonline"><img src="{{static_url('images/dc_logo.png')}}" alt="校团委数字中心"/></a>
                         <h1>校团委数字中心</h1>
                     </div>
 				</div>
