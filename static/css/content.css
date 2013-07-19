@@ -69,7 +69,7 @@ overflow: hidden;
 }
 .left_content_last li a{
 	display: inline-block;
-	width: 200px;
+	width: 500px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;

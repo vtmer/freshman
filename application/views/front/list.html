@@ -17,7 +17,7 @@
 			<p>首页 <strong>></strong> {{ category.name }} </p>
 			<ul class='first_left'>
 			 {% for post in category.posts %}
-				<li><a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a><span>{{ post.created_date | date("Y-m-d")}}</span></li>
+             <li><a href="{{ site_url('p') }}/{{ post.id }}" title="{{post.title}}">{{ post.title }}</a><span>{{ post.created_date | date("Y-m-d")}}</span></li>
 				{% if loop.index % 5 == 0 %}
             	{% if loop.index != loop.length %}
 			</ul>
@@ -49,7 +49,7 @@
 	   				    <p><a href='{{site_url('c')}}/{{cate.id}}'>{{ cate.name }}</a></p>
 	 			        <ul>
 	    			  	    {% for post in cate.posts  %}
-	     				    <li><a href="{{ site_url('p') }}/{{ post.id }}">{{ post.title }}</a></li>
+	     				    <li><a href="{{ site_url('p') }}/{{ post.id }}" title="{{post.title}}">{{ post.title }}</a></li>
          				    {% endfor %}
 					    </ul>
 	     			</div>

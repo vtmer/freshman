@@ -30,7 +30,7 @@
 						<p><span>相关文章:</span></p>
 						<ul class='left_ul'>
 						    {% for rpost in relatives %}
-							<li><a href="{{ site_url('p') }}/{{ rpost.id }}">{{ rpost.title }}</a></li>
+							<li><a href="{{ site_url('p') }}/{{ rpost.id }}" title="{{ rpost.title }}">{{ rpost.title }}</a></li>
 							{% endfor %}
 						</ul>
 	
