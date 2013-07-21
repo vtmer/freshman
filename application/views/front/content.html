@@ -18,7 +18,7 @@
 				<p>首页 <strong>></strong><a href="{{ site_url('c') }}/{{ post.categories[0].id }}">{{ post.categories[0].name }}</a></p>
 					<div class='left_content_one'>
 						<h1> {{ post.title}}</h1>
-						<ul>
+						<ul class="metas">
 							<li>来源:<a href="">新生网</a></li>
 							<li><a href=""></a><a href=""></a><a href=""></a></li>	
 							<li>发表时间:<span>{{ post.created_date | date('Y-m-d')}}</span></li>	
