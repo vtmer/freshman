@@ -5,7 +5,7 @@
  *
  * 新生网
  *
- * @author     hbc
+ * @author     Link
  */
 
 class Post extends CI_Controller {
