@@ -50,7 +50,7 @@ class Twig {
         // 静态文件 url 生成函数
         $static_url = new Twig_SimpleFunction('static_url', function($file) {
             $CI =& get_instance();
-            $base_url = "http://xinsheng.qiniudn.com";
+            $base_url = "http://freshman.qiniudn.com";
             $static = $CI->config->item('static_path');
             if (!$static)
                 $static = '/static/';
