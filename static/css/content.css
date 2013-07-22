@@ -33,7 +33,7 @@ padding: 10px 0;
 width:502px;
 float:left;
 }
-.left_content_one li{
+.left_content_one .metas li{
 float:left;
 padding:10px 45px;
 }
@@ -41,8 +41,7 @@ padding:10px 45px;
 	letter-spacing: 2px;
 }
 .content img{
-max-width: 400px;
-max-height: 400px;
+max-width: 500px;
 }
 .left_content_last{
 overflow: hidden;

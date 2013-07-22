@@ -8,6 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/content.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ static_url('css/global.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/index.css')}}" />
+    {% include 'front/analytics.html' %}
 </head>
 <body>
 	{% include 'front/header.html' %}
@@ -17,7 +18,7 @@
 				<p>首页 <strong>></strong><a href="{{ site_url('c') }}/{{ post.categories[0].id }}">{{ post.categories[0].name }}</a></p>
 					<div class='left_content_one'>
 						<h1> {{ post.title}}</h1>
-						<ul>
+						<ul class="metas">
 							<li>来源:<a href="">新生网</a></li>
 							<li><a href=""></a><a href=""></a><a href=""></a></li>	
 							<li>发表时间:<span>{{ post.created_date | date('Y-m-d')}}</span></li>	
@@ -25,6 +26,16 @@
 			   				 <div class='content'>
 							    {{ post.content | raw }}
 			  			  	 </div>	
+                              
+                             <!-- ShareTo Button BEGIN -->
+                             <div class="shareto_toolbox" style="float:right">
+                                 <a class="shareto_button_tsina"></a>
+                                 <a class="shareto_button_kaixin001"></a>
+                                 <a class="shareto_button_renren"></a>
+                                 <a class="shareto_button_douban"></a>
+                             </div>
+                             <script type="text/javascript" src="http://s.shareto.com.cn/js/shareto_button.js" charset="utf-8"></script>
+                             <!-- ShareTo Button END -->
 					</div>
 					<div class='left_content_last'>
 						<p><span>相关文章:</span></p>
