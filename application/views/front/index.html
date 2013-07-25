@@ -9,8 +9,8 @@
         {% include 'front/metas.html' %}
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" /><!-- 响应式网页设计：initial-scale设定初始缩放比例 maximum-scale设定允许用户缩放到的最大比例 minimum-scale设定允许用户缩放到的最小比例 值范围从0.0到10.0 user-scalable设定是否允许用户进行手动缩放 值为yes或no -->
 		<title>广工新生专题网</title>
-		<link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/reset.css')}}" />
-		<link rel="stylesheet" type="text/css" href="{{ static_url('front/styles/index.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{ static_url('front/css/reset.css')}}" />
+		<link rel="stylesheet" type="text/css" href="{{ static_url('front/css/index.css')}}" />
         {% include 'front/analytics.html' %}
 	</head>
 	<body class='index-page'>
@@ -30,10 +30,10 @@
 					<a href="#" id='prev-img' class='img-button'>prev</a>
 					<a href="#" id='next-img' class='img-button'>next</a>
 					<div id='img-block'>
-						<a href="#"><img src="{{ static_url('images/dxc_gate.jpg')}}" alt='大学城正门' /></a>
-						<a href="#"><img src="{{ static_url('images/dxc_lib.jpg')}}" alt='大学城图书馆' /></a>
-						<a href="#"><img src="{{ static_url('images/ld_jxl.jpg')}}" alt='龙洞教学楼' /></a>
-						<a href="#"><img src="{{ static_url('images/dfl_gate.jpg')}}" alt='东风路正门' /></a>
+						<a href="#"><img src="{{ static_url('front/images/dxc_gate.jpg')}}" alt='大学城正门' /></a>
+						<a href="#"><img src="{{ static_url('front/images/dxc_lib.jpg')}}" alt='大学城图书馆' /></a>
+						<a href="#"><img src="{{ static_url('front/images/ld_jxl.jpg')}}" alt='龙洞教学楼' /></a>
+						<a href="#"><img src="{{ static_url('front/images/dfl_gate.jpg')}}" alt='东风路正门' /></a>
 						<p id='img-description'>大学城正门</p>
 					</div>
 				</div>
@@ -93,15 +93,15 @@
                     <div class="copyright">
                         <h2>制作团队</h2>
                         <br />
-                        <a href="http://e.weibo.com/gdutonline"><img src="{{static_url('images/dc_logo.png')}}" alt="校团委数字中心"/></a>
+                        <a href="http://e.weibo.com/gdutonline"><img src="{{static_url('front/images/dc_logo.png')}}" alt="校团委数字中心"/></a>
                         <h1>校团委数字中心</h1>
                     </div>
 				</div>
 			</div>
 		</div>
 				{% include "front/footer.part.html" %}
-		<script src="{{ static_url('front/scripts/jquery.js') }}"></script>
-                <script src="{{ static_url('front/scripts/index.js') }}"></script>
+		<script src="{{ static_url('front/js/jquery.js') }}"></script>
+                <script src="{{ static_url('front/js/index.js') }}"></script>
                 <script type="text/javascript">
                   !function(){window.console||(window.console={}),window.console.log||(window.console.log=function(){}),console.log("Hello, world\n\u5bf9\u6211\u4eec\u611f\u5174\u8da3\uff1f\u4e00\u8d77\u6765\u73a9\u5427\uff01 _(:\u0437\u309d\u2220)_\nhttp://vtmerhome.com")}(); 
                 </script>
