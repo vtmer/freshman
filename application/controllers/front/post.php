@@ -18,6 +18,7 @@ class Post extends Skel {
         parent::__construct();
 
         $this->load->helper('url');
+        $this->load->library('json_resp');
     }
 
     /*
@@ -41,6 +42,16 @@ class Post extends Skel {
         ));
     }
 
+
+    public function json_post($post_id) {
+        $this->load->model('post_model');
+        $post = $this->post_model->get_by_id($post_id);
+        $this->post_model->update_viewtimes($post->id);
+        $this->json_resp->display($post);
+    }
+        
+
+
     /* 
      * 获取分类推荐文章
      *
@@ -49,6 +60,8 @@ class Post extends Skel {
      * TODO 更好的封装
      */
     private function categories($campus, $count) {
+        $this->load->model('post_model');
+        $this->load->model('category_model');
         $categories = array();
         foreach ($this->category_model->get_all() as $category) {
             $category->posts = $this->post_model->pack_posts(
@@ -68,6 +81,11 @@ class Post extends Skel {
             $categories[] = $category;
         }
         return $categories;
+    }
+
+    public function json_categories($campus,$count = 10) {
+       $categories = $this->categories($campus,$count);
+       $this->json_resp->display($categories);
     }
 
     /*

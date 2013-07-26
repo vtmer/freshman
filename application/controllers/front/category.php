@@ -50,6 +50,7 @@ class Category extends Skel {
         
         $this->load->model('post_model');
         $this->load->model('category_model');
+        $this->load->library('json_resp');
     }
 
     /*
@@ -86,6 +87,34 @@ class Category extends Skel {
             'categories' => $this->categories($this->visitor['campus']),
             'pagination' => $this->pagination->create_links()
         ));
+    }
+
+
+    public function json_category($cate_id) {
+        $config = $this->pages;
+        $p = intval($this->input->get($config['query_string_segment']));
+        $category = $this->category_model->get_by_id($cate_id);
+        if (!$category) {
+            return ;
+        } else {
+            $category = $category[0];
+        }
+        $category->posts = $this->posts(
+            $cate_id,$this->visitor['campus'],
+            $config['per_page'], $p / $config['per_page']
+        );
+
+        $this->load->library('pagination');
+        $this->load->helper('url');
+        $config['base_url'] = site_url('/c/' . $cate_id);
+        $config['total_rows'] = $this
+            ->posts_count($cate_id, $this->visitor['campus']);
+        $this->pagination->initialize($config);
+        $this->json_resp->display(array(
+            'category' => $category,
+            'categories' => $this->categories($this->visitor['campus']),
+            'pagination' => $this->pagination->create_links()
+            ));
     }
  	 /*
      * 获取各个栏目的文章
@@ -161,6 +190,7 @@ private function categories($campus, $count = 3) {
                 ->result()
         );
     }
+    
 
     private function posts_count($cate_id, $campus) {
         return sizeof($this->post_model->db

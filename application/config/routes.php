@@ -105,7 +105,8 @@ $route['c/all'] = 'front/category/all';
 $route['map'] = 'front/map/index';
 
 /* json_api route */
-$route['json/p/(:num)'] = 'json/post/post/$1';
+$route['json/p/(:num)'] = 'front/post/json_post/$1';
+$route['json/c/(:num)'] = 'front/category/json_category/$1';
 
 /* test route */
 $route['/test'] = 'test/index';
