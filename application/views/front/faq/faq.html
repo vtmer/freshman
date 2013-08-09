@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>学长告诉你</title>
+  <link rel="stylesheet" href="{{ static_url('front/faq/css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ static_url('front/faq/css/fontello.css') }}" />
+  <link rel="stylesheet" href="{{ static_url('front/faq/css/animation.css') }}" />
+  <link rel="stylesheet" href="{{ static_url('front/faq/css/faq.css') }}" />
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+  <header>
+    <section id="header-pic">
+      <h1 class="logo"><i class="icon-rocket"></i></h1>
+    </section>
+    <section id="intro">
+      <div class="row">
+        <article class="col-lg-6 col-lg-offset-3">
+          <header>
+            <h1 class="brand">学长告诉你</h1>
+            <h3 class="slogan">广工一些人人都知道的秘密</h3>
+          </header>
+        </article>
+      </div>
+    </section>
+  </header>
+  <div class="wrapper" id="main"> 
+    <div class="container">
+      <div class="row">
+        <section id="faq-list" class="col-lg-8 col-lg-offset-2" role="main">
+          <ul class="list">
+            <script type="html/template" id="qa-tmpl">
+            <li>
+              <article>
+                <header class="q">
+                  <h1 class="title">
+                  <span class="toggle"><i class="icon-plus-circled"></i></span><%= question %>
+                  </h1>
+                </header>
+                <section class="a"><%= answer %></section>
+              </article>
+            </li>
+            </script>
+            <li>
+              <article class="load-more">
+                <a class="load-more-btn fin" href="#">Fin.</a>
+              </article>
+            </li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+  <footer id="copyleft">
+    <section id="nav">
+      <div class="row">
+        <div class="col-lg-3 col-lg-offset-3">
+          <h1 class="brand"><i class="icon-rocket logo"></i><a href="http://xinsheng.vtmer.com">新生专题网</a></h1>
+        </div>
+        <div class="col-lg-2 col-lg-offset-1" id="ask">
+          <!-- TODO weibo ask modal -->
+          <a href="http://weibo.com/vtmer">我也要问学长！</a>
+        </div>
+      </div>
+    </section>
+    <section id="ref" class="container">
+      <div class="row">
+        <nav class="col-lg-8 col-lg-offset-2">
+          <div class="row">
+            <span class="col-lg-3"><a href="http://vtmerhome.com/about/">关于我们</a></span>
+            <span class="col-lg-3"><a href="http://gdutbooks.vtmer.com/login">工大书架</a></span>
+            <!-- TODO comming soon tooltip -->
+            <span class="col-lg-3"><a href="#comming-soon">工大选修</a></span>
+            <span class="col-lg-3"><a href="#comming-soon">广工导航网</a></span>
+          </div>
+        </nav>
+      </div>
+      <div class="row">
+        <div class="inner col-lg-8 col-lg-offset-2" id="copyright">
+          &copy; 2013 维生数工作室
+        </div>
+      </div>
+    </section>
+  </footer>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.1/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+  <script type="text/javascript" src="{{ static_url('front/faq/js/faq.js') }}"></script>
+  <script type="text/javascript">
+    !function(){window.console||(window.console={}),window.console.log||(window.console.log=function(){}),console.log("Hello, world\n\u5bf9\u6211\u4eec\u611f\u5174\u8da3\uff1f\u4e00\u8d77\u6765\u73a9\u5427\uff01 _(:\u0437\u309d\u2220)_\nhttp://vtmerhome.com")}(); 
+  </script>
+</body>
+</html>

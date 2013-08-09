@@ -103,6 +103,7 @@ $route['p/(:num)'] = 'front/post/post/$1';
 $route['c/(:num)'] = 'front/category/category/$1';
 $route['c/all'] = 'front/category/all';
 $route['map'] = 'front/map/index';
+$route['faq'] = 'front/faq/index';
 
 /* json_api route */
 $route['json/p/(:num)'] = 'front/post/json_post/$1';
