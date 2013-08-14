@@ -1,10 +1,11 @@
+@charset "UTF-8";
 /* mixins */
 /* mixins */
 /* elements */
 body {
   border-top: 4px solid #0078d8;
   background-color: #f9f9f9;
-  font: 500 14px/1.8 Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; }
+  font: 500 14px/1.8 微软雅黑, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif; }
 
 ul {
   list-style: none; }
@@ -17,7 +18,7 @@ ul {
   box-shadow: 1px 0 0 0 rgba(0, 0, 0, 0.25);
   min-height: 400px;
   position: relative;
-  background: 75% 5% no-repeat url("../imgs/bg-5.jpg"); }
+  background: 75% 60% no-repeat url("../imgs/bg-5.jpg"); }
   #header-pic .logo {
     position: absolute;
     margin: -75px;
