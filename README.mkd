@@ -1,0 +1,14 @@
+# Freshman 2014
+
+## 项目成员
+
+* [Yann](https://github.com/Yannyezixin) 后台开发
+* [hbc](https://github.com/bcho) 运维
+
+... (TODO 前端、设计、移动组成员)
+
+
+
+:shipit:
+
+Created by [VTMer](http://vtmer.com/) with ♥.
