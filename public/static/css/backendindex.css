@@ -1,0 +1,35 @@
+#height{
+	padding:19%;
+}
+.freshmen{
+	padding:0px 10%;
+	text-align:center;
+	color:#ddd;
+	float:left;
+}
+.freshmen a{
+	color:#F5F5F5;
+	text-decoration:none;
+	opacity:0.3;
+}
+.freshmen a:hover{
+	color:#ddd;
+}
+body{
+	padding:10px;
+	background:url(http://vtmer.com/images/bg01.jpg);
+	background-size:100%;	
+}
+a{
+	color:#000;
+	text-decoration:none;
+}
+#all{
+		background:url(http://vtmer.com/images/bg_twill.png);
+}
+#logo{
+	background:url(http://vtmer.com/images/logo.png);
+	background-size:30%;
+	background-repeat:no-repeat;
+	background-position:center 20%;
+}

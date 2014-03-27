@@ -1,0 +1,49 @@
+
+<?php $__env->startSection('title'); ?>
+文章管理--freshmen
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('Frame_part'); ?>
+
+   <div class="container">
+    <div class="tab-content">
+      <div class="tab-pane active" id="home">
+         <div class="row"><div class="col-md-11"><h1>文章</h1></div>
+                  <div class="col-md-1"><h1><a href=""><i class=" icon-edit"></i></a><h1></div>
+         </div>
+        <div class="panel panel-primary">
+            <!-- Default panel contents -->
+        <div class="panel-heading"></div>
+          <!-- Table -->
+          <table class="table">
+            <thead>
+              <tr>
+            <th>状态 | 文章名</th>
+            <th>作者</th>
+            <th>分类</th>
+            <th>发表日期</th>
+            <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+	    <?php foreach($articals as $artical): ?>
+	     <tr>
+		<td><a href=""><span class="glyphicon glyphicon-ok"></span></a> <a href=""><?php echo $artical['title']; ?></a></td>
+		<td><?php echo $artical['user']; ?></td>
+		<td><?php foreach($artical['catagories'] as $catagory): ?>
+			<span class="label label-success"><?php echo $catagory['catagory']; ?></span>
+		    <?php endforeach; ?>
+		</td>
+		<td><?php echo $artical['created_at']; ?></td>
+		<td><a href=""><span class="glyphicon glyphicon-pencil"></span></a> | <a href=""><span class="glyphicon glyphicon-trash"></span></a> | <a href=""><span class="glyphicon glyphicon-thumbs-down"></span></a></td>
+	     </tr>
+	   <?php endforeach; ?>
+
+            </tbody>
+          </table>
+           </div>
+      </div>
+	</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('Backend.Back_nav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
