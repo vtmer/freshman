@@ -1,8 +1,6 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
-	"license": "MIT",
+	"name": "Freshman 2014",
+	"description": "广东工业大学新生专题网",
 	"require": {
 		"laravel/framework": "4.1.*"
 	},
