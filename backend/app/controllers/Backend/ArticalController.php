@@ -39,7 +39,16 @@ class ArticalController extends BaseController {
      */
     public function showedit()
     {
-        return View::make('Backend.Artical.Edit_artical');
+        return View::make('Backend.Artical.Edit_artical',array('page'=>'artical'));
+    }
+
+    /**
+     * Backend Save Artical
+     *
+     * @return Redirect
+     */
+    public function saveedit()
+    {
     }
 
 }
