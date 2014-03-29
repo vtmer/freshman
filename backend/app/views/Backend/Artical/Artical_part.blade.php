@@ -10,7 +10,7 @@
     <div class="tab-content">
       <div class="tab-pane active" id="home">
          <div class="row"><div class="col-md-11"><h1>文章</h1></div>
-                  <div class="col-md-1"><h1><a href=""><i class=" icon-edit"></i></a><h1></div>
+                  <div class="col-md-1"><h1><a href="{{{ URL::route('BackendShowEditArtical')}}}"><i class=" icon-edit"></i></a><h1></div>
          </div>
         <div class="panel panel-primary">
             <!-- Default panel contents -->
