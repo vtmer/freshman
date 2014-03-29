@@ -51,10 +51,18 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
         'uses' => 'Controllers\Backend\ArticalController@showartical'
     ));
 
-    Route::get('/edit',array(
-        'as' => 'BackendShowEditArtical',
-        'uses' => 'Controllers\Backend\ArticalController@showedit'
-    ));
+    Route::group(array('prefix'=> 'edit','before'=> ''),function(){
+
+        Route::get('/',array(
+            'as' => 'BackendShowEditArtical',
+            'uses' => 'Controllers\Backend\ArticalController@showedit'
+        ));
+
+        Route::post('/',array(
+            'as' => 'BackendSaveArtical',
+            'uses' => 'Controllers\Backend\ArticalController@saveedit'
+        ));
+    });
 
     Route::group(array('prefix' => '','before' => 'permission'),function(){
 
