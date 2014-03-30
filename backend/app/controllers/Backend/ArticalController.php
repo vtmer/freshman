@@ -51,4 +51,13 @@ class ArticalController extends BaseController {
     {
     }
 
+    /**
+     * Backend Remove Artical
+     *
+     * @return Redirect
+     */
+    public function removeartical($id)
+    {
+
+    }
 }
