@@ -17,8 +17,8 @@ class ArticalController extends BaseController {
      */
     public function showArtical()
     {
-        if(Auth::user()->permission == '作者'){
-            $post_artical = ArticalModel::where('user','=',Auth::user()->displayname)->get();
+        if(Auth::user()->permission === '作者'){
+            $post_artical = ArticalModel::where('user_id','=',Auth::user()->id)->get();
         }else{
             $post_artical = ArticalModel::all();
         }
