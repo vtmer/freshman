@@ -14,7 +14,7 @@ class CatagoryController extends BaseController {
      *
      * @return Response
      */
-    public function showcatagory(){
+    public function showCatagory(){
 
         /**
          * take the catagory information
@@ -36,7 +36,7 @@ class CatagoryController extends BaseController {
      *
      * @return Redirect
      */
-    public function newcatagory()
+    public function newCatagory()
     {
         $validator = Validator::make(Input::all(),array(
             'catagory' => 'required|min:4|max:20'
@@ -68,7 +68,7 @@ class CatagoryController extends BaseController {
      *
      * @return Redirect
      */
-    public function updatecatagory()
+    public function updateCatagory()
     {
         $catagory = CatagoryModel::find(Input::get('id'));
 
@@ -93,7 +93,7 @@ class CatagoryController extends BaseController {
      *
      * @return Redirect
      */
-    public function deletecatagory()
+    public function deleteCatagory()
     {
         $catagory = CatagoryModel::find(Input::get('id'));
 
