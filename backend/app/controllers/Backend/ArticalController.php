@@ -15,7 +15,7 @@ class ArticalController extends BaseController {
      *
      * @return Response
      */
-    public function showartical()
+    public function showArtical()
     {
         if(Auth::user()->permission == '作者'){
             $post_artical = ArticalModel::where('user','=',Auth::user()->displayname)->get();
@@ -46,7 +46,7 @@ class ArticalController extends BaseController {
      *
      * @return Response
      */
-    public function showedit()
+    public function showEdit()
     {
         return View::make('Backend.Artical.Edit_artical',array('page'=>'artical'));
     }
@@ -56,7 +56,7 @@ class ArticalController extends BaseController {
      *
      * @return Redirect
      */
-    public function saveedit()
+    public function saveEdit()
     {
     }
 
@@ -65,18 +65,17 @@ class ArticalController extends BaseController {
      *
      * @return Redirect
      */
-    public function removeartical($id)
+    public function removeArtical($id)
     {
-        if(Auth::user()->permission == '作者'){
-            if(ArticalModel::findOrFail($id)->user !== Auth::user()->displayname){
+        if(Auth::user()->permission === '作者'){
+            if(ArticalModel::findOrFail($id)->user_id != Auth::user()->id){
                 return App::abort(404);
             }
         }
-        $post = ArticalModel::findOrFail($id);
-        $post->delete();
-        $post = ArticalModel::findOrFail($id)->artical_catagory();
-        $post->delete();
-
+        $artical_catagory = ArticalModel::findOrFail($id)->artical_catagory();
+        $artical_catagory->delete();
+        $artical = ArticalModel::findOrFail($id);
+        $artical->delete();
         return Redirect::route('BackendShowArtical')
             ->with('success','文章删除成功');
     }
