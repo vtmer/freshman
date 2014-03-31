@@ -19,7 +19,7 @@ class UserController extends BaseController {
      *
      * @return \Rsponse
      */
-    public function showlogin()
+    public function showLogin()
     {
         return View::make('Backend.User.Login');
     }
@@ -34,7 +34,7 @@ class UserController extends BaseController {
      *
      * @return \Redirect
      */
-    public function dologin()
+    public function doLogin()
     {
         $validator = Validator::make(Input::all(),array(
             'loginname' => 'required',
@@ -64,7 +64,7 @@ class UserController extends BaseController {
      *
      * @return \Redirect
      */
-    public function dologout()
+    public function doLogout()
     {
         Auth::logout();
 
@@ -76,7 +76,7 @@ class UserController extends BaseController {
      *
      * @return \Redirect
      */
-    public function updateuser($id)
+    public function updateUser($id)
     {
         if($id !== Auth::user()->id){
 
@@ -138,7 +138,7 @@ class UserController extends BaseController {
      *
      * @return Response
      */
-    public function showuser()
+    public function showUser()
     {
         /**
          *  take the user information
@@ -164,7 +164,7 @@ class UserController extends BaseController {
      *
      * @return Redirect
      */
-    public function newusers()
+    public function newUsers()
     {
         $validator = Validator::make(Input::all(),array(
             'loginname' => 'required|min:2|max:20',
