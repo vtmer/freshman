@@ -167,7 +167,8 @@ class UserController extends BaseController {
     public function newusers()
     {
         $validator = Validator::make(Input::all(),array(
-            'loginname' => 'required|min:4|max:20',
+            'loginname' => 'required|min:2|max:20',
+            'displayname' => 'required|min:2|max:15',
             'password' => 'required|min:6|max:20'
         ));
 
@@ -177,10 +178,8 @@ class UserController extends BaseController {
                 ->withErrors($validator);
         }
 
-        $loginname = Input::get('loginname');
-        $displayname = Input::get('displayname');
-        $password = Hash::make(Input::get('password'));
-        $permission = Input::get('permission');
+        extract(Input::all());
+
         if(UserModel::where('loginname','=',$loginname)->count()!== '0'){
 
             return Redirect::route('BackendShowUsers')
