@@ -78,10 +78,15 @@ class UserController extends BaseController {
      */
     public function updateuser($id)
     {
+        if($id !== Auth::user()->id){
+
+            return App::abort(404);
+        }
         $user = UserModel::findOrFail($id);
 
         $validator = Validator::make(Input::all(),array(
-            'password' => 'required|min:6|max:15'
+            'displayname' => 'required|min:4|max:20',
+            'password' => 'required|min:6|max:20'
         ));
         if($validator->fails())
         {
