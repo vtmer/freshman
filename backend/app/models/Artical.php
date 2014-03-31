@@ -9,10 +9,10 @@ class Artical extends Eloquent{
     /**
      * the attribute that allow to make a value together
      */
-    protected $fillable = array('title','see','content','frist');
+    protected $fillable = array('title','see','content','updown','user');
 
     /**
-     * Atical_catagory field declaration
+     * Catagory field declaration
      *
      * @return object;
      */
@@ -20,5 +20,14 @@ class Artical extends Eloquent{
     {
         return $this->belongsToMany('Catagory','artical_catagory',
             'artical_id','catagory_id');
+    }
+
+    /**
+     * Artical_catagory field declaration
+     *
+     * @return object;
+     */
+    public function artical_catagory(){
+        return $this->hasMany('Artical_catagory');
     }
 }

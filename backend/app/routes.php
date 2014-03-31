@@ -46,10 +46,18 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
         'uses' => 'Controllers\Backend\UserController@dologout'
     ));
 
-    Route::get('/artical',array(
-        'as' => 'BackendShowArtical',
-        'uses' => 'Controllers\Backend\ArticalController@showartical'
-    ));
+    Route::group(array('prefix' => 'artical','before' => ''),function(){
+
+        Route::get('/',array(
+           'as' => 'BackendShowArtical',
+           'uses' => 'Controllers\Backend\ArticalController@showartical'
+       ));
+
+        Route::get('/remove/{id}',array(
+            'as' => 'BackendRemoveArtical',
+            'uses' => 'Controllers\Backend\ArticalController@removeartical'
+        ));
+    });
 
     Route::group(array('prefix'=> 'edit','before'=> ''),function(){
 

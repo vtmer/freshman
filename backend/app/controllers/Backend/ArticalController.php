@@ -3,6 +3,10 @@
 use View;
 use Controllers\BaseController;
 use Artical as ArticalModel;
+use Redirect;
+use Auth;
+use App;
+
 
 class ArticalController extends BaseController {
 
@@ -13,10 +17,15 @@ class ArticalController extends BaseController {
      */
     public function showartical()
     {
+        if(Auth::user()->permission == '作者'){
+            $post_artical = ArticalModel::where('user','=',Auth::user()->displayname)->get();
+        }else{
+            $post_artical = ArticalModel::all();
+        }
         /**
          * take the information of artical
          */
-        foreach(ArticalModel::all() as $artical){
+        foreach($post_artical as $artical){
 
             $catagory = ArticalModel::find($artical['id'])->catagories->toArray();
             $articals[] = array(
@@ -51,4 +60,24 @@ class ArticalController extends BaseController {
     {
     }
 
+    /**
+     * Backend Remove Artical
+     *
+     * @return Redirect
+     */
+    public function removeartical($id)
+    {
+        if(Auth::user()->permission == '作者'){
+            if(ArticalModel::findOrFail($id)->user !== Auth::user()->displayname){
+                return App::abort(404);
+            }
+        }
+        $post = ArticalModel::findOrFail($id);
+        $post->delete();
+        $post = ArticalModel::findOrFail($id)->artical_catagory();
+        $post->delete();
+
+        return Redirect::route('BackendShowArtical')
+            ->with('success','文章删除成功');
+    }
 }

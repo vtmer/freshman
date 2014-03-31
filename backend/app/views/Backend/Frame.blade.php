@@ -32,6 +32,6 @@ $("#member").select2({
    placeholder: "请分配权限"//选择框内提示信息
 });
 $('#editor').wysiwyg();
-@show
 </script>
+@show
 </html>
