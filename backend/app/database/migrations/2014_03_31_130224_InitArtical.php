@@ -24,6 +24,7 @@ class InitArtical extends Migration {
 		    $table->string('title',100);
 		    $table->text('content');
 
+            $table->integer('user_id');
             $table->string('user',50);
 		    $table->integer('updown')->default(0);
             $table->integer('see')->default(0);
@@ -40,7 +41,7 @@ class InitArtical extends Migration {
 	 */
 	public function down()
 	{
-		        Schema::drop($this->tablename);
+	     Schema::drop($this->tablename);
 	}
 
 }
