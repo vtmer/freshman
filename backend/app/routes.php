@@ -43,24 +43,32 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
 
     Route::get('/logout',array(
         'as' => 'BackendDoLogout',
-        'uses' => 'Controllers\Backend\UserController@dologout'
+        'uses' => 'Controllers\Backend\UserController@doLogout'
     ));
 
-    Route::get('/artical',array(
-        'as' => 'BackendShowArtical',
-        'uses' => 'Controllers\Backend\ArticalController@showartical'
-    ));
+    Route::group(array('prefix' => 'artical','before' => ''),function(){
+
+        Route::get('/',array(
+           'as' => 'BackendShowArtical',
+           'uses' => 'Controllers\Backend\ArticalController@showArtical'
+       ));
+
+        Route::get('/remove/{id}',array(
+            'as' => 'BackendRemoveArtical',
+            'uses' => 'Controllers\Backend\ArticalController@removeArtical'
+        ));
+    });
 
     Route::group(array('prefix'=> 'edit','before'=> ''),function(){
 
         Route::get('/',array(
             'as' => 'BackendShowEditArtical',
-            'uses' => 'Controllers\Backend\ArticalController@showedit'
+            'uses' => 'Controllers\Backend\ArticalController@showEdit'
         ));
 
         Route::post('/',array(
             'as' => 'BackendSaveArtical',
-            'uses' => 'Controllers\Backend\ArticalController@saveedit'
+            'uses' => 'Controllers\Backend\ArticalController@saveEdit'
         ));
     });
 
@@ -69,41 +77,41 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
 
 	    Route::get('/users',array(
 		'as' => 'BackendShowUsers',
-		'uses' => 'Controllers\Backend\UserController@showuser'
+		'uses' => 'Controllers\Backend\UserController@showUser'
 	    ));
 
 	    Route::post('/users/new',array(
 		'as' => 'BackendNewUsers',
-		'uses' => 'Controllers\Backend\UserController@newusers'
+		'uses' => 'Controllers\Backend\UserController@newUsers'
 	    ));
 
 	    Route::group(array('prefix' => 'catagory'),function(){
 
 	    	Route::get('/',array(
 		    'as' => 'BackendShowCatagory',
-		    'uses' => 'Controllers\Backend\CatagoryController@showcatagory'
+		    'uses' => 'Controllers\Backend\CatagoryController@showCatagory'
 	    	 ));
 
     		Route::post('/update',array(
     		    'as' => 'BackendUpdateCatagory',
-	    	    'uses' => 'Controllers\Backend\CatagoryController@updatecatagory'
+	    	    'uses' => 'Controllers\Backend\CatagoryController@updateCatagory'
 	    	 ));
 
 	    	Route::post('/new',array(
 		        'as' => 'BackendNewCatagory',
-	    	    'uses' => 'Controllers\Backend\CatagoryController@newcatagory'
+	    	    'uses' => 'Controllers\Backend\CatagoryController@newCatagory'
 	         ));
 
 	    	Route::post('/{id}/delete',array(
 	    	   'as' => 'BackendDeleteCatagory',
-	    	   'uses' => 'Controllers\Backend\CatagoryController@deletecatagory'
+	    	   'uses' => 'Controllers\Backend\CatagoryController@deleteCatagory'
 	    	  ));
     	});
     });
 
     Route::post('/{id}/password',array(
         'as' => 'BackendUpdateUser',
-        'uses' => 'Controllers\Backend\UserController@updateuser'
+        'uses' => 'Controllers\Backend\UserController@updateUser'
     ));
 });
 
@@ -118,10 +126,10 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
 
 Route::get('/backend/login',array(
     'as' => 'BackendLogin',
-    'uses' => 'Controllers\Backend\UserController@showlogin'
+    'uses' => 'Controllers\Backend\UserController@showLogin'
 ));
 Route::post('/backend/login',array(
     'as' => 'BackendDoLogin',
-    'uses' => 'Controllers\Backend\UserController@dologin'
+    'uses' => 'Controllers\Backend\UserController@doLogin'
 ));
 

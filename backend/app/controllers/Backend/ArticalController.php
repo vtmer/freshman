@@ -3,6 +3,10 @@
 use View;
 use Controllers\BaseController;
 use Artical as ArticalModel;
+use Redirect;
+use Auth;
+use App;
+
 
 class ArticalController extends BaseController {
 
@@ -11,12 +15,17 @@ class ArticalController extends BaseController {
      *
      * @return Response
      */
-    public function showartical()
+    public function showArtical()
     {
+        if(Auth::user()->permission === '作者'){
+            $post_artical = ArticalModel::where('user_id','=',Auth::user()->id)->get();
+        }else{
+            $post_artical = ArticalModel::all();
+        }
         /**
          * take the information of artical
          */
-        foreach(ArticalModel::all() as $artical){
+        foreach($post_artical as $artical){
 
             $catagory = ArticalModel::find($artical['id'])->catagories->toArray();
             $articals[] = array(
@@ -37,7 +46,7 @@ class ArticalController extends BaseController {
      *
      * @return Response
      */
-    public function showedit()
+    public function showEdit()
     {
         return View::make('Backend.Artical.Edit_artical',array('page'=>'artical'));
     }
@@ -47,8 +56,27 @@ class ArticalController extends BaseController {
      *
      * @return Redirect
      */
-    public function saveedit()
+    public function saveEdit()
     {
     }
 
+    /**
+     * Backend Remove Artical
+     *
+     * @return Redirect
+     */
+    public function removeArtical($id)
+    {
+        if(Auth::user()->permission === '作者'){
+            if(ArticalModel::findOrFail($id)->user_id != Auth::user()->id){
+                return App::abort(404);
+            }
+        }
+        $artical_catagory = ArticalModel::findOrFail($id)->artical_catagory();
+        $artical_catagory->delete();
+        $artical = ArticalModel::findOrFail($id);
+        $artical->delete();
+        return Redirect::route('BackendShowArtical')
+            ->with('success','文章删除成功');
+    }
 }
