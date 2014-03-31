@@ -84,19 +84,36 @@ class UserController extends BaseController {
         }
         $user = UserModel::findOrFail($id);
 
+        $input = Input::only('originpassword','password','displayname');
+        extract($input);
+
+        if($originpassword == '' &&  $password == ''){
+
+	         $validator = Validator::make(Input::all(),array(
+           		 'displayname' => 'required|min:2|max:20',
+                       	 ));
+             if($validator->fails()){
+             	 return Redirect::route('BackendShowArtical')
+             	     ->withInput()
+             	     ->withErrors($validator);
+             }
+
+             $user['displayname'] = $displayname;
+             $user->save();
+
+             return Redirect::route('BackendShowArtical')
+                 ->with('success','用户名修改成功');
+        }
+
         $validator = Validator::make(Input::all(),array(
-            'displayname' => 'required|min:4|max:20',
-            'password' => 'required|min:6|max:20'
-        ));
-        if($validator->fails())
-        {
+                'displayname' => 'required|min:2|max:20',
+                'password' => 'required|min:6|max:20'
+            ));
+        if($validator->fails()){
             return Redirect::route('BackendShowArtical')
                 ->withInput()
                 ->withErrors($validator);
         }
-
-        $input = Input::only('originpassword','password');
-        extract($input);
 
         if(!Hash::check($originpassword,$user['password']))
         {
@@ -106,12 +123,13 @@ class UserController extends BaseController {
         }
 
         $user['password'] = Hash::make($password);
+        $user['displayname'] = Input::get('displayname');
         $user->save();
 
         Auth::logout();
 
         return Redirect::route('BackendLogin')
-            ->with('success','密码更新成功，请重新登录');
+            ->with('success','用户信息更新成功，请重新登录');
 
     }
 
