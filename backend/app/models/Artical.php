@@ -9,7 +9,7 @@ class Artical extends Eloquent{
     /**
      * the attribute that allow to make a value together
      */
-    protected $fillable = array('title','see','content','frist');
+    protected $fillable = array('title','see','content','updown','user');
 
     /**
      * Atical_catagory field declaration
