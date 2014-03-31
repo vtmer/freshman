@@ -3,6 +3,7 @@
 use View;
 use Controllers\BaseController;
 use Artical as ArticalModel;
+use Redirect;
 
 class ArticalController extends BaseController {
 
@@ -58,6 +59,10 @@ class ArticalController extends BaseController {
      */
     public function removeartical($id)
     {
+        $post = ArticalModel::findOrFail($id);
+        $post->delete();
 
+        return Redirect::route('BackendShowArtical')
+            ->with('success','文章删除成功');
     }
 }
