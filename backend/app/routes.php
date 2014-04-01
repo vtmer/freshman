@@ -57,9 +57,19 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
             'as' => 'BackendRemoveArtical',
             'uses' => 'Controllers\Backend\ArticalController@removeArtical'
         ));
+
+        Route::get('/updown/{id}',array(
+            'as' => 'BackendUpdownArtical',
+            'uses' => 'Controllers\Backend\ArticalController@upDown'
+        ));
+
+        Route::get('/active/{id}',array(
+            'as' => 'BackendActiveArtical',
+            'uses' => 'Controllers\Backend\ArticalController@updateActive'
+        ));
     });
 
-    Route::group(array('prefix'=> 'edit','before'=> ''),function(){
+    Route::group(array('prefix'=> 'edit','before'=> 'message'),function(){
 
         Route::get('/',array(
             'as' => 'BackendShowEditArtical',
