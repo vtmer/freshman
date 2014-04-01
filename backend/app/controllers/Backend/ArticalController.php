@@ -70,6 +70,8 @@ class ArticalController extends BaseController {
                 'title' => $artical['title'],
                 'content'=> $artical['content'],
                 'created_at' => $artical['created_at'],
+                'see' => $artical['see'],
+                'updown' => $artical['updown'],
                 'user' => $artical['user'],
                 'catagories' => $catagory
                 );
@@ -115,5 +117,27 @@ class ArticalController extends BaseController {
         $artical->delete();
         return Redirect::route('BackendShowArtical')
             ->with('success','文章删除成功');
+    }
+
+    /**
+     * Backend Updown change Artical
+     *
+     * @return Redirect
+     */
+    public function upDown($id)
+    {
+        $updown = ArticalModel::findOrFail($id);
+
+        if($updown->updown == '0'){
+             $updown['updown'] = '1';
+            $message = '文章置顶成功';
+        }else{
+            $updown['updown'] ='0';
+            $message = '文章取消置顶成功';
+        }
+        $updown->save();
+
+        return Redirect::route('BackendShowArtical')
+            ->with('success',$message);
     }
 }
