@@ -1,6 +1,6 @@
 <?php
 
-class artical_catagory extends Eloquent{
+class Artical_catagory extends Eloquent{
 
     /**
      * @var string
