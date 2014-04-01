@@ -3,6 +3,8 @@
 use View;
 use Controllers\BaseController;
 use Artical as ArticalModel;
+use Action as ActionModel;
+use Actiongroup as ActiongroupModel;
 use Redirect;
 use Auth;
 use App;
@@ -11,17 +13,52 @@ use App;
 class ArticalController extends BaseController {
 
     /**
+     * Is allow to do?
+     *
+     * @var string
+     *
+     */
+    protected $is_allow;
+
+    /**
+     * User record
+     *
+     * @var object
+     */
+    protected $user;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->is_allow = FALSE;
+        $this->user = Auth::user();
+    }
+
+    /**
      * Backend Artical index
      *
      * @return Response
      */
     public function showArtical()
     {
-        if(Auth::user()->permission === '作者'){
-            $post_artical = ArticalModel::where('user_id','=',Auth::user()->id)->get();
-        }else{
-            $post_artical = ArticalModel::all();
+        $action = 'seeallarticle';
+
+        foreach($this->user->group as $group){
+            $groupid = $group->id;
+            if(ActiongroupModel::where('groupid','=',$groupid)
+                        ->where('action','=',$action)->count() !== '0')
+                        $this->is_allow = TRUE;
+            if($this->is_allow) break;
         }
+
+
+        if($this->is_allow){
+            $post_artical = ArticalModel::all();
+        }else{
+            $post_artical = ArticalModel::where('user_id','=',Auth::user()->id)->get();
+        }
+
         /**
          * take the information of artical
          */
