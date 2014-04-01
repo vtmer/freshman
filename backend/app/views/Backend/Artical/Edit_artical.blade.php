@@ -6,6 +6,7 @@
 
 @section('styles')
 <script type="text/javascript" src="{{{ URL::asset('static/js/jquery.js')}}}"></script>
+<link href="{{{ URL::asset('static/css/select2.css')}}}" rel="stylesheet">
 <link href="{{{ URL::asset('static/css/prettify.css')}}}" rel="stylesheet">
 <link href="{{{ URL::asset('static/css/bootstrap.css')}}}" rel="stylesheet">
 <link href="{{{ URL::asset('static/css/font-awesome.css')}}}" rel="stylesheet">
@@ -18,7 +19,7 @@
 	<div class="container">
 	  <div class="row">
 	    <div class="col-md-9"><h1>文章撰写</h1></div>
-	    <div class="col-md-1"><h1><a href=""><i class="icon-save"></i></a><h1></div><div class="col-md-1"><span id="savemessage"></span></div>
+	    <div class="col-md-1"><h1><a href="" data-toggle="modal" data-target="#save_myModal"><i class="icon-save"></i></a><h1></div><div class="col-md-1"><span id="savemessage"></span></div>
  	  </div>
 	</div>
 	<div id="alerts"></div>
@@ -73,11 +74,67 @@
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
       </div>
     </div>
-    <input type="text" placeholder="文章标题" class="form-control"><p></p>
-    <div id="editor" onkeydown="" >
+    <input type="text" placeholder="文章标题" class="form-control" id="titleinput" requried><p></p>
+    <div id="editor">
 
     </div>
   </div>
+
+
+<div class="modal fade" id="save_myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+	<div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	  <h3 class="modal-title" id="myModalLabel">文章发布</h3>
+	</div>
+    {{ Form::open(array('route' => 'BackendSaveArtical',
+                        'method' => 'post',
+                        'class' => 'form-horizontal'
+                ))}}
+	<div class="modal-body">
+    <div class="form-group">
+    {{ Form::label('member','文章栏目',array('class'=> 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
+		   <select name="catagories[]" id="member" multiple="multiple" style="width:100%" class="populate placeholder select2-offscreen" tabindex="-1" required>
+            @foreach($catagories as $catagory)
+            <option value="{{ $catagory['id']}}">{{$catagory['catagory']}}</option>
+            @endforeach
+		   </select>
+		</div>
+	       </div>
+     <div class="form-group">
+    {{ Form::label('select','文章状态',array('class'=> 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
+		   <select style="width:100%" class="form-control" tabindex="-1" id="select" name="active">
+		      <option value="1">发布</option>
+		      <option value="0">草稿</option>
+		   </select>
+		</div>
+	       </div>
+     <div class="form-group">
+    {{ Form::label('updown','置顶选择',array('class'=> 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
+		   <select style="width:100%" class="form-control" tabindex="-1" id="updown" name="updown">
+		      <option value="1">置顶</option>
+		      <option value="0">不置顶</option>
+		   </select>
+		</div>
+           </div>
+    {{ Form::hidden('title','',array('id'=>'title'))}}
+    {{ Form::hidden('content','',array('id'=>'content'))}}
+
+	</div>
+	<div class="modal-footer">
+	 <button type="submit" class="btn btn-primary" id="save">保存</button>
+	 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	</div>
+	</form>
+     {{ Form::close()}}
+</div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 
 @stop
 
@@ -88,6 +145,21 @@
 <script src="{{{ URL::asset('static/js/prettify.js')}}}"></script>
 <script src="{{{ URL::asset('static/js/jquery.hotkeys.js')}}}"></script>
 <script src="{{{ URL::asset('static/js/bootstrap-wysiwyg.js')}}}"></script>
+<script src="{{{ URL::asset('static/js/select2.min.js')}}}"></script>
+<script type="text/javascript">
+$(function(){
+    $('#save').click(function () {
+        var title  = document.getElementById('titleinput').value;
+        var content = $('#editor').html();
+        $('#title').val(title);
+        $('#content').val(content);
+    });
+});
+$("#member").select2({
+   placeholder: "请选择文章栏目"//选择框内提示信息
+});
+</script>
+
 @stop
 
 
