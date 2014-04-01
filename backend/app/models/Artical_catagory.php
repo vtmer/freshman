@@ -13,4 +13,10 @@ class Artical_catagory extends Eloquent{
      * @var array
      */
     protected $fillable = array('artical_id','catagory_id');
+
+    /**
+     * @var string;
+     *
+     */
+    public $timestamps = false;
 }
