@@ -31,7 +31,14 @@
         @if(!empty($articals))
 	    @foreach($articals as $artical)
 	     <tr>
-		<td><a href=""><span class="glyphicon glyphicon-ok"></span></a> <a href="">{{ $artical['title'] }}</a></td>
+        <td><a href="{{{ URL::route('BackendActiveArtical',$artical['id'])}}}">
+            @if($artical['active'] == '0')
+            <span class="glyphicon glyphicon-exclamation-sign"></span>
+            @else
+            <span class="glyphicon glyphicon-ok"></span>
+            </a>
+            @endif
+             <a href="">{{ $artical['title'] }}</a></td>
 		<td>{{ $artical['user'] }}</td>
 		<td>@foreach($artical['catagories'] as $catagory)
 			<span class="label label-success">{{ $catagory['catagory'] }}</span>
