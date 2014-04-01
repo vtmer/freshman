@@ -167,5 +167,27 @@ class ArticalController extends BaseController {
             ->with('success',$message);
     }
 
+    /**
+     * Backend Active change Artical
+     *
+     * @return Redirect
+     */
+    public function updateActive($id)
+    {
+        $active = ArticalModel::findOrFail($id);
+
+        if($active->active == '0'){
+            $active['active'] = '1';
+            $message = '文章发布成功';
+        }else{
+            $active['active'] = '0';
+            $message = '文章状态为草稿，未发布';
+        }
+        $active->save();
+
+        return Redirect::route('BackendShowArtical')
+            ->with('success',$message);
+    }
+
 
 }
