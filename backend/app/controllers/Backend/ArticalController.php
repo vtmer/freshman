@@ -5,9 +5,11 @@ use Controllers\BaseController;
 use Artical as ArticalModel;
 use Action as ActionModel;
 use Actiongroup as ActiongroupModel;
+use Artical_catagory as Artical_catagoryModel;
 use Redirect;
 use Auth;
 use App;
+use Input;
 
 
 class ArticalController extends BaseController {
@@ -67,6 +69,7 @@ class ArticalController extends BaseController {
             $catagory = ArticalModel::find($artical['id'])->catagories->toArray();
             $articals[] = array(
                 'id' => $artical['id'],
+                'active' => $artical['active'],
                 'title' => $artical['title'],
                 'content'=> $artical['content'],
                 'created_at' => $artical['created_at'],
@@ -97,6 +100,29 @@ class ArticalController extends BaseController {
      */
     public function saveEdit()
     {
+        $artical = new ArticalModel;
+
+        extract(Input::all());
+
+        $artical->title = $title;
+        $artical->content = $content;
+        $artical->user_id = $this->user->id;
+        $artical->user = $this->user->loginname;
+        $artical->active = $active;
+        $artical->updown = $updown;
+
+        $artical->save();
+
+        $articalid = $artical->id;
+        foreach($catagories as $catagory){
+            $artical_catagory = new Artical_catagoryModel;
+            $artical_catagory->artical_id = $articalid;
+            $artical_catagory->catagory_id = $catagory;
+            $artical_catagory->save();
+        }
+
+        return Redirect::route('BackendShowArtical')
+            ->with('success','文章保存成功');
     }
 
     /**
@@ -140,4 +166,6 @@ class ArticalController extends BaseController {
         return Redirect::route('BackendShowArtical')
             ->with('success',$message);
     }
+
+
 }
