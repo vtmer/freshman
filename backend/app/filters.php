@@ -40,6 +40,10 @@ Route::filter('auth', function()
     View::share('me',Auth::user());
 });
 
+Route::filter('message',function()
+{
+    View::share('catagories',Catagory::all());
+});
 
 /*Route::filter('auth.basic', function()
 {
