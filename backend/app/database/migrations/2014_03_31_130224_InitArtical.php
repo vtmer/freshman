@@ -28,6 +28,7 @@ class InitArtical extends Migration {
             $table->string('user',50);
 		    $table->integer('updown')->default(0);
             $table->integer('see')->default(0);
+            $table->integer('active')->default(0);
 		    $table->timestamps();
 
 		    $table->engine = 'InnoDB';
