@@ -46,7 +46,7 @@
 		</td>
         <td>{{ $artical['see']}}</td>
 		<td>{{ $artical['created_at'] }}</td>
-        <td><a href=""><span class="glyphicon glyphicon-pencil"></span></a> |
+        <td><a href="{{{ URL::route('BackendShowUpdateArtical',$artical['id'])}}}"><span class="glyphicon glyphicon-pencil"></span></a> |
             <a href="{{{ URL::route('BackendRemoveArtical',$artical['id'])}}}" onclick="return confirm('亲～～，你确定要删除么？')"><span class="glyphicon glyphicon-trash"></span></a> |
             <a href="{{{ URL::route('BackendUpdownArtical',$artical['id'])}}}" title="置顶">
             @if($artical['updown']=='0')
