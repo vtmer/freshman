@@ -94,6 +94,55 @@ class ArticalController extends BaseController {
     }
 
     /**
+     * Backend Show Update Artical
+     *
+     * @return Response
+     */
+    public function showUpdateArtical($id)
+    {
+        $artical = ArticalModel::findOrFail($id);
+        $catagories = $artical->catagories->toArray();
+
+        return View::make('Backend.Artical.Edit_artical',array('page'=>'artical',
+                        'artical' => $artical,
+                        'selected_catagories' => $catagories
+                 ));
+
+    }
+
+    /**
+     * Backend Updater Artical
+     *
+     * @return Redirect
+     */
+    public function updateArtical($id)
+    {
+        $artical = ArticalModel::findOrFail($id);
+
+        extract(Input::all());
+
+	    $artical->title = $title;
+        $artical->content = $content;
+        $artical->active = $active;
+        $artical->updown = $updown;
+
+        $artical->save();
+
+        $delete_catagory = Artical_catagoryModel::where('artical_id','=',$id)->delete();
+        foreach($catagories as $catagory){
+            $artical_catagory = new Artical_catagoryModel;
+            $artical_catagory->artical_id = $id;
+            $artical_catagory->catagory_id = $catagory;
+            $artical_catagory->save();
+        }
+
+        return Redirect::route('BackendShowArtical')
+            ->with('success','文章修改成功');
+
+
+    }
+
+    /**
      * Backend Save Artical
      *
      * @return Redirect
