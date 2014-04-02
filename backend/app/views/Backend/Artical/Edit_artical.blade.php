@@ -74,9 +74,11 @@
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
       </div>
     </div>
-    <input type="text" placeholder="文章标题" class="form-control" id="titleinput" requried><p></p>
+    <input type="text" placeholder="文章标题" class="form-control" id="titleinput" value="@if(isset($artical['title'])){{$artical['title']}}@endif" requried><p></p>
     <div id="editor">
-
+        @if(isset($artical['content']))
+        {{$artical['content']}}
+        @endif
     </div>
   </div>
 
@@ -87,19 +89,36 @@
 	<div class="modal-header">
 	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	  <h3 class="modal-title" id="myModalLabel">文章发布</h3>
-	</div>
+    </div>
+    @if(isset($artical))
+    {{ Form::open(array('route' => array('BackendUpdateArtical',$artical['id']),
+                        'method' => 'post',
+                        'class' => 'form-horizontal'
+                ))}}
+    @elseif
     {{ Form::open(array('route' => 'BackendSaveArtical',
                         'method' => 'post',
                         'class' => 'form-horizontal'
                 ))}}
+    @endif
 	<div class="modal-body">
     <div class="form-group">
     {{ Form::label('member','文章栏目',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select name="catagories[]" id="member" multiple="multiple" style="width:100%" class="populate placeholder select2-offscreen" tabindex="-1" required>
+            @if(isset($catagories))
             @foreach($catagories as $catagory)
-            <option value="{{ $catagory['id']}}">{{$catagory['catagory']}}</option>
+            <option value="{{ $catagory['id']}}"
+                @if(isset($selected_catagories))
+                @foreach($selected_catagories as $selected_catagory)
+                @if($catagory['id'] == $selected_catagory['id'])
+                    selected
+                @endif
+                @endforeach
+                @endif
+            >{{$catagory['catagory']}}</option>
             @endforeach
+            @endif
 		   </select>
 		</div>
 	       </div>
@@ -107,8 +126,8 @@
     {{ Form::label('select','文章状态',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="select" name="active">
-		      <option value="1">发布</option>
-		      <option value="0">草稿</option>
+		      <option value="1"@if(isset($artical) && $artical['active'] == '1')selected @endif>发布</option>
+		      <option value="0"@if(isset($artical) && $artical['active'] == '0')selected @endif>草稿</option>
 		   </select>
 		</div>
 	       </div>
@@ -116,8 +135,8 @@
     {{ Form::label('updown','置顶选择',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="updown" name="updown">
-		      <option value="1">置顶</option>
-		      <option value="0">不置顶</option>
+		      <option value="1"@if(isset($artical['updown']) && $artical['updown'] == '1')selected @endif>置顶</option>
+		      <option value="0"@if(isset($artical['updown']) && $artical['updown'] == '0')selected @endif>不置顶</option>
 		   </select>
 		</div>
            </div>
