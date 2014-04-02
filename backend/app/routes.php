@@ -80,6 +80,16 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
             'as' => 'BackendSaveArtical',
             'uses' => 'Controllers\Backend\ArticalController@saveEdit'
         ));
+
+        Route::get('/update/{id}',array(
+            'as' => 'BackendShowUpdateArtical',
+            'uses'=> 'Controllers\Backend\ArticalController@showUpdateArtical'
+        ));
+
+        Route::post('/update/{id}',array(
+            'as' => 'BackendUpdateArtical',
+            'uses' => 'Controllers\Backend\ArticalController@updateArtical'
+        ));
     });
 
     Route::group(array('prefix' => '','before' => 'permission'),function(){
