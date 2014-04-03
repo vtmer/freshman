@@ -30,7 +30,7 @@
       @foreach($catagories as $catagory)
 	<tr>
 	<td><i class="icon-folder-close"></i> <a href="" data-toggle="modal" data-target="#update_myModal_cata" id="update{{ $catagory['id'] }}" onclick="updatecatagory({{ $catagory['id'] }})">{{ $catagory['catagory'] }}</a></td>
-	<td>共有14篇文章</td>
+	<td>共有{{ $catagory['articalnumber']}}篇文章</td>
 	<td> <a href="" data-toggle="modal" data-target="#delete_myModal_cata"><span class="glyphicon glyphicon-trash" onclick="deletecatagory({{ $catagory['id'] }})"></span></a></td>
 	</tr>
       @endforeach
