@@ -13,4 +13,6 @@ class Usergroup extends Eloquent{
      * @var array
      */
     protected $fillable = array('group_id','user_id','displayname');
+
+    public $timestamps = FALSE;
 }
