@@ -46,49 +46,49 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
         'uses' => 'Controllers\Backend\UserController@doLogout'
     ));
 
-    Route::group(array('prefix' => 'artical','before' => ''),function(){
+    Route::group(array('prefix' => 'article','before' => ''),function(){
 
         Route::get('/',array(
-           'as' => 'BackendShowArtical',
-           'uses' => 'Controllers\Backend\ArticalController@showArtical'
+           'as' => 'BackendShowArticle',
+           'uses' => 'Controllers\Backend\ArticleController@showArticle'
        ));
 
         Route::get('/remove/{id}',array(
-            'as' => 'BackendRemoveArtical',
-            'uses' => 'Controllers\Backend\ArticalController@removeArtical'
+            'as' => 'BackendRemoveArticle',
+            'uses' => 'Controllers\Backend\ArticleController@removeArticle'
         ));
 
         Route::get('/updown/{id}',array(
-            'as' => 'BackendUpdownArtical',
-            'uses' => 'Controllers\Backend\ArticalController@upDown'
+            'as' => 'BackendUpdownArticle',
+            'uses' => 'Controllers\Backend\ArticleController@upDown'
         ));
 
         Route::get('/active/{id}',array(
-            'as' => 'BackendActiveArtical',
-            'uses' => 'Controllers\Backend\ArticalController@updateActive'
+            'as' => 'BackendActiveArticle',
+            'uses' => 'Controllers\Backend\ArticleController@updateActive'
         ));
     });
 
     Route::group(array('prefix'=> 'edit','before'=> 'message'),function(){
 
         Route::get('/',array(
-            'as' => 'BackendShowEditArtical',
-            'uses' => 'Controllers\Backend\ArticalController@showEdit'
+            'as' => 'BackendShowEditArticle',
+            'uses' => 'Controllers\Backend\ArticleController@showEdit'
         ));
 
         Route::post('/',array(
-            'as' => 'BackendSaveArtical',
-            'uses' => 'Controllers\Backend\ArticalController@saveEdit'
+            'as' => 'BackendSaveArticle',
+            'uses' => 'Controllers\Backend\ArticleController@saveEdit'
         ));
 
         Route::get('/update/{id}',array(
-            'as' => 'BackendShowUpdateArtical',
-            'uses'=> 'Controllers\Backend\ArticalController@showUpdateArtical'
+            'as' => 'BackendShowUpdateArticle',
+            'uses'=> 'Controllers\Backend\ArticleController@showUpdateArticle'
         ));
 
         Route::post('/update/{id}',array(
-            'as' => 'BackendUpdateArtical',
-            'uses' => 'Controllers\Backend\ArticalController@updateArtical'
+            'as' => 'BackendUpdateArticle',
+            'uses' => 'Controllers\Backend\ArticleController@updateArticle'
         ));
     });
 

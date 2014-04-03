@@ -8,7 +8,7 @@ use Input;
 use Redirect;
 use App;
 use User as UserModel;
-use Artical as ArticalModel;
+use Article as ArticleModel;
 use Usergroup as UsergroupModel;
 use Hash;
 /**
@@ -95,7 +95,7 @@ class UserController extends BaseController {
            		 'displayname' => 'required|min:2|max:20',
                        	 ));
              if($validator->fails()){
-             	 return Redirect::route('BackendShowArtical')
+             	 return Redirect::route('BackendShowArticle')
              	     ->withInput()
              	     ->withErrors($validator);
              }
@@ -103,7 +103,7 @@ class UserController extends BaseController {
              $user['displayname'] = $displayname;
              $user->save();
 
-             return Redirect::route('BackendShowArtical')
+             return Redirect::route('BackendShowArticle')
                  ->with('success','用户名修改成功');
         }
 
@@ -112,14 +112,14 @@ class UserController extends BaseController {
                 'password' => 'required|min:6|max:20'
             ));
         if($validator->fails()){
-            return Redirect::route('BackendShowArtical')
+            return Redirect::route('BackendShowArticle')
                 ->withInput()
                 ->withErrors($validator);
         }
 
         if(!Hash::check($originpassword,$user['password']))
         {
-            return Redirect::route('BackendShowArtical')
+            return Redirect::route('BackendShowArticle')
                 ->withInput()
                 ->with('error','原密码错误');
         }
@@ -149,14 +149,14 @@ class UserController extends BaseController {
         foreach(UserModel::where('id','!=',Auth::user()->id)->get() as $user){
 
             $group = $user->group;
-            $articalnumber = ArticalModel::where('user_id','=',$user['id'])->count();
+            $articlenumber = ArticleModel::where('user_id','=',$user['id'])->count();
             $users[] = array(
                 'id' => $user['id'],
                 'loginname' => $user['loginname'],
                 'displayname' => $user['displayname'],
                 'created_at' => $user['created_at'],
                 'permission' => $user['permission'],
-                'articalnumber'=> $articalnumber,
+                'articlenumber'=> $articlenumber,
                 'group' => $group
             );
         }

@@ -31,7 +31,7 @@
 			<tr>
 			  <td><span class="glyphicon glyphicon-user"></span><a href=""  data-toggle="modal" data-target="#myModal" >{{$user['loginname']}}</a></td>
 			  <td>{{$user['displayname']}}</td>
-              <td>{{$user['articalnumber']}}</td>
+              <td>{{$user['articlenumber']}}</td>
 			  <td>{{$user['created_at']}}</td>
               <td>@foreach($user['group'] as $group)
                    <span class="label label-success">{{ $group['groupname']}}</span>

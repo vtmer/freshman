@@ -1,10 +1,10 @@
 <?php
-class Artical extends Eloquent{
+class Article extends Eloquent{
 
     /**
      * @var string
      */
-    protected $table = 'artical';
+    protected $table = 'article';
 
     /**
      * the attribute that allow to make a value together
@@ -18,16 +18,16 @@ class Artical extends Eloquent{
      */
     public function catagories()
     {
-        return $this->belongsToMany('Catagory','artical_catagory',
-            'artical_id','catagory_id');
+        return $this->belongsToMany('Catagory','article_catagory',
+            'article_id','catagory_id');
     }
 
     /**
-     * Artical_catagory field declaration
+     * Article_catagory field declaration
      *
      * @return object;
      */
-    public function artical_catagory(){
-        return $this->hasMany('Artical_catagory');
+    public function article_catagory(){
+        return $this->hasMany('Article_catagory');
     }
 }

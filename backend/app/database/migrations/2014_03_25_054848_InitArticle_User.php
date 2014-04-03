@@ -3,13 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InitArticalUser extends Migration {
+class InitArticleUser extends Migration {
 
     /**
      * @var string
      *
      */
-    protected $tableName = 'artical_user';
+    protected $tableName = 'article_user';
 
 	/**
 	 * Run the migrations.
@@ -20,10 +20,10 @@ class InitArticalUser extends Migration {
 	{
         Schema::create($this->tableName,function($table){
 
-            $table->integer('artical_id');
+            $table->integer('article_id');
             $table->integer('user_id');
 
-            $table->primary(array('artical_id','user_id'));
+            $table->primary(array('article_id','user_id'));
             $table->engine = 'InnoDB';
         });
 	}

@@ -3,13 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InitArticalCatagory extends Migration {
+class InitArticleCatagory extends Migration {
 
     /**
      * @var string
      *
      */
-    protected $tableName = 'artical_catagory';
+    protected $tableName = 'article_catagory';
 
 	/**
 	 * Run the migrations.
@@ -20,9 +20,9 @@ class InitArticalCatagory extends Migration {
 	{
         Schema::create($this->tableName,function($table){
 
-            $table->integer('artical_id');
+            $table->integer('article_id');
             $table->integer('catagory_id');
-            $table->primary(array('artical_id','catagory_id'));
+            $table->primary(array('article_id','catagory_id'));
 
             $table->engine = 'InnoDB';
         });

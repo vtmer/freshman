@@ -74,10 +74,10 @@
         <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
       </div>
     </div>
-    <input type="text" placeholder="文章标题" class="form-control" id="titleinput" value="@if(isset($artical['title'])){{$artical['title']}}@endif" requried><p></p>
+    <input type="text" placeholder="文章标题" class="form-control" id="titleinput" value="@if(isset($article['title'])){{$article['title']}}@endif" requried><p></p>
     <div id="editor">
-        @if(isset($artical['content']))
-        {{$artical['content']}}
+        @if(isset($article['content']))
+        {{$article['content']}}
         @endif
     </div>
   </div>
@@ -90,13 +90,13 @@
 	  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	  <h3 class="modal-title" id="myModalLabel">文章发布</h3>
     </div>
-    @if(isset($artical))
-    {{ Form::open(array('route' => array('BackendUpdateArtical',$artical['id']),
+    @if(isset($article))
+    {{ Form::open(array('route' => array('BackendUpdateArticle',$article['id']),
                         'method' => 'post',
                         'class' => 'form-horizontal'
                 ))}}
-    @elseif
-    {{ Form::open(array('route' => 'BackendSaveArtical',
+    @else
+    {{ Form::open(array('route' => 'BackendSaveArticle',
                         'method' => 'post',
                         'class' => 'form-horizontal'
                 ))}}
@@ -126,8 +126,8 @@
     {{ Form::label('select','文章状态',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="select" name="active">
-		      <option value="1"@if(isset($artical) && $artical['active'] == '1')selected @endif>发布</option>
-		      <option value="0"@if(isset($artical) && $artical['active'] == '0')selected @endif>草稿</option>
+		      <option value="1"@if(isset($article) && $article['active'] == '1')selected @endif>发布</option>
+		      <option value="0"@if(isset($article) && $article['active'] == '0')selected @endif>草稿</option>
 		   </select>
 		</div>
 	       </div>
@@ -135,8 +135,8 @@
     {{ Form::label('updown','置顶选择',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="updown" name="updown">
-		      <option value="1"@if(isset($artical['updown']) && $artical['updown'] == '1')selected @endif>置顶</option>
-		      <option value="0"@if(isset($artical['updown']) && $artical['updown'] == '0')selected @endif>不置顶</option>
+		      <option value="1"@if(isset($article['updown']) && $article['updown'] == '1')selected @endif>置顶</option>
+		      <option value="0"@if(isset($article['updown']) && $article['updown'] == '0')selected @endif>不置顶</option>
 		   </select>
 		</div>
            </div>

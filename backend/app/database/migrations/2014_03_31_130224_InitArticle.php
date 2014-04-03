@@ -3,13 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InitArtical extends Migration {
+class InitArticle extends Migration {
 
 /**
      *@var string
      *
      */
-    protected $tablename = 'artical';
+    protected $tablename = 'article';
 
 	/**
 	 * Run the migrations.
