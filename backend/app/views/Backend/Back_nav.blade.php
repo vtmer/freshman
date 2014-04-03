@@ -15,7 +15,7 @@
 	  <li <?php if($page=='catagory') echo "class='active'"; ?>><a href="{{{ URL::route('BackendShowCatagory')}}}"title="分类管理"><i class="icon-tags icon-5x"></i></a></li>
 	  @endif
 	  <li><a href="#" data-toggle="modal" data-target="#userModal" title="Hello! {{{ $me['displayname']}}},你想修改个人信息么？"><i class="icon-user-md icon-5x"></i></a></li>
-	  <li><a href="{{{ URL::route('BackendDoLogout')}}}" title="退出～亲，不要走！"><i class="icon-signout icon-5x"></i></a></li>
+	  <li><a href="{{{ URL::route('BackendDoLogout')}}}" onclick="return confirm('亲～～，你确定要退出么')" title="退出～亲，不要走！"><i class="icon-signout icon-5x"></i></a></li>
 	</ul>
 </div>
 
