@@ -56,11 +56,12 @@ class ArticalController extends BaseController {
 
 
         if($this->is_allow){
-            $post_artical = ArticalModel::all();
+            $post_artical = ArticalModel::orderBy('active','desc')->orderBy('see')->get();
         }else{
-            $post_artical = ArticalModel::where('user_id','=',Auth::user()->id)->get();
+            $post_artical = ArticalModel::where('user_id','=',Auth::user()->id)->orderBy('active','desc')->orderBy('see')->get();
         }
 
+        $articals = array();
         /**
          * take the information of artical
          */
