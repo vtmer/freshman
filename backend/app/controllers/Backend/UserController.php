@@ -8,6 +8,8 @@ use Input;
 use Redirect;
 use App;
 use User as UserModel;
+use Artical as ArticalModel;
+use Usergroup as UsergroupModel;
 use Hash;
 /**
  * User controllers
@@ -143,14 +145,19 @@ class UserController extends BaseController {
         /**
          *  take the user information
          */
-        foreach(UserModel::all() as $user){
+        $users = array();
+        foreach(UserModel::where('id','!=',Auth::user()->id)->get() as $user){
 
+            $group = $user->group;
+            $articalnumber = ArticalModel::where('user_id','=',$user['id'])->count();
             $users[] = array(
                 'id' => $user['id'],
                 'loginname' => $user['loginname'],
                 'displayname' => $user['displayname'],
                 'created_at' => $user['created_at'],
-                'permission' => $user['permission']
+                'permission' => $user['permission'],
+                'articalnumber'=> $articalnumber,
+                'group' => $group
             );
         }
 
@@ -190,12 +197,35 @@ class UserController extends BaseController {
         $user = new UserModel(array(
             'loginname' => $loginname,
             'displayname' => $displayname,
-            'password' => $password,
-            'permission' => $permission
+            'password' => Hash::make($password)
         ));
         $user->save();
 
+        foreach($groups as $group){
+
+            $usergroup = new UsergroupModel;
+            $usergroup->user_id = $user->id;
+            $usergroup->group_id = $group['id'];
+            $usergroup->displayname = $displayname;
+            $usergroup->save();
+        }
+
+
         return Redirect::route('BackendShowUsers')
             ->with('success','用户创建成功');
+    }
+
+    /**
+     * Backend Remove Users
+     *
+     * @return \Redirect
+     */
+    public function removeUser($id)
+    {
+        $user = UserModel::findOrFail($id)->delete();
+        $usergroup = UsergroupModel::where('user_id','=',$id)->delete();
+
+        return Redirect::route('BackendShowUsers')
+            ->with('success','成功删除用户');
     }
 }
