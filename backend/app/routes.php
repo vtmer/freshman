@@ -92,18 +92,26 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
         ));
     });
 
-    Route::group(array('prefix' => '','before' => 'permission'),function(){
+    Route::group(array('prefix' => '','before' => 'group'),function(){
 
+        Route::group(array('prefix' => 'users','before' => ''),function(){
 
-	    Route::get('/users',array(
-		'as' => 'BackendShowUsers',
-		'uses' => 'Controllers\Backend\UserController@showUser'
-	    ));
+    	    Route::get('/',array(
+	        	'as' => 'BackendShowUsers',
+	        	'uses' => 'Controllers\Backend\UserController@showUser'
+    	    ));
 
-	    Route::post('/users/new',array(
-		'as' => 'BackendNewUsers',
-		'uses' => 'Controllers\Backend\UserController@newUsers'
-	    ));
+	        Route::post('/new',array(
+	        	'as' => 'BackendNewUsers',
+	        	'uses' => 'Controllers\Backend\UserController@newUsers'
+    	    ));
+
+            Route::get('/remove/{id}',array(
+                'as' => 'BackendRemoveUser',
+                'uses' => 'Controllers\Backend\UserController@removeUser'
+            ));
+        });
+
 
 	    Route::group(array('prefix' => 'catagory'),function(){
 
