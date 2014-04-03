@@ -6,6 +6,7 @@ use Catagory as CatagoryModel;
 use Validator;
 use Input;
 use Redirect;
+use Artical_catagory as Artical_catagoryModel;
 
 class CatagoryController extends BaseController {
 
@@ -19,11 +20,14 @@ class CatagoryController extends BaseController {
         /**
          * take the catagory information
          */
+        $catagories = array();
         foreach(CatagoryModel::all() as $catagory){
 
+            $articalnumber = Artical_catagoryModel::where('catagory_id','=',$catagory['id'])->count();
             $catagories[] = array(
                             'id'=> $catagory['id'],
-                            'catagory' => $catagory['catagory']
+                            'catagory' => $catagory['catagory'],
+                            'articalnumber' => $articalnumber,
                         );
         }
 
@@ -98,6 +102,8 @@ class CatagoryController extends BaseController {
         $catagory = CatagoryModel::find(Input::get('id'));
 
         $catagory->delete();
+
+        $delete_artical_catagory = Artical_catagoryModel::where('catagory_id','=',$catagory->id)->delete();
 
         return Redirect::route('BackendShowCatagory')
             ->with('success','栏目删除成功');
