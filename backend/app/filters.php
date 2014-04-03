@@ -58,11 +58,9 @@ Route::filter('message',function()
 |
  */
 
-Route::filter('permission',function(){
+Route::filter('group',function(){
 
-    $notallow = '作者';
-    if(Auth::user()->permission == $notallow) return App::abort(404);
-
+    View::share('groups',Group::all());
 });
 
 
