@@ -6,6 +6,7 @@ use Article as ArticleModel;
 use Action as ActionModel;
 use Actiongroup as ActiongroupModel;
 use Article_catagory as Article_catagoryModel;
+use Models\Verification;
 use Redirect;
 use Auth;
 use App;
@@ -23,18 +24,18 @@ class ArticleController extends BaseController {
     protected $is_allow;
 
     /**
-     * User record
+     * Verification record
      *
      * @var object
      */
-    protected $user;
+    protected $verification;
 
     public function __construct()
     {
         parent::__construct();
 
         $this->is_allow = FALSE;
-        $this->user = Auth::user();
+        $this->verification = new Verification;
     }
 
     /**
@@ -44,16 +45,9 @@ class ArticleController extends BaseController {
      */
     public function showArticle()
     {
+        //make a verification of showarticle
         $action = 'seeallarticle';
-
-        foreach($this->user->group as $group){
-            $groupid = $group->id;
-            if(ActiongroupModel::where('groupid','=',$groupid)
-                        ->where('action','=',$action)->count() !== '0')
-                        $this->is_allow = TRUE;
-            if($this->is_allow) break;
-        }
-
+        $this->is_allow = $this->verification->Verification($action);
 
         if($this->is_allow){
             $post_article = ArticleModel::orderBy('active','desc')->orderBy('see')->get();
@@ -61,13 +55,13 @@ class ArticleController extends BaseController {
             $post_article = ArticleModel::where('user_id','=',Auth::user()->id)->orderBy('active','desc')->orderBy('see')->get();
         }
 
+        //init $articles
         $articles = array();
-        /**
-         * take the information of article
-         */
+
+        // take the information of article
         foreach($post_article as $article){
 
-            $catagory = ArticleModel::find($article['id'])->catagories->toArray();
+            $catagory = ArticleModel::find($article['id'])->catagories()->get();
             $articles[] = array(
                 'id' => $article['id'],
                 'active' => $article['active'],
@@ -80,6 +74,7 @@ class ArticleController extends BaseController {
                 'catagories' => $catagory
                 );
         }
+
         return View::make('Backend.Article.Article_part',array('page'=> 'article',
             'articles' => $articles));
     }
@@ -139,8 +134,6 @@ class ArticleController extends BaseController {
 
         return Redirect::route('BackendShowArticle')
             ->with('success','文章修改成功');
-
-
     }
 
     /**
@@ -182,15 +175,19 @@ class ArticleController extends BaseController {
      */
     public function removeArticle($id)
     {
-        if(Auth::user()->permission === '作者'){
-            if(ArticleModel::findOrFail($id)->user_id != Auth::user()->id){
+        $article_action = ArticleModel::findOrFail($id);
+
+        $action = 'deleteallarticle';
+        $this->is_allow = $this->verification->Verification($action);
+        if($this->is_allow){
+            if($article_action->user_id != Auth::user()->id){
                 return App::abort(404);
             }
         }
-        $article_catagory = ArticleModel::findOrFail($id)->article_catagory();
-        $article_catagory->delete();
-        $article = ArticleModel::findOrFail($id);
-        $article->delete();
+
+        $article_catagory = $article_action->article_catagory()->delete();
+        $article = $article_action->delete();
+
         return Redirect::route('BackendShowArticle')
             ->with('success','文章删除成功');
     }
@@ -238,6 +235,5 @@ class ArticleController extends BaseController {
         return Redirect::route('BackendShowArticle')
             ->with('success',$message);
     }
-
 
 }
