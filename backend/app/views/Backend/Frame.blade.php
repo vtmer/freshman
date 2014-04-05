@@ -23,10 +23,10 @@
 <script type="text/javascript" src="{{{ URL::asset('static/js/bootstrap-wysiwyg.js')}}}"></script>
 <script type="text/javascript">
 $("#member").select2({
-   placeholder: "请分配权限"//选择框内提示信息
+   placeholder: "请选择文章栏目"//选择框内提示信息
 });
     $("#member2").select2({
-   placeholder: "请分配权限"//选择框内提示信息
+   placeholder: "请选择用户组"//选择框内提示信息
 });
  $("#member3").select2({
    placeholder: "请分配权限"//选择框内提示信息

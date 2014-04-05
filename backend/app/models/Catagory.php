@@ -10,8 +10,8 @@ class Catagory extends Eloquent{
     /**
      * @var string
      *
-     * not allow laravel change the create_up time
-     * and update_up time
+     * not allow laravel change the created_at time
+     * and updated_at time
      */
     public $timestamps = false;
 

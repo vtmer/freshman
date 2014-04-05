@@ -3,28 +3,30 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InitArticalUser extends Migration {
+class InitActionGroup extends Migration {
 
     /**
      * @var string
+     */
+    protected $tableName = 'actiongroup';
+
+    /**
+     * @var array
      *
      */
-    protected $tableName = 'artical_user';
-
+    protected $fillable = array('action','groupid');
 	/**
 	 * Run the migrations.
 	 *
 	 * @return void
 	 */
+
 	public function up()
 	{
         Schema::create($this->tableName,function($table){
-
-            $table->integer('artical_id');
-            $table->integer('user_id');
-
-            $table->primary(array('artical_id','user_id'));
-            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->string('action',30);
+            $table->integer('groupid');
         });
 	}
 

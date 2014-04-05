@@ -46,44 +46,72 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
         'uses' => 'Controllers\Backend\UserController@doLogout'
     ));
 
-    Route::group(array('prefix' => 'artical','before' => ''),function(){
+    Route::group(array('prefix' => 'article','before' => ''),function(){
 
         Route::get('/',array(
-           'as' => 'BackendShowArtical',
-           'uses' => 'Controllers\Backend\ArticalController@showArtical'
+           'as' => 'BackendShowArticle',
+           'uses' => 'Controllers\Backend\ArticleController@showArticle'
        ));
 
         Route::get('/remove/{id}',array(
-            'as' => 'BackendRemoveArtical',
-            'uses' => 'Controllers\Backend\ArticalController@removeArtical'
+            'as' => 'BackendRemoveArticle',
+            'uses' => 'Controllers\Backend\ArticleController@removeArticle'
+        ));
+
+        Route::get('/updown/{id}',array(
+            'as' => 'BackendUpdownArticle',
+            'uses' => 'Controllers\Backend\ArticleController@upDown'
+        ));
+
+        Route::get('/active/{id}',array(
+            'as' => 'BackendActiveArticle',
+            'uses' => 'Controllers\Backend\ArticleController@updateActive'
         ));
     });
 
-    Route::group(array('prefix'=> 'edit','before'=> ''),function(){
+    Route::group(array('prefix'=> 'edit','before'=> 'message'),function(){
 
         Route::get('/',array(
-            'as' => 'BackendShowEditArtical',
-            'uses' => 'Controllers\Backend\ArticalController@showEdit'
+            'as' => 'BackendShowEditArticle',
+            'uses' => 'Controllers\Backend\ArticleController@showEdit'
         ));
 
         Route::post('/',array(
-            'as' => 'BackendSaveArtical',
-            'uses' => 'Controllers\Backend\ArticalController@saveEdit'
+            'as' => 'BackendSaveArticle',
+            'uses' => 'Controllers\Backend\ArticleController@saveEdit'
+        ));
+
+        Route::get('/update/{id}',array(
+            'as' => 'BackendShowUpdateArticle',
+            'uses'=> 'Controllers\Backend\ArticleController@showUpdateArticle'
+        ));
+
+        Route::post('/update/{id}',array(
+            'as' => 'BackendUpdateArticle',
+            'uses' => 'Controllers\Backend\ArticleController@updateArticle'
         ));
     });
 
-    Route::group(array('prefix' => '','before' => 'permission'),function(){
+    Route::group(array('prefix' => '','before' => 'group'),function(){
 
+        Route::group(array('prefix' => 'users','before' => ''),function(){
 
-	    Route::get('/users',array(
-		'as' => 'BackendShowUsers',
-		'uses' => 'Controllers\Backend\UserController@showUser'
-	    ));
+    	    Route::get('/',array(
+	        	'as' => 'BackendShowUsers',
+	        	'uses' => 'Controllers\Backend\UserController@showUser'
+    	    ));
 
-	    Route::post('/users/new',array(
-		'as' => 'BackendNewUsers',
-		'uses' => 'Controllers\Backend\UserController@newUsers'
-	    ));
+	        Route::post('/new',array(
+	        	'as' => 'BackendNewUsers',
+	        	'uses' => 'Controllers\Backend\UserController@newUsers'
+    	    ));
+
+            Route::get('/remove/{id}',array(
+                'as' => 'BackendRemoveUser',
+                'uses' => 'Controllers\Backend\UserController@removeUser'
+            ));
+        });
+
 
 	    Route::group(array('prefix' => 'catagory'),function(){
 

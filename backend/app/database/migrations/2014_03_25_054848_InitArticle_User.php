@@ -3,12 +3,13 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InitUserPermission extends Migration {
+class InitArticleUser extends Migration {
 
     /**
      * @var string
+     *
      */
-    protected $tableName = 'user_permission';
+    protected $tableName = 'article_user';
 
 	/**
 	 * Run the migrations.
@@ -19,10 +20,10 @@ class InitUserPermission extends Migration {
 	{
         Schema::create($this->tableName,function($table){
 
+            $table->integer('article_id');
             $table->integer('user_id');
-            $table->string('permission',20);
-            $table->primary('user_id');
 
+            $table->primary(array('article_id','user_id'));
             $table->engine = 'InnoDB';
         });
 	}
@@ -34,7 +35,7 @@ class InitUserPermission extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop($this->tableName);
+        Schema::drop($this->tableName);
 	}
 
 }

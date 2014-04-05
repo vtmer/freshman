@@ -8,14 +8,14 @@
 <div class="container">
 	<!-- Nav tabs -->
 	<ul class="nav nav-tabs">
-	  <li <?php if($page=='artical') echo "class='active'"; ?>><a  href="{{{ URL::route('BackendShowArtical')}}}"title="文章列表"><i class="icon-file icon-5x"></i></a></li>
+	  <li <?php if($page=='article') echo "class='active'"; ?>><a  href="{{{ URL::route('BackendShowArticle')}}}"title="文章列表"><i class="icon-file icon-5x"></i></a></li>
 
 	  @if($me['permission'] !== '作者')
 	  <li <?php if($page=='user') echo "class='active'"; ?>><a  href="{{{ URL::route('BackendShowUsers')}}}" title="用户管理" ><i class="icon-group icon-5x"></i></a></li>
 	  <li <?php if($page=='catagory') echo "class='active'"; ?>><a href="{{{ URL::route('BackendShowCatagory')}}}"title="分类管理"><i class="icon-tags icon-5x"></i></a></li>
 	  @endif
 	  <li><a href="#" data-toggle="modal" data-target="#userModal" title="Hello! {{{ $me['displayname']}}},你想修改个人信息么？"><i class="icon-user-md icon-5x"></i></a></li>
-	  <li><a href="{{{ URL::route('BackendDoLogout')}}}" title="退出～亲，不要走！"><i class="icon-signout icon-5x"></i></a></li>
+	  <li><a href="{{{ URL::route('BackendDoLogout')}}}" onclick="return confirm('亲～～，你确定要退出么')" title="退出～亲，不要走！"><i class="icon-signout icon-5x"></i></a></li>
 	</ul>
 </div>
 

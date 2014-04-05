@@ -1,6 +1,5 @@
 @extends('Backend.Back_nav')
 
-@if($me['permission']!=='作者')
 @section('title')
 用户管理--freshmen
 @stop
@@ -21,8 +20,9 @@
 		   <tr>
 		      <th>登录名</th>
 		      <th>昵称</th>
+              <th>发表文章数</th>
 		      <th>创建日期</th>
-		      <th>用户权限</th>
+		      <th>所属用户组</th>
 		      <th>操作</th>
 		   </tr>
 		</thead>
@@ -31,9 +31,13 @@
 			<tr>
 			  <td><span class="glyphicon glyphicon-user"></span><a href=""  data-toggle="modal" data-target="#myModal" >{{$user['loginname']}}</a></td>
 			  <td>{{$user['displayname']}}</td>
+              <td>{{$user['articlenumber']}}</td>
 			  <td>{{$user['created_at']}}</td>
-			  <td>{{$user['permission']}}</td>
-			  <td><a href=""span class="glyphicon glyphicon-trash"></span></a></td>
+              <td>@foreach($user['group'] as $group)
+                   <span class="label label-success">{{ $group['groupname']}}</span>
+                  @endforeach
+              </td>
+			  <td><a href="{{{ URL::route('BackendRemoveUser',$user['id'])}}}" onclick="return confirm('亲～，你确定要删除？')" span class="glyphicon glyphicon-trash"></span></a></td>
 			</tr>
 		      @endforeach
 		</tbody>
@@ -74,13 +78,12 @@
 		</div>
 	      </div>
 	      <div class="form-group">
-    {{ Form::label('select','权限分配',array('class'=> 'col-sm-2 control-label'))}}
+    {{ Form::label('member2','用户组',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
-		   <select style="width:100%" class="form-control" tabindex="-1" id="select" name="permission">
-		      @if($me['permission'] == '超级用户')
-		      <option value="管理員">admin</option>
-		      @endif
-		      <option value="作者">editor</option>
+		   <select multiple="multiple" style="width:100%" class="populate placeholder select2-offscreen" tabindex="-1" required id="member2" name="groups[]">
+            @foreach($groups as $group1)
+		      <option value="{{$group1['id']}}">{{ $group1['groupname']}}</option>
+            @endforeach
 		   </select>
 		</div>
 	       </div>
@@ -96,7 +99,5 @@
 </div><!-- /.modal -->
 
 @stop
-@endif
-
 
 

@@ -3,13 +3,19 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class InitUsers extends Migration {
+class InitAction extends Migration {
 
     /**
      * @var string
+     *
      */
-    protected $tableName = 'users';
+    protected $tableName = 'action';
 
+    /**
+     * @var array
+     *
+     */
+    protected $fillable = array('actionname','action');
 	/**
 	 * Run the migrations.
 	 *
@@ -19,13 +25,8 @@ class InitUsers extends Migration {
 	{
         Schema::create($this->tableName,function($table){
             $table->increments('id');
-            $table->string('loginname',50);
-            $table->string('displayname',50);
-            $table->string('password',128);
-            $table->string('permission',20);
-            $table->timestamps();
-
-            $table->engine = 'InnoDB';
+            $table->string('actionname','30');
+            $table->string('action','30');
         });
 	}
 
@@ -35,9 +36,8 @@ class InitUsers extends Migration {
 	 * @return void
 	 */
 	public function down()
-    {
+	{
         Schema::drop($this->tableName);
-
 	}
 
 }

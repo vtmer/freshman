@@ -65,4 +65,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->permission;
     }
+
+    /**
+     * Group fileds delcation
+     *
+     * @return object
+     */
+    public function group()
+    {
+        return $this->belongsToMany('Group','usergroup',
+            'user_id','group_id');
+    }
 }
