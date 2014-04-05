@@ -149,8 +149,8 @@ class ArticleController extends BaseController {
 
         $article->title = $title;
         $article->content = $content;
-        $article->user_id = $this->user->id;
-        $article->user = $this->user->loginname;
+        $article->user_id = Auth::user()->id;
+        $article->user = Auth::user()->loginname;
         $article->active = $active;
         $article->updown = $updown;
 
