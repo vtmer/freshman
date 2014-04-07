@@ -16,26 +16,17 @@ use Input;
 class ArticleController extends BaseController {
 
     /**
-     * Is allow to do?
-     *
-     * @var string
-     *
-     */
-    protected $is_allow;
-
-    /**
-     * Verification record
+     * For user's information
      *
      * @var object
      */
-    protected $verification;
+    protected $user;
 
     public function __construct()
     {
         parent::__construct();
 
-        $this->is_allow = FALSE;
-        $this->verification = new Verification;
+        $this->user = Auth::user();
     }
 
     /**
@@ -45,14 +36,10 @@ class ArticleController extends BaseController {
      */
     public function showArticle()
     {
-        //make a verification of showarticle
-        $action = 'seeallarticle';
-        $this->is_allow = $this->verification->Verification($action);
-
-        if($this->is_allow){
+        if($this->user->hasPermission('seeallarticle')){
             $post_article = ArticleModel::orderBy('active','desc')->orderBy('see')->get();
         }else{
-            $post_article = ArticleModel::where('user_id','=',Auth::user()->id)->orderBy('active','desc')->orderBy('see')->get();
+            $post_article = ArticleModel::where('user_id','=',$this->user->id)->orderBy('active','desc')->orderBy('see')->get();
         }
 
         //init $articles
@@ -177,10 +164,8 @@ class ArticleController extends BaseController {
     {
         $article_action = ArticleModel::findOrFail($id);
 
-        $action = 'deleteallarticle';
-        $this->is_allow = $this->verification->Verification($action);
-        if($this->is_allow){
-            if($article_action->user_id != Auth::user()->id){
+        if($this->user->hasPermission('deleteallarticle')){
+            if($article_action->user_id != $this->user->id){
                 return App::abort(404);
             }
         }
