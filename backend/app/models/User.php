@@ -57,13 +57,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
     /**
-     * Get the permission for the user
+     * check whether the user has specific permission
      *
-     * @return string
+     * @return boolean
      */
-    public function getAuthPermission()
+    public function hasPermission($perm)
     {
-        return $this->permission;
+        foreach($this->groups as $group){
+            if($group->hasPermission($perm)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -71,7 +77,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
      *
      * @return object
      */
-    public function group()
+    public function groups()
     {
         return $this->belongsToMany('Group','usergroup',
             'user_id','group_id');
