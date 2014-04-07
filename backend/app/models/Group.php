@@ -34,10 +34,25 @@ class Group extends Eloquent{
      *
      * @return object
      */
-    public function action()
+    public function actions()
     {
         return $this->belongsToMany('Action','actiongroup',
                     'groupid','action');
 
+    }
+
+    /**
+     * Check whether the user has specific permission
+     *
+     * @return boolean
+     */
+    public function hasPermission($perm)
+    {
+        foreach($this->actions as $action){
+            if($action->action === $perm){
+                return true;
+            }
+        }
+        return false;
     }
 }
