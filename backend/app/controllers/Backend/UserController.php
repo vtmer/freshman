@@ -148,7 +148,7 @@ class UserController extends BaseController {
         $users = array();
         foreach(UserModel::where('id','!=',Auth::user()->id)->get() as $user){
 
-            $group = $user->group;
+            $group = $user->groups;
             $articlenumber = ArticleModel::where('user_id','=',$user['id'])->count();
             $users[] = array(
                 'id' => $user['id'],
