@@ -82,7 +82,7 @@
 		<div class="col-sm-10">
 		   <select multiple="multiple" style="width:100%" class="populate placeholder select2-offscreen" tabindex="-1" required id="member2" name="groups[]">
             @foreach($groups as $group1)
-		      <option value="{{$group1['id']}}">{{ $group1['groupname']}}</option>
+		     @if($group1['id']!=1) <option value="{{$group1['id']}}">{{ $group1['groupname']}}</option> @endif
             @endforeach
 		   </select>
 		</div>
