@@ -10,7 +10,7 @@
 	<ul class="nav nav-tabs">
 	  <li <?php if($page=='article') echo "class='active'"; ?>><a  href="{{{ URL::route('BackendShowArticle')}}}"title="文章列表"><i class="icon-file icon-5x"></i></a></li>
 
-	  @if($me['permission'] !== '作者')
+	  @if(isset($seeallpages) and $seeallpages)
 	  <li <?php if($page=='user') echo "class='active'"; ?>><a  href="{{{ URL::route('BackendShowUsers')}}}" title="用户管理" ><i class="icon-group icon-5x"></i></a></li>
 	  <li <?php if($page=='catagory') echo "class='active'"; ?>><a href="{{{ URL::route('BackendShowCatagory')}}}"title="分类管理"><i class="icon-tags icon-5x"></i></a></li>
 	  @endif
