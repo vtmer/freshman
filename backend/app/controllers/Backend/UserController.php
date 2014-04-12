@@ -54,7 +54,9 @@ class UserController extends BaseController {
 
         if(Auth::attempt(array('loginname' => $loginname,'password' => $password))){
 
-            return Redirect::intended('/backend');
+            if(Auth::user()->hasPermission('seeallarticle'))
+                return Redirect::intended('/backend');
+            else return Redirect::intended('/backend/article');
         }
 
         return Redirect::route('BackendLogin')
@@ -163,7 +165,8 @@ class UserController extends BaseController {
 
         return View::make('Backend.User.User_part',array(
             'page' => 'user',
-            'users' => $users));
+            'users' => $users,
+            'newrootuser' => Auth::user()->hasPermission('newrootuser')));
     }
 
     /**
@@ -222,6 +225,11 @@ class UserController extends BaseController {
      */
     public function removeUser($id)
     {
+        $permission = Auth::user();
+        if(!$permission->hasPermission('deleteuser') or $id==1){
+            return Redirect::route('BackendShowUsers')
+                ->with('error','权限不足');
+        }
         $user = UserModel::findOrFail($id)->delete();
         $usergroup = UsergroupModel::where('user_id','=',$id)->delete();
 
