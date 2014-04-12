@@ -121,8 +121,28 @@
             @endif
 		   </select>
 		</div>
-	       </div>
-     <div class="form-group">
+	</div>
+    <div class="form-group">
+    {{ Form::label('member2','文章校区',array('class'=> 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
+		   <select name="schoolparts[]" id="member2" multiple="multiple" style="width:100%" class="populate placeholder select2-offscreen" tabindex="-1" required>
+            @if(isset($schoolparts))
+            @foreach($schoolparts as $schoolpart)
+            <option value="{{ $schoolpart['id']}}"
+                @if(isset($selected_schoolparts))
+                @foreach($selected_schoolparts as $selected_schoolpart)
+                @if($schoolpart['id'] == $selected_schoolpart['id'])
+                    selected
+                @endif
+                @endforeach
+                @endif
+            >{{$schoolpart['schoolpart']}}</option>
+            @endforeach
+            @endif
+		   </select>
+		</div>
+	</div>
+    <div class="form-group">
     {{ Form::label('select','文章状态',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="select" name="active">
@@ -176,6 +196,9 @@ $(function(){
 });
 $("#member").select2({
    placeholder: "请选择文章栏目"//选择框内提示信息
+});
+$("#member2").select2({
+    placeholder: "请选择文章分校区"
 });
 </script>
 
