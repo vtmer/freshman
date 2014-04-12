@@ -183,9 +183,9 @@ class ArticleController extends BaseController {
     {
         $article_action = ArticleModel::findOrFail($id);
 
-        if($this->user->hasPermission('deleteallarticle')){
+        if(!$this->user->hasPermission('deleteallarticle')){
             if($article_action->user_id != $this->user->id){
-                return App::abort(404);
+                 App::abort(404);
             }
         }
 
