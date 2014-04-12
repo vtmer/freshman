@@ -6,6 +6,7 @@ use Article as ArticleModel;
 use Action as ActionModel;
 use Actiongroup as ActiongroupModel;
 use Article_catagory as Article_catagoryModel;
+use Article_schoolpart as Article_schoolpartModel;
 use Models\Verification;
 use Redirect;
 use Auth;
@@ -48,7 +49,9 @@ class ArticleController extends BaseController {
         // take the information of article
         foreach($post_article as $article){
 
-            $catagory = ArticleModel::find($article['id'])->catagories()->get();
+            $articleid = ArticleModel::find($article['id']);
+            $catagory = $articleid->catagories()->get();
+            $schoolparts = $articleid->schoolparts()->get();
             $articles[] = array(
                 'id' => $article['id'],
                 'active' => $article['active'],
@@ -58,7 +61,8 @@ class ArticleController extends BaseController {
                 'see' => $article['see'],
                 'updown' => $article['updown'],
                 'user' => $article['user'],
-                'catagories' => $catagory
+                'catagories' => $catagory,
+                'schoolparts' => $schoolparts
                 );
         }
 
@@ -85,10 +89,12 @@ class ArticleController extends BaseController {
     {
         $article = ArticleModel::findOrFail($id);
         $catagories = $article->catagories->toArray();
+        $schoolparts = $article->schoolparts->toArray();
 
         return View::make('Backend.Article.Edit_article',array('page'=>'article',
                         'article' => $article,
-                        'selected_catagories' => $catagories
+                        'selected_catagories' => $catagories,
+                        'selected_schoolparts' => $schoolparts
                  ));
 
     }
@@ -117,6 +123,13 @@ class ArticleController extends BaseController {
             $article_catagory->article_id = $id;
             $article_catagory->catagory_id = $catagory;
             $article_catagory->save();
+        }
+        $delete_schoolpart = Article_schoolpartModel::where('article_id','=',$id)->delete();
+        foreach($schoolparts as $schoolpart){
+            $article_schoolpart = new Article_schoolpartModel;
+            $article_schoolpart->article_id = $id;
+            $article_schoolpart->schoolpart_id = $schoolpart;
+            $article_schoolpart->save();
         }
 
         return Redirect::route('BackendShowArticle')
@@ -150,6 +163,12 @@ class ArticleController extends BaseController {
             $article_catagory->catagory_id = $catagory;
             $article_catagory->save();
         }
+        foreach($schoolparts as $schoolpart){
+            $article_schoolpart = new Article_schoolpartModel;
+            $article_schoolpart->article_id = $articleid;
+            $article_schoolpart->schoolpart_id = $schoolpart;
+            $article_schoolpart->save();
+        }
 
         return Redirect::route('BackendShowArticle')
             ->with('success','文章保存成功');
@@ -171,6 +190,7 @@ class ArticleController extends BaseController {
         }
 
         $article_catagory = $article_action->article_catagory()->delete();
+        $article_schoolpart = $article_action->Article_schoolpart()->delete();
         $article = $article_action->delete();
 
         return Redirect::route('BackendShowArticle')
