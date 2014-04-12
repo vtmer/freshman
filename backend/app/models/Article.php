@@ -30,4 +30,25 @@ class Article extends Eloquent{
     public function article_catagory(){
         return $this->hasMany('Article_catagory');
     }
+
+    /**
+     * SchoolPart field declaration
+     *
+     * @return object
+     */
+    public function schoolparts()
+    {
+        return $this->belongsToMany('SchoolPart','article_schoolpart',
+            'article_id','schoolpart_id');
+    }
+
+    /**
+     * Article_schoolpart field declaration
+     *
+     * @return object
+     */
+    public function article_schoolpart()
+    {
+        return $this->hasMany('Article_schoolpart');
+    }
 }
