@@ -69,7 +69,7 @@ Route::filter('group',function(){
 
     View::share('groups',Group::all());
     View::share('seeallpages',$seeallpages);
-    if(!$seeallpages)  App::abort();
+    if(!$seeallpages)  App::abort(404);
 
 });
 
