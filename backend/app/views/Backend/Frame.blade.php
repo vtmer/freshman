@@ -15,7 +15,9 @@
 </head>
 <body>
 @yield('container')
+<div class="container">
 @include('Backend.Model.Alert')
+</div>
 </body>
 @section('scripts')
 <script type="text/javascript" src="{{{ URL::asset('static/js/bootstrap.js')}}}"></script>
