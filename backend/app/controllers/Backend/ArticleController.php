@@ -5,8 +5,8 @@ use Controllers\BaseController;
 use Article as ArticleModel;
 use Action as ActionModel;
 use Actiongroup as ActiongroupModel;
-use Article_catagory as Article_catagoryModel;
-use Article_schoolpart as Article_schoolpartModel;
+use Article_catagory as ArticleCatagoryModel;
+use Article_schoolpart as ArticleSchoolpartModel;
 use Models\Verification;
 use Redirect;
 use Auth;
@@ -117,16 +117,16 @@ class ArticleController extends BaseController {
 
         $article->save();
 
-        $delete_catagory = Article_catagoryModel::where('article_id','=',$id)->delete();
+        $delete_catagory = ArticleCatagoryModel::where('article_id','=',$id)->delete();
         foreach($catagories as $catagory){
-            $article_catagory = new Article_catagoryModel;
+            $article_catagory = new ArticleCatagoryModel;
             $article_catagory->article_id = $id;
             $article_catagory->catagory_id = $catagory;
             $article_catagory->save();
         }
-        $delete_schoolpart = Article_schoolpartModel::where('article_id','=',$id)->delete();
+        $delete_schoolpart = ArticleSchoolpartModel::where('article_id','=',$id)->delete();
         foreach($schoolparts as $schoolpart){
-            $article_schoolpart = new Article_schoolpartModel;
+            $article_schoolpart = new ArticleSchoolpartModel;
             $article_schoolpart->article_id = $id;
             $article_schoolpart->schoolpart_id = $schoolpart;
             $article_schoolpart->save();
@@ -158,13 +158,13 @@ class ArticleController extends BaseController {
 
         $articleid = $article->id;
         foreach($catagories as $catagory){
-            $article_catagory = new Article_catagoryModel;
+            $article_catagory = new ArticleCatagoryModel;
             $article_catagory->article_id = $articleid;
             $article_catagory->catagory_id = $catagory;
             $article_catagory->save();
         }
         foreach($schoolparts as $schoolpart){
-            $article_schoolpart = new Article_schoolpartModel;
+            $article_schoolpart = new ArticleSchoolpartModel;
             $article_schoolpart->article_id = $articleid;
             $article_schoolpart->schoolpart_id = $schoolpart;
             $article_schoolpart->save();
