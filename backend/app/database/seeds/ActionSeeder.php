@@ -7,8 +7,8 @@ class ActionSeeder extends Seeder{
         DB::table('action')->delete();
 
         Action::create(array(
-            'actionname' => '删除文章',
-            'action' => 'deletearticle'
+            'actionname' => '删除全部文章',
+            'action' => 'deleteallarticle'
         ));
 
         Action::create(array(
@@ -17,9 +17,18 @@ class ActionSeeder extends Seeder{
         ));
 
         Action::create(array(
-            'actionname' => '删除目录',
-            'action' => 'deletecatagroy'
+            'actionname' => '删除用户',
+            'action' => 'deleteuser'
         ));
+        Action::create(array(
+            'actionname' => '查看全部页面',
+            'action' => 'seeallpages'
+        ));
+        Action::create(array(
+            'actionname' => '新建超级管理员',
+            'action' => 'newrootuser'
+        ));
+
 
     }
 }

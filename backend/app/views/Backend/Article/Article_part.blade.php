@@ -22,6 +22,7 @@
             <th>状态 | 文章名</th>
             <th>作者</th>
             <th>分类</th>
+            <th>校区</th>
             <th>浏览数</th>
             <th>发表日期</th>
             <th>操作</th>
@@ -44,6 +45,10 @@
 			<span class="label label-success">{{ $catagory['catagory'] }}</span>
 		    @endforeach
 		</td>
+		<td>@foreach($article['schoolparts'] as $schoolpart)
+			<span class="label label-info">{{ $schoolpart['schoolpart'] }}</span>
+		    @endforeach
+		</td>
         <td>{{ $article['see']}}</td>
 		<td>{{ $article['created_at'] }}</td>
         <td><a href="{{{ URL::route('BackendShowUpdateArticle',$article['id'])}}}"><span class="glyphicon glyphicon-pencil"></span></a> |
@@ -61,5 +66,6 @@
           </table>
            </div>
       </div>
+	</div>
 	</div>
 @stop

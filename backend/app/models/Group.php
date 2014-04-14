@@ -37,7 +37,7 @@ class Group extends Eloquent{
     public function actions()
     {
         return $this->belongsToMany('Action','actiongroup',
-                    'groupid','action');
+                   'groupid','actionid');
 
     }
 

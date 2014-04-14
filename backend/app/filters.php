@@ -37,12 +37,16 @@ Route::filter('auth', function()
 {
     if (Auth::guest()) return Redirect::route('BackendLogin');
 
-    View::share('me',Auth::user());
+    $user = Auth::user();
+    $seeallpages = $user->hasPermission('seeallpages');
+    View::share(array('me' => $user,'seeallpages' => $seeallpages));
+
 });
 
 Route::filter('message',function()
 {
     View::share('catagories',Catagory::all());
+    View::share('schoolparts',SchoolPart::all());
 });
 
 /*Route::filter('auth.basic', function()
@@ -60,7 +64,13 @@ Route::filter('message',function()
 
 Route::filter('group',function(){
 
+    $user = Auth::user();
+    $seeallpages = $user->hasPermission('seeallpages');
+
     View::share('groups',Group::all());
+    View::share('seeallpages',$seeallpages);
+    if(!$seeallpages)  App::abort(404);
+
 });
 
 

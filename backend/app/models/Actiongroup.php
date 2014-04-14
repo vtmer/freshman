@@ -13,4 +13,12 @@ class Actiongroup extends Eloquent{
      * @var array
      */
     protected $fillable = array('action','group_id');
+
+   /**
+     * @var string
+     *
+     * not allow laravel change the created_at time
+     * and updated_at time
+     */
+    public $timestamps = false;
 }
