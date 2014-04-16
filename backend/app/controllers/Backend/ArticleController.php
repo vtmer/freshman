@@ -7,6 +7,7 @@ use Action as ActionModel;
 use Actiongroup as ActiongroupModel;
 use Article_catagory as ArticleCatagoryModel;
 use Article_schoolpart as ArticleSchoolpartModel;
+use Catagory as CatagoryModel;
 use Models\Verification;
 use Redirect;
 use Auth;
@@ -23,11 +24,19 @@ class ArticleController extends BaseController {
      */
     protected $user;
 
+    /**
+     * Catagory's id
+     *
+     * @var integer
+     */
+     protected $catagoryId;
+
     public function __construct()
     {
         parent::__construct();
 
         $this->user = Auth::user();
+        $this->catagoryId = 0;
     }
 
     /**
@@ -38,9 +47,18 @@ class ArticleController extends BaseController {
     public function showArticle()
     {
         if($this->user->hasPermission('seeallarticle')){
-            $post_article = ArticleModel::orderBy('active','desc')->orderBy('see')->get();
+            if($this->catagoryId == 0){
+                $post_article = ArticleModel::orderBy('active','desc')->orderBy('see')->get();
+            }else{
+                $post_article = CatagoryModel::find($this->catagoryId)->articles()->orderBy('active','desc')->orderBy('see')->get();
+            }
         }else{
-            $post_article = ArticleModel::where('user_id','=',$this->user->id)->orderBy('active','desc')->orderBy('see')->get();
+            if($this->catagoryId == 0){
+                $post_article = ArticleModel::where('user_id','=',$this->user->id)->orderBy('active','desc')->orderBy('see')->get();
+            }else{
+                $post_article = CatagoryModel::find($this->catagoryId)->articles()->where('user_id','=',$this->user->id)
+                    ->orderBy('active','desc')->orderBy('see')->get();
+            }
         }
 
         //init $articles
@@ -69,6 +87,17 @@ class ArticleController extends BaseController {
         return View::make('Backend.Article.Article_part',array('page'=> 'article',
             'articles' => $articles));
     }
+
+    /**
+     * Backend Show Article By Catagory
+     *
+     * @return Response
+     */
+     public function showArticleByCatagory($id)
+     {
+        $this->catagoryId = $id;
+        return $this->showArticle();
+     }
 
     /**
      * Backend Edit Article

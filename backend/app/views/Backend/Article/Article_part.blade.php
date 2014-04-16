@@ -42,7 +42,7 @@
              <a href="">{{ $article['title'] }}</a></td>
 		<td>{{ $article['user'] }}</td>
 		<td>@foreach($article['catagories'] as $catagory)
-			<span class="label label-success">{{ $catagory['catagory'] }}</span>
+			<a href="{{ URL::route('BackendShowArticleByCatagory',$catagory['id'])}}"<span class="label label-success">{{ $catagory['catagory'] }}</span>
 		    @endforeach
 		</td>
 		<td>@foreach($article['schoolparts'] as $schoolpart)

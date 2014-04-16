@@ -53,6 +53,11 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
            'uses' => 'Controllers\Backend\ArticleController@showArticle'
        ));
 
+        Route::get('/{id}',array(
+           'as' => 'BackendShowArticleByCatagory',
+           'uses' => 'Controllers\Backend\ArticleController@showArticleByCatagory'
+       ));
+
         Route::get('/remove/{id}',array(
             'as' => 'BackendRemoveArticle',
             'uses' => 'Controllers\Backend\ArticleController@removeArticle'
