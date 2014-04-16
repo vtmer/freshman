@@ -53,7 +53,7 @@ class CatagoryController extends BaseController {
         }
 
         $catagory = Input::get('catagory');
-        if (CatagoryModel::where('catagory','=',$catagory)->count() !== '0'){
+        if (CatagoryModel::where('catagory','=',$catagory)->count() !== 0){
 
             return Redirect::route('BackendShowCatagory')
                     ->with(array(

@@ -190,7 +190,7 @@ class UserController extends BaseController {
 
         extract(Input::all());
 
-        if(UserModel::where('loginname','=',$loginname)->count()!== '0'){
+        if(UserModel::where('loginname','=',$loginname)->count()!== 0){
 
             return Redirect::route('BackendShowUsers')
                 ->with(array(
