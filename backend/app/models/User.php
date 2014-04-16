@@ -82,4 +82,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->belongsToMany('Group','usergroup',
             'user_id','group_id');
     }
+
+    public function getRememberToken()
+    {
+        return null;
+    }
+
+    public function setRememberToken($value)
+    {
+        return;
+    }
+
+    public function getRememberTokenName()
+    {
+        return null;
+    }
 }
