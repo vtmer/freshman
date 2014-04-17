@@ -16,4 +16,15 @@ class Catagory extends Eloquent{
     public $timestamps = false;
 
     protected $fillable = array('id','catagory');
+
+    /**
+     * Article field declaration
+     *
+     * @return object;
+     */
+    public function articles()
+    {
+        return $this->belongsToMany('Article','article_catagory',
+            'catagory_id','article_id');
+    }
 }
