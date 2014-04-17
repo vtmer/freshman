@@ -47,13 +47,13 @@ class ArticleController extends BaseController {
     public function showArticle()
     {
         if($this->user->hasPermission('seeallarticle')){
-            if($this->catagoryId == 0){
+            if($this->catagoryId === 0){
                 $post_article = ArticleModel::orderBy('active','desc')->orderBy('see')->get();
             }else{
                 $post_article = CatagoryModel::find($this->catagoryId)->articles()->orderBy('active','desc')->orderBy('see')->get();
             }
         }else{
-            if($this->catagoryId == 0){
+            if($this->catagoryId === 0){
                 $post_article = ArticleModel::where('user_id','=',$this->user->id)->orderBy('active','desc')->orderBy('see')->get();
             }else{
                 $post_article = CatagoryModel::find($this->catagoryId)->articles()->where('user_id','=',$this->user->id)
