@@ -208,7 +208,7 @@ class UserController extends BaseController {
 
             $usergroup = new UsergroupModel;
             $usergroup->user_id = $user->id;
-            $usergroup->group_id = $group['id'];
+            $usergroup->group_id = $group;
             $usergroup->displayname = $displayname;
             $usergroup->save();
         }

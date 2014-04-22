@@ -23,6 +23,7 @@ class InitUsers extends Migration {
             $table->string('loginname',50);
             $table->string('displayname',50);
             $table->string('password',128);
+            $table->string('remember_token',128);
             $table->timestamps();
 
             $table->engine = 'InnoDB';
