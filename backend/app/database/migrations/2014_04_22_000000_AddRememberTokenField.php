@@ -9,7 +9,7 @@ class AddRememberTokenField extends Migration {
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->string('remember_token', 128);
+            $table->text('remember_token')->nullable();
         });
     }
 
