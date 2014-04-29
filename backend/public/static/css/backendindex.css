@@ -17,7 +17,7 @@
 }
 body{
 	padding:10px;
-	background:url(http://vtmer.com/images/bg01.jpg);
+	background:url(../images/bg01.jpg);
 	background-size:100%;	
 }
 a{
@@ -25,10 +25,10 @@ a{
 	text-decoration:none;
 }
 #all{
-		background:url(http://vtmer.com/images/bg_twill.png);
+		background:url(../images/bg_twill.png);
 }
 #logo{
-	background:url(http://vtmer.com/images/logo.png);
+	background:url(../images/logo.png);
 	background-size:30%;
 	background-repeat:no-repeat;
 	background-position:center 20%;
