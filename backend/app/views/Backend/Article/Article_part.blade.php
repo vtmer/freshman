@@ -39,7 +39,7 @@
             <span class="glyphicon glyphicon-ok"></span>
             </a>
             @endif
-             <a href="">{{ $article['title'] }}</a></td>
+             <a href="{{{ URL::route('BackendShowUpdateArticle', $article['id'])}}}">{{ $article['title'] }}</a></td>
 		<td>{{ $article['user'] }}</td>
 		<td>@foreach($article['catagories'] as $catagory)
 			<a href="{{ URL::route('BackendShowArticleByCatagory',$catagory['id'])}}"<span class="label label-success">{{ $catagory['catagory'] }}</span>
@@ -56,8 +56,10 @@
             <a href="{{{ URL::route('BackendUpdownArticle',$article['id'])}}}" title="置顶">
             @if($article['updown']=='0')
                 <span class="glyphicon glyphicon-thumbs-down"></span>
-            @else<span class="glyphicon glyphicon-thumbs-up"></a></td>
+            @else<span class="glyphicon glyphicon-thumbs-up"></a>
             @endif
+             | <a href=""><span class="glyphicon glyphicon-eye-open"></span></a>
+        </td>
 	     </tr>
 	   @endforeach
        @endif
