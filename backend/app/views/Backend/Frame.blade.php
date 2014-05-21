@@ -23,6 +23,7 @@
 <script type="text/javascript" src="{{{ URL::asset('static/js/bootstrap.js')}}}"></script>
 <script type="text/javascript" src="{{{ URL::asset('static/js/select2.min.js')}}}"></script>
 <script type="text/javascript" src="{{{ URL::asset('static/js/bootstrap-wysiwyg.js')}}}"></script>
+<script type="text/javascript" src="{{{ URL::asset('static/js/tablesorter.js')}}}"></script>
 <script type="text/javascript">
 $("#member").select2({
    placeholder: "请选择文章栏目"//选择框内提示信息

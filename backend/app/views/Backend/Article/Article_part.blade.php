@@ -16,16 +16,16 @@
             <!-- Default panel contents -->
         <div class="panel-heading"></div>
           <!-- Table -->
-          <table class="table">
+          <table class="table tablesorter" id="myTable">
             <thead>
               <tr>
-            <th>状态 | 文章名</th>
-            <th>作者</th>
-            <th>分类</th>
-            <th>校区</th>
-            <th>浏览数</th>
-            <th>发表日期</th>
-            <th>操作</th>
+            <th>状态 | 文章名 ^</th>
+            <th>作者^</th>
+            <th>分类^</th>
+            <th>校区^</th>
+            <th>浏览数^</th>
+            <th>发表日期^</th>
+            <th>操作^</th>
               </tr>
             </thead>
             <tbody>
@@ -68,4 +68,15 @@
       </div>
 	</div>
 	</div>
+@stop
+
+@section('scripts')
+    @parent
+    <script>
+        $(document).ready(function ()
+            {
+                $('#myTable').tablesorter();
+            }
+        );
+    </script>
 @stop
