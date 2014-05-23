@@ -52,6 +52,9 @@ def bootstrap():
         sudo('rm -rf {0}/vendor'.format(env.name))
         sudo('ln -s {0}/backend/vendor {1}/vendor'.format(env.codebase,
                                                           env.name))
+        sudo('rm -rf {0}/app/config'.format(env.name))
+        sudo('ln -s {0}/backend/app/config {1}/app/config'.format(env.codebase,
+                                                                  env.name))
 
         sudo('chown {0}:www-data {1}'.format(env.user, env.name))
         sudo('chmod -R 755 {0}'.format(env.name))
