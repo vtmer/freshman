@@ -1,0 +1,223 @@
+ *{
+            margin: 0;
+            padding: 0;
+
+        }
+
+         html {
+            width: 100%; 
+            height: 100%; 
+            overflow-y:auto;
+         }
+         body {
+            font-family: "微软雅黑";
+            width: 100%; 
+            height: 100%; 
+         }
+         a{
+            text-decoration: none;
+         } 
+
+         /*导航栏样式*/
+         .header {
+            width: 100%;            
+            height: 100%;
+         }
+
+        .logo {
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top:0;
+            height: 81px;
+            z-index: 5;/*防止下滑时导航栏被遮掩*/
+        }
+
+        .logoWrapper {
+            width: 960px;
+            margin: 0 auto;
+            position: relative;
+            background: url(../images/logo_font.png) no-repeat 1px 1px;
+            height:100%;
+            padding-bottom: 37px;
+            z-index:2;
+            border-top: 1px solid transparent;
+        }
+
+        .homelink {
+            display: block;
+            width: 352px;
+            height: 114px;
+            position: absolute;
+        }
+
+        .nav {
+           text-align: right;
+           list-style: none;
+           margin-top: 50px;
+           width: 548px;
+           margin-left: 386px;
+           padding-left: 0;
+           position: relative;
+           z-index: 3; /*为了防止nav那里hover的状态*/
+        }
+
+        .redline {
+            display: block;
+            position: absolute; 
+            top: 72px; 
+            left: 32px;
+        }
+
+        .controlSpace {
+            letter-spacing: 10px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: black;
+            height: 22px;
+            padding: 3px;
+        }
+
+        .nav >li {
+            display: inline-block;
+            color: black;
+            width: 82px;
+            text-align: center;
+            font-size: 15px;            
+        }
+
+
+        .nav a:hover {
+            color: red;
+            text-decoration: none;
+        }
+
+       .special_down a:hover {
+            color: white!important;
+            text-decoration: none;
+            background-color: #d43434!important;
+           
+        }
+
+        .special_a {
+            padding-left: 20px;
+            background: url(../images/nav_position.png) no-repeat 3px 3px;
+            height: 22px; /*为了让导航栏special获取到高度*/
+            display: inline-block;
+            width: 70px;
+        }
+
+        .special_li {
+            text-align: right!important;
+        }
+
+        .special ul li {
+            display: inline-block;
+        }
+
+        .special li {
+            color: red;
+        }
+
+        .special_down {
+            position: absolute;
+            left: 491px;
+            top: 17px;
+            list-style: none;
+            display: none;
+            padding-top: 7px;
+        }
+
+        .special_down li {
+            width: 58px;
+            text-align: center;
+            background-color: #d43434;
+            padding: 2px;
+        }
+        
+        .special_down li a {
+            color: #d43434!important;
+            padding: 4px;
+            display: block;
+            background-color: white;
+        }
+
+        .line {
+            width: 100%;
+            border-bottom: 1px solid #d43434;
+            position: absolute;
+            top: 78px;
+            z-index: 1;
+        }
+
+        /*页脚*/
+        div#footer {
+            width: 100%;
+            height: 221px; float: left; 
+            margin-top: 40px;
+            padding-bottom: 2px; 
+            border-top: 5px solid #d43; 
+            background-color: #ffffff;
+            overflow: hidden;
+
+        }
+
+        div.footer_contain { 
+            width: 960px;
+            margin: auto;
+            height: 193px; 
+        }
+
+        div.footer_contain_design { 
+            width: 270px; 
+            color: #000000;
+            margin-right: 120px; 
+            float: left; 
+        }
+        
+        div.footer_contain_design h1 { 
+            font-size: 18px; 
+            font-weight: 900; 
+            height: 30px;
+            padding-top: 8px;
+            border-bottom: 1px solid #d34; 
+        }
+
+        div.footer_contain_design h1 span{ 
+            border-top: 3px solid #d34; 
+            width: 115px; 
+            padding:5px 0;
+            font-weight: 900; 
+        }
+
+        div.footer_contain_design ul { 
+            margin-top: 15px; 
+            list-style: none;
+        }
+
+        div.footer_contain_design ul li { 
+            margin-top: 5px; 
+        }
+
+        div.footer_contain_design ul li a{
+           display: block; 
+           font-size: 14px;
+           color: gray;
+           text-decoration: none;
+
+        }
+        p.footer_contain_designer { 
+            width: 100%;
+            height: 30px; 
+            color: #ffffff;
+            text-align: center;
+            background-color: #797979;
+            line-height: 30px; 
+            float: left; 
+        }
+         p.footer_contain_designer a { 
+            color: #ffffff;
+        }
+        
