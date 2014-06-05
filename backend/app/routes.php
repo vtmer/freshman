@@ -22,10 +22,14 @@
 Route::group(array('prefix' => '','before' => ''),function(){
 
     Route::get('/',array(
-        'as' => 'FrontendShowIndex',
-        'uses' => 'Frontend\HomeController@showindex'
+        'as' => 'FrontendIndex',
+        'uses' => 'Controllers\Frontend\IndexController@showIndex'
     ));
 
+    Route::get('/{id}',array(
+        'as' => 'FrontendIndexBySchoolPart',
+        'uses' => 'Controllers\Frontend\IndexController@showIndexBySchoolPart'
+    ));
 });
 
 
