@@ -5,6 +5,8 @@ use View;
 use Catagory as CatagoryModel;
 use SchoolPart as SchoolPartModel;
 use Article_schoolpart as ArticleSchoolPartModel;
+use Cookie;
+use Redirect;
 
 
 class IndexController extends FrontBaseController {
@@ -21,18 +23,8 @@ class IndexController extends FrontBaseController {
      */
 	public function showIndex()
 	{
-        $schoolPart = SchoolPartModel::find($this->schoolPartId);
-        foreach(CatagoryModel::all() as $catagory) {
-            $catagory['articles'] = CatagoryModel::find($catagory['id'])
-                ->articles()
-                ->join('article_schoolpart','article.id','=','article_schoolpart.article_id')
-                ->orderBy('updown','desc')
-                ->orderBy('id','desc')
-                ->where('active','=',1)
-                ->where('schoolpart_id','=',$schoolPart['id'])
-                ->get();
-            $catagories[] = $catagory;
-        }
+        $catagories = $this->getCatagoryArticle();
+
         return View::make('Front/Index')->with(array(
             'catagoriesIndex' => $catagories
         ));
@@ -46,7 +38,8 @@ class IndexController extends FrontBaseController {
     public function showIndexBySchoolPart($id)
     {
         $this->schoolPartId = $id;
-        return $this->showIndex();
+        Cookie::queue('PartId',$this->schoolPartId);
+        return Redirect::route('FrontendIndex');
     }
 
 }
