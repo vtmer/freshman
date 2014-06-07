@@ -22,9 +22,9 @@
             @foreach ($catagoriesIndex as $catagory)
             @if($i == 4)
                 <div>
-                    <a href="">{{ $catagory['catagory']}}</a>
+                    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id'])}}}">{{ $catagory['catagory']}}</a>
                     <span><a href="">HOT NEWS</a></span>
-                    <span class="special_more"><a href="">MORE</a></span>
+                    <span class="special_more"><a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id'])}}}">MORE</a></span>
                 </div>
                 <?php $j = 1; ?>
                 @foreach ($catagory['articles'] as $article)
@@ -66,7 +66,7 @@
 				@elseif ($i == 2) <div class="mainmenu_center_menu">
 				@else <div class="mainmenu_right_menu">
 				@endif
-		        	<a href="" class="mainmenu_title">{{ $catagory['catagory']}}</a>
+		        	<a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id'])}}}" class="mainmenu_title">{{ $catagory['catagory']}}</a>
 		        <?php $j = 1; ?>
 				<div>
 				<ol>

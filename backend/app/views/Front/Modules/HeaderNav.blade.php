@@ -1,10 +1,10 @@
 <div class="logo">
 <div class="logoWrapper">
-<a href="./" class="homelink" title="首页"></a>
+<a href="{{{ URL::route('FrontendIndex')}}}" class="homelink" title="首页"></a>
 <ul class="nav">
-    <li class="default"><a href="" class="controlSpace">首页</a></li>
+    <li class="default"><a href="{{{ URL::route('FrontendIndex')}}}" class="controlSpace">首页</a></li>
     @foreach($catagories as $catagory)
-    <li><a href="">{{ $catagory['catagory']}}</a></li>
+    <li><a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id']) }}}">{{ $catagory['catagory']}}</a></li>
     @endforeach
     <?php $i = 1; ?>
     @foreach($schoolParts as $schoolPart)
