@@ -26,10 +26,16 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'uses' => 'Controllers\Frontend\IndexController@showIndex'
     ));
 
-    Route::get('/{id}',array(
+    Route::get('/school/{id}',array(
         'as' => 'FrontendIndexBySchoolPart',
         'uses' => 'Controllers\Frontend\IndexController@showIndexBySchoolPart'
     ));
+
+    Route::get('/category/{id}',array(
+        'as' => 'FrontendListByCatagoryId',
+        'uses' => 'Controllers\Frontend\ListController@showList'
+    ));
+
 });
 
 
