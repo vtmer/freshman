@@ -22,10 +22,24 @@
 Route::group(array('prefix' => '','before' => ''),function(){
 
     Route::get('/',array(
-        'as' => 'FrontendShowIndex',
-        'uses' => 'Frontend\HomeController@showindex'
+        'as' => 'FrontendIndex',
+        'uses' => 'Controllers\Frontend\IndexController@showIndex'
     ));
 
+    Route::get('/school/{id}',array(
+        'as' => 'FrontendIndexBySchoolPart',
+        'uses' => 'Controllers\Frontend\IndexController@showIndexBySchoolPart'
+    ));
+
+    Route::get('/category/{id}',array(
+        'as' => 'FrontendListByCatagoryId',
+        'uses' => 'Controllers\Frontend\ListController@showList'
+    ));
+
+    Route::get('/article/{catagory}/{id}',array(
+        'as' => 'FrontendShowArticle',
+        'uses' => 'Controllers\Frontend\ArticleController@showArticle'
+    ));
 });
 
 
