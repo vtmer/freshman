@@ -28,7 +28,7 @@
                     @foreach($getCatagory['articles'] as $article)
 					<li>
 						<h1>
-							<a href="">{{ $article['title']}}</a>
+							<a href="{{{ URL::route('FrontendShowArticle',array($getCatagory['id'],$article['id']))}}}">{{ $article['title']}}</a>
 						</h1>
 						<span class="data">
 							发布于：{{ $article['created_at'] }}&nbsp;&nbsp;&nbsp;&nbsp;来源：广东工业大学校团委数字中心

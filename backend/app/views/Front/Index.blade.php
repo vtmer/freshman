@@ -29,12 +29,12 @@
                 <?php $j = 1; ?>
                 @foreach ($catagory['articles'] as $article)
                     <p>
-                        <a href="">{{ $article['title']}}</a>
+                        <a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$article['id']))}}}">{{ $article['title']}}</a>
                     @if($j == 1) <span class="icon_one">1</span>
                     @elseif ($j == 2) <span class="icon_two">2</span>
                     @elseif ($j == 3) <span class="icon_three">3</span>
                     @endif
-                        <span class="date1"><a href="">发布时间:2014.3.15</a></span>
+                        <span class="date1"><a href="">发布时间:{{ $article['created_at']}}</a></span>
                     </p>
                 <?php $j++; ?>
                 @endforeach
@@ -77,7 +77,7 @@
                     @elseif ($j == 3) <span class="third">3</span>
 					@else <span>&nbsp;</span>
                     @endif
-                        <a href="">&nbsp;&nbsp;{{ $article['title']}}</a>
+                        <a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
                 <?php $j++; ?>
                 @endforeach
