@@ -36,6 +36,10 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'uses' => 'Controllers\Frontend\ListController@showList'
     ));
 
+    Route::get('/article/{catagory}/{id}',array(
+        'as' => 'FrontendShowArticle',
+        'uses' => 'Controllers\Frontend\ArticleController@showArticle'
+    ));
 });
 
 
