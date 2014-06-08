@@ -33,7 +33,7 @@ class FrontBaseController extends Controller {
 
         if(!Cookie::get('PartId')) {
             Cookie::queue('PartId', '1');
-            $this->schoolPartId = Cookie::get('PartId');
+            $this->schoolPartId = 1;
         } else {
             $this->schoolPartId = Cookie::get('PartId');
         }
