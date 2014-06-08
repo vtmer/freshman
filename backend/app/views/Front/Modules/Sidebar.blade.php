@@ -11,22 +11,22 @@
 					<ul class="list_box">
                     @if(isset($catagory['articles'][0]))
                     <li><span class="first">1</span>
-							<a href="">{{ $catagory['articles'][0]['title'] }}</a>
+							<a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$catagory['articles'][0]['id']))}}}">{{ $catagory['articles'][0]['title'] }}</a>
 						  </li>
                     @endif
                     @if(isset($catagory['articles'][1]))
 					<li><span class="second">2</span>
-							<a href="">{{ $catagory['articles'][1]['title'] }}</a>
+							<a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$catagory['articles'][1]['id']))}}}">{{ $catagory['articles'][1]['title'] }}</a>
 						  </li>
                     @endif
                     @if(isset($catagory['articles'][2]))
 					<li><span class="third">3</span>
-							<a href="">{{ $catagory['articles'][2]['title'] }}</a>
+							<a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$catagory['articles'][2]['id']))}}}">{{ $catagory['articles'][2]['title'] }}</a>
 						  </li>
                     @endif
                     @if(isset($catagory['articles'][3]))
 					<li id="lineNone"><span>&nbsp;</span>
-							<a href="">{{ $catagory['articles'][3]['title'] }}</a>
+							<a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$catagory['articles'][3]['id']))}}}">{{ $catagory['articles'][3]['title'] }}</a>
 						  </li>
                     @endif
 					</ul>
@@ -51,7 +51,7 @@
                     @elseif($i == 3)<li><span class="third">3</span>
                     @else <li><span>&nbsp;</span>
                     @endif
-						<a href="">{{ $article['title']}}</a>
+						<a href="{{{ URL::route('FrontendShowArticle',array($catagories[3]['id'],$article['id']))}}}">{{ $article['title']}}</a>
 						<p>发布时间：{{ $article['created_at']}}</p>
 					</li>
                     <?php $i++; ?>
