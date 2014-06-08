@@ -31,7 +31,7 @@ class ListController extends FrontBaseController {
 
     public function paginate($id)
     {
-        $articleNumber = 7;
+        $articleNumber = 6;
         $schoolPart = SchoolPartModel::find($this->schoolPartId);
         $catagory = CatagoryModel::find($id);
         $catagory['articles'] = CatagoryModel::find($catagory['id'])
