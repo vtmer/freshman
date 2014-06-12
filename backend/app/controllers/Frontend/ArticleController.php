@@ -6,13 +6,9 @@ use Catagory as CatagoryModel;
 use SchoolPart as SchoolPartModel;
 use Article as ArticleModel;
 use Article_catagory as ArticleCatagoryModel;
+use Config;
 
 class ArticleController extends FrontBaseController {
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
 
     /**
      * Frontend's Article Page
@@ -25,12 +21,12 @@ class ArticleController extends FrontBaseController {
         $article = ArticleModel::where('active','=',1)->findOrFail($id);
         $currentCatagory = CatagoryModel::find($catagory);
 
-        $this->addASee($id);
+        $this->increaseViewNumber($id);
 
         return View::make('Front/Content')->with(array(
             'catagoriesList' => $catagories,
             'currentCatagory' => $currentCatagory,
-            'chooseCatagoryId' => 0,
+            'chooseCatagoryId' => Config::get('freshman.nullChooseCatagoryId'),
             'article' => $article
         ));
     }
@@ -40,7 +36,7 @@ class ArticleController extends FrontBaseController {
      *
      * @return null
      */
-    public function addASee($id)
+    public function increaseViewNumber($id)
     {
         $see = ArticleModel::findOrFail($id);
 

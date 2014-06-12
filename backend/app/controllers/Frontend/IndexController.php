@@ -7,6 +7,7 @@ use SchoolPart as SchoolPartModel;
 use Article_schoolpart as ArticleSchoolPartModel;
 use Cookie;
 use Redirect;
+use Config;
 
 
 class IndexController extends FrontBaseController {
@@ -26,7 +27,8 @@ class IndexController extends FrontBaseController {
         $catagories = $this->getCatagoryArticle();
 
         return View::make('Front/Index')->with(array(
-            'catagoriesIndex' => $catagories
+            'catagoriesIndex' => $catagories,
+            'newestInformation' => $catagories[Config::get('freshman.newestInformationIndex')]
         ));
 	}
 
