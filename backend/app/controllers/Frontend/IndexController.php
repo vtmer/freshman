@@ -26,7 +26,8 @@ class IndexController extends FrontBaseController {
         $catagories = $this->getCatagoryArticle();
 
         return View::make('Front/Index')->with(array(
-            'catagoriesIndex' => $catagories
+            'catagoriesIndex' => $catagories,
+            'newestInformation' => $catagories[$_ENV['NEWEST_INFORMATION_INDEX']]
         ));
 	}
 
