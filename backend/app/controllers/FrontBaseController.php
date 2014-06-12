@@ -7,6 +7,7 @@ use View;
 use Cookie;
 use Response;
 use Redirect;
+use Config;
 
 
 class FrontBaseController extends Controller {
@@ -26,30 +27,37 @@ class FrontBaseController extends Controller {
      */
     protected $schoolPartId;
 
-    public function __construct(){
 
+    /**
+     * FrontBaseController construct
+     *
+     * DO: get global catagorise and SchoolParts
+     *     set the current SchoolPart according Cookie
+     *
+     * @return Null
+     */
+    public function __construct()
+    {
         $this->catagories = CatagoryModel::all();
         $this->schoolParts = SchoolPartModel::all();
 
         if(!Cookie::get('PartId')) {
-            Cookie::queue('PartId', '1');
-            $this->schoolPartId = 1;
+            Cookie::queue('PartId', $_ENV['INIT_SCHOOL_PART']);
+            $this->schoolPartId = $_ENV['INIT_SCHOOL_PART'];
         } else {
             $this->schoolPartId = Cookie::get('PartId');
         }
+
+        //交换校区的位置，数组下标0为当前校区
+        $tempSchoolPart = $this->schoolParts[0];
+        $this->schoolParts[0] = $this->schoolParts[$this->schoolPartId - 1];
+        $this->schoolParts[$this->schoolPartId - 1] = $tempSchoolPart;
 
         View::share(array(
             'catagories' => $this->catagories,
             'schoolParts' => $this->schoolParts,
             'schoolPartId' => $this->schoolPartId
         ));
-    }
-
-    public function __destruct()
-    {
-        $tempSchoolPart = $this->schoolParts[0];
-        $this->schoolParts[0] = $this->schoolParts[$this->schoolPartId - 1];
-        $this->schoolParts[$this->schoolPartId - 1] = $tempSchoolPart;
     }
 
     /**

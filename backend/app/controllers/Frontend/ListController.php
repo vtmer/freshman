@@ -7,11 +7,6 @@ use SchoolPart as SchoolPartModel;
 
 class ListController extends FrontBaseController {
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Frontend's list Page
      *
@@ -29,9 +24,10 @@ class ListController extends FrontBaseController {
         ));
     }
 
+    //分页:调用对应数据
     public function paginate($id)
     {
-        $articleNumber = 6;
+        $articleNumber = $_ENV['ARTICLE_NUMBER'];
         $schoolPart = SchoolPartModel::find($this->schoolPartId);
         $catagory = CatagoryModel::find($id);
         $catagory['articles'] = CatagoryModel::find($catagory['id'])

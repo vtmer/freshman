@@ -1,7 +1,7 @@
 @extends ('Front.Template.Front')
 
 @section('title')
-广工大新生网--你的广工指南
+新生专题网--你的广工指南
 @stop
 
 @section('style')
@@ -18,29 +18,25 @@
                 <p class="even">2014.9.1 我们在广工大等你</p>
             </div>
             <div class="right_banner">
-            <?php $i = 1; ?>
-            @foreach ($catagoriesIndex as $catagory)
-            @if($i == 4)
                 <div>
-                    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id'])}}}">{{ $catagory['catagory']}}</a>
+                    <a href="{{{ URL::route('FrontendListByCatagoryId',$newestInformation['id'])}}}">{{ $newestInformation['catagory']}}</a>
                     <span><a href="">HOT NEWS</a></span>
-                    <span class="special_more"><a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id'])}}}">MORE</a></span>
+                    <span class="special_more"><a href="{{{ URL::route('FrontendListByCatagoryId',$newestInformation['id'])}}}">MORE</a></span>
                 </div>
-                <?php $j = 1; ?>
-                @foreach ($catagory['articles'] as $article)
+
+                <? $iconNumber = $_ENV['INIT_ICON_NUMBER'] ?>
+                @foreach ($newestInformation['articles'] as $article)
                     <p>
-                        <a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$article['id']))}}}">{{ $article['title']}}</a>
-                    @if($j == 1) <span class="icon_one">1</span>
-                    @elseif ($j == 2) <span class="icon_two">2</span>
-                    @elseif ($j == 3) <span class="icon_three">3</span>
+                        <a href="{{{ URL::route('FrontendShowArticle',array($newestInformation['id'],$article['id']))}}}">{{ $article['title']}}</a>
+                    @if($iconNumber == $_ENV['ICON_ONE'])           <span class="icon_one">1</span>
+                    @elseif ($iconNumber == $_ENV['ICON_TWO'])      <span class="icon_two">2</span>
+                    @elseif ($iconNumber == $_ENV['ICON_THREE'])    <span class="icon_three">3</span>
                     @endif
-                        <span class="date1"><a href="">发布时间:{{ $article['created_at']}}</a></span>
+                        <span class="date1">发布时间:{{ $article['created_at']}}</span>
                     </p>
-                <?php $j++; ?>
+                <? $iconNumber++ ?>
                 @endforeach
-            @endif
-            <?php $i++; ?>
-            @endforeach
+
             </div>
             <div class="bo_banner">
                 <img class="scroll" id="goBottom" src="{{{ URL::asset('static/images/scroll.png') }}} ">
@@ -59,34 +55,63 @@
 
     </div>
     <div class="mainmenu">
-			<?php $i = 1; ?>
-            @foreach ($catagoriesIndex as $catagory)
-            @if($i !== 4)
-				@if ($i == 1) <div class="mainmenu_left_menu">
-				@elseif ($i == 2) <div class="mainmenu_center_menu">
-				@else <div class="mainmenu_right_menu">
-				@endif
-		        	<a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id'])}}}" class="mainmenu_title">{{ $catagory['catagory']}}</a>
-		        <?php $j = 1; ?>
-				<div>
+		<div class="mainmenu_left_menu">
+		    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesIndex[0]['id'])}}}" class="mainmenu_title">{{ $catagoriesIndex[0]['catagory']}}</a>
+			<div>
 				<ol>
-                @foreach ($catagory['articles'] as $article)
+		        <? $iconNumber = $_ENV['INIT_ICON_NUMBER'] ?>
+                @foreach ($catagoriesIndex[0]['articles'] as $article)
                     <li>
-                    @if($j == 1) <span class="first">1</span>
-                    @elseif ($j == 2) <span class="second">2</span>
-                    @elseif ($j == 3) <span class="third">3</span>
+                    @if($iconNumber == $_ENV['ICON_ONE']) <span class="first">1</span>
+                    @elseif ($iconNumber == $_ENV['ICON_TWO']) <span class="second">2</span>
+                    @elseif ($iconNumber == $_ENV['ICON_THREE']) <span class="third">3</span>
 					@else <span>&nbsp;</span>
                     @endif
-                        <a href="{{{ URL::route('FrontendShowArticle',array($catagory['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
+                        <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[0]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                <?php $j++; ?>
+                <? $iconNumber++ ?>
                 @endforeach
 				</ol>
-				</div>
-            @endif
-            <?php $i++; ?>
-            </div>
-            @endforeach
+			</div>
+        </div>
+		<div class="mainmenu_center_menu">
+		    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesIndex[1]['id'])}}}" class="mainmenu_title">{{ $catagoriesIndex[1]['catagory']}}</a>
+			<div>
+				<ol>
+		        <? $iconNumber = $_ENV['INIT_ICON_NUMBER'] ?>
+                @foreach ($catagoriesIndex[1]['articles'] as $article)
+                    <li>
+                    @if($iconNumber == $_ENV['ICON_ONE']) <span class="first">1</span>
+                    @elseif ($iconNumber == $_ENV['ICON_TWO']) <span class="second">2</span>
+                    @elseif ($iconNumber == $_ENV['ICON_THREE']) <span class="third">3</span>
+					@else <span>&nbsp;</span>
+                    @endif
+                        <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[1]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
+                    </li>
+                <? $iconNumber++ ?>
+                @endforeach
+				</ol>
+			</div>
+        </div>
+		<div class="mainmenu_right_menu">
+		    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesIndex[2]['id'])}}}" class="mainmenu_title">{{ $catagoriesIndex[2]['catagory']}}</a>
+			<div>
+				<ol>
+		        <? $iconNumber = $_ENV['INIT_ICON_NUMBER'] ?>
+                @foreach ($catagoriesIndex[2]['articles'] as $article)
+                    <li>
+                    @if($iconNumber == $_ENV['ICON_ONE']) <span class="first">1</span>
+                    @elseif ($iconNumber == $_ENV['ICON_TWO']) <span class="second">2</span>
+                    @elseif ($iconNumber == $_ENV['ICON_THREE']) <span class="third">3</span>
+					@else <span>&nbsp;</span>
+                    @endif
+                        <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[2]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
+                    </li>
+                <? $iconNumber++ ?>
+                @endforeach
+				</ol>
+			</div>
+        </div>
     </div>
     <div class="photo">
         <a href=""><img class="photo_download" src="{{{ URL::asset('static/images/13.png') }}} " alt=""></a>

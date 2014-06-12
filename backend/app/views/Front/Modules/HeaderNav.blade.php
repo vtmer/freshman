@@ -6,18 +6,10 @@
     @foreach($catagories as $catagory)
     <li><a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id']) }}}">{{ $catagory['catagory']}}</a></li>
     @endforeach
-    <?php $i = 1; ?>
-    @foreach($schoolParts as $schoolPart)
-    @if ($i == 1)
-    <li class="special_li"><a class="special_a" href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolPart['id'])}}}">{{ $schoolPart['schoolpart']}}</a>
-    @elseif ($i == 2)
+    <li class="special_li"><a class="special_a" href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[0]['schoolpart']}}</a>
         <ul class="special_down">
-            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolPart['id'])}}}">{{ $schoolPart['schoolpart'] }}</a></li>
-    @else
-            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolPart['id'])}}}">{{ $schoolPart['schoolpart'] }}</a></li>
-    @endif
-    <?php $i += 1; ?>
-    @endforeach
+            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[1]['schoolpart'] }}</a></li>
+            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[2]['schoolpart'] }}</a></li>
         </ul>
     </li>
 </ul>

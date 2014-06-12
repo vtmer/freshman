@@ -9,11 +9,6 @@ use Article_catagory as ArticleCatagoryModel;
 
 class ArticleController extends FrontBaseController {
 
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Frontend's Article Page
      *
@@ -25,12 +20,12 @@ class ArticleController extends FrontBaseController {
         $article = ArticleModel::where('active','=',1)->findOrFail($id);
         $currentCatagory = CatagoryModel::find($catagory);
 
-        $this->addASee($id);
+        $this->increaseViewNumber($id);
 
         return View::make('Front/Content')->with(array(
             'catagoriesList' => $catagories,
             'currentCatagory' => $currentCatagory,
-            'chooseCatagoryId' => 0,
+            'chooseCatagoryId' => $_ENV['NULL_CHOOSE_CATAGORY_ID'],
             'article' => $article
         ));
     }
@@ -40,7 +35,7 @@ class ArticleController extends FrontBaseController {
      *
      * @return null
      */
-    public function addASee($id)
+    public function increaseViewNumber($id)
     {
         $see = ArticleModel::findOrFail($id);
 
