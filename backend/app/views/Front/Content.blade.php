@@ -37,13 +37,13 @@
                 <ul class="list">
                 @foreach($catagoriesList as $catagory)
                 @if($catagory['id'] == $currentCatagory['id'])
-                    <? $relevance = $_ENV['INIT_RELEVANCE_NUMBER'] ?>
+                    <? $relevance = Config::get('freshman.initRelevanceNumber') ?>
                     @foreach($catagory['articles'] as $otherArticle)
                     @if($article['id'] !== $otherArticle['id'])
                     <li><a href="{{{ URL::route('FrontendShowArticle',array($currentCatagory['id'],$otherArticle['id']))}}}">{{ $otherArticle['title']}}</a></li>
                     <? $relevance++ ?>
                     @endif
-                    <? if($relevance == $_ENV['RELEVANCE_NUMBER']) break ?>
+                    <? if($relevance == Config::get('freshman.relevanceNumber')) break ?>
                     @endforeach
                 @endif
                 @endforeach

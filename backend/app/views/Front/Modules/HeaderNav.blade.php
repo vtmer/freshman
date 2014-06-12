@@ -8,8 +8,8 @@
     @endforeach
     <li class="special_li"><a class="special_a" href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[0]['schoolpart']}}</a>
         <ul class="special_down">
-            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[1]['schoolpart'] }}</a></li>
-            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[2]['schoolpart'] }}</a></li>
+            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[1]['id'])}}}">{{ $schoolParts[1]['schoolpart'] }}</a></li>
+            <li><a href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[2]['id'])}}}">{{ $schoolParts[2]['schoolpart'] }}</a></li>
         </ul>
     </li>
 </ul>

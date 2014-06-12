@@ -42,8 +42,8 @@ class FrontBaseController extends Controller {
         $this->schoolParts = SchoolPartModel::all();
 
         if(!Cookie::get('PartId')) {
-            Cookie::queue('PartId', $_ENV['INIT_SCHOOL_PART']);
-            $this->schoolPartId = $_ENV['INIT_SCHOOL_PART'];
+            Cookie::queue('PartId', Config::get('freshman.initSchoolPart'));
+            $this->schoolPartId = Config::get('freshman.initSchoolPart');
         } else {
             $this->schoolPartId = Cookie::get('PartId');
         }

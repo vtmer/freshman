@@ -6,6 +6,7 @@ use Catagory as CatagoryModel;
 use SchoolPart as SchoolPartModel;
 use Article as ArticleModel;
 use Article_catagory as ArticleCatagoryModel;
+use Config;
 
 class ArticleController extends FrontBaseController {
 
@@ -25,7 +26,7 @@ class ArticleController extends FrontBaseController {
         return View::make('Front/Content')->with(array(
             'catagoriesList' => $catagories,
             'currentCatagory' => $currentCatagory,
-            'chooseCatagoryId' => $_ENV['NULL_CHOOSE_CATAGORY_ID'],
+            'chooseCatagoryId' => Config::get('freshman.nullChooseCatagoryId'),
             'article' => $article
         ));
     }

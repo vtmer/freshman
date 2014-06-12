@@ -4,6 +4,7 @@ use Controllers\FrontBaseController;
 use View;
 use Catagory as CatagoryModel;
 use SchoolPart as SchoolPartModel;
+use Config;
 
 class ListController extends FrontBaseController {
 
@@ -27,7 +28,7 @@ class ListController extends FrontBaseController {
     //分页:调用对应数据
     public function paginate($id)
     {
-        $articleNumber = $_ENV['ARTICLE_NUMBER'];
+        $articleNumber = Config::get('freshman.articleNumber');
         $schoolPart = SchoolPartModel::find($this->schoolPartId);
         $catagory = CatagoryModel::find($id);
         $catagory['articles'] = CatagoryModel::find($catagory['id'])
