@@ -34,7 +34,6 @@
                     @endif
                         <span class="date1">发布时间:{{ $article['created_at']}}</span>
                     </p>
-                {{--*/ if($iconNumber == Config::get('freshman.initShowArticleNumber')) break /*--}}
                 {{--*/ $iconNumber++; /*--}}
                 @endforeach
 
@@ -70,7 +69,6 @@
                     @endif
                         <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[0]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                {{--*/ if($iconNumber == Config::get('freshman.initShowArticleNumber')) break /*--}}
                 {{--*/ $iconNumber++; /*--}}
                 @endforeach
 				</ol>
@@ -90,7 +88,6 @@
                     @endif
                         <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[1]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                {{--*/ if($iconNumber == Config::get('freshman.initShowArticleNumber')) break /*--}}
                 {{--*/ $iconNumber++; /*--}}
                 @endforeach
 				</ol>
@@ -110,7 +107,6 @@
                     @endif
                         <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[2]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                {{--*/ if($iconNumber == Config::get('freshman.initShowArticleNumber')) break /*--}}
                 {{--*/ $iconNumber++; /*--}}
                 @endforeach
 				</ol>
