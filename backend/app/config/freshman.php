@@ -13,5 +13,7 @@ return array(
     'nullChooseCatagoryId' => 0,
 
     'initRelevanceNumber' => 0,
-    'relevanceNumber' => 6
+    'relevanceNumber' => 6,
+
+    'substrLength' => 90
 );
