@@ -19,7 +19,7 @@ class IndexController extends FrontBaseController {
      */
 	public function showIndex()
 	{
-        $catagories = $this->getCatagoryArticle();
+        $catagories = $this->getCatagoryArticle(Config::get('freshman.initShowArticleNumber'));
 
         return View::make('Front/Index')->with(array(
             'catagoriesIndex' => $catagories,

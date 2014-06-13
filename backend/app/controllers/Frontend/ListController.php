@@ -15,7 +15,7 @@ class ListController extends FrontBaseController {
      */
     public function showList($id)
     {
-        $catagories = $this->getCatagoryArticle();
+        $catagories = $this->getCatagoryArticle(Config::get('freshman.initShowArticleNumber'));
         $getCatagory = $this->paginate($id);
 
         return View::make('Front/List')->with(array(

@@ -3,6 +3,7 @@
 return array(
     'initSchoolPart' => 1,
     'articleNumber' => 6,
+    'initShowArticleNumber' => 8,
     'newestInformationIndex' => 3,
     'initCataNumber' => 0,
     'initIconNumber' => 1,
@@ -11,6 +12,6 @@ return array(
     'iconThree' => 3,
     'nullChooseCatagoryId' => 0,
 
-    'initRelevanceNumber' => 1,
-    'RelevanceNumber' => 6
+    'initRelevanceNumber' => 0,
+    'relevanceNumber' => 6
 );

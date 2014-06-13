@@ -17,7 +17,7 @@ class ArticleController extends FrontBaseController {
      */
     public function showArticle($catagory,$id)
     {
-        $catagories = $this->getCatagoryArticle();
+        $catagories = $this->getCatagoryArticle(Config::get('freshman.initShowAricleNumber'));
         $article = ArticleModel::where('active','=',1)->findOrFail($id);
         $currentCatagory = CatagoryModel::find($catagory);
 

@@ -24,7 +24,7 @@
                     <span class="special_more"><a href="{{{ URL::route('FrontendListByCatagoryId',$newestInformation['id'])}}}">MORE</a></span>
                 </div>
 
-                <? $iconNumber = Config::get('freshman.initIconNumber') ?>
+                {{--*/ $iconNumber = Config::get('freshman.initIconNumber') /*--}}
                 @foreach ($newestInformation['articles'] as $article)
                     <p>
                         <a href="{{{ URL::route('FrontendShowArticle',array($newestInformation['id'],$article['id']))}}}">{{ $article['title']}}</a>
@@ -34,7 +34,7 @@
                     @endif
                         <span class="date1">发布时间:{{ $article['created_at']}}</span>
                     </p>
-                <? $iconNumber++ ?>
+                {{--*/ $iconNumber++; /*--}}
                 @endforeach
 
             </div>
@@ -59,7 +59,7 @@
 		    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesIndex[0]['id'])}}}" class="mainmenu_title">{{ $catagoriesIndex[0]['catagory']}}</a>
 			<div>
 				<ol>
-		        <? $iconNumber = Config::get('freshman.initIconNumber') ?>
+                {{--*/ $iconNumber = Config::get('freshman.initIconNumber') /*--}}
                 @foreach ($catagoriesIndex[0]['articles'] as $article)
                     <li>
                     @if($iconNumber == Config::get('freshman.iconOne')) <span class="first">1</span>
@@ -69,7 +69,7 @@
                     @endif
                         <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[0]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                <? $iconNumber++ ?>
+                {{--*/ $iconNumber++; /*--}}
                 @endforeach
 				</ol>
 			</div>
@@ -78,7 +78,7 @@
 		    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesIndex[1]['id'])}}}" class="mainmenu_title">{{ $catagoriesIndex[1]['catagory']}}</a>
 			<div>
 				<ol>
-		        <? $iconNumber = Config::get('freshman.initIconNumber') ?>
+                {{--*/ $iconNumber = Config::get('freshman.initIconNumber') /*--}}
                 @foreach ($catagoriesIndex[1]['articles'] as $article)
                     <li>
                     @if($iconNumber == Config::get('freshman.iconOne')) <span class="first">1</span>
@@ -88,7 +88,7 @@
                     @endif
                         <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[1]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                <? $iconNumber++ ?>
+                {{--*/ $iconNumber++; /*--}}
                 @endforeach
 				</ol>
 			</div>
@@ -97,7 +97,7 @@
 		    <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesIndex[2]['id'])}}}" class="mainmenu_title">{{ $catagoriesIndex[2]['catagory']}}</a>
 			<div>
 				<ol>
-		        <? $iconNumber = Config::get('freshman.initIconNumber') ?>
+                {{--*/ $iconNumber = Config::get('freshman.initIconNumber') /*--}}
                 @foreach ($catagoriesIndex[2]['articles'] as $article)
                     <li>
                     @if($iconNumber == Config::get('freshman.iconOne')) <span class="first">1</span>
@@ -107,7 +107,7 @@
                     @endif
                         <a href="{{{ URL::route('FrontendShowArticle',array($catagoriesIndex[2]['id'],$article['id']))}}}">&nbsp;&nbsp;{{ $article['title']}}</a>
                     </li>
-                <? $iconNumber++ ?>
+                {{--*/ $iconNumber++; /*--}}
                 @endforeach
 				</ol>
 			</div>

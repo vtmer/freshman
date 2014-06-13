@@ -66,7 +66,7 @@ class FrontBaseController extends Controller {
      *
      * @return Array
      */
-    public function getCatagoryArticle()
+    public function getCatagoryArticle($articleNumber)
     {
 		$schoolPart = SchoolPartModel::find($this->schoolPartId);
         foreach(CatagoryModel::all() as $catagory) {
@@ -77,6 +77,7 @@ class FrontBaseController extends Controller {
                 ->orderBy('id','desc')
                 ->where('active','=',1)
                 ->where('schoolpart_id','=',$schoolPart['id'])
+                ->limit($articleNumber)
                 ->get();
             $catagories[] = $catagory;
         }
