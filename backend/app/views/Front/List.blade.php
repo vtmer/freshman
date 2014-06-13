@@ -34,7 +34,7 @@
 							发布于：{{ $article['created_at'] }}&nbsp;&nbsp;&nbsp;&nbsp;来源：广东工业大学校团委数字中心
 						</span>
                         <p>
-                            {{ mb_substr($article['content'],1,90,"UTF-8") }}.....
+                            {{ mb_substr(strip_tags($article['content']),0,Config::get('freshman.substrLength'),"UTF-8") }}.....
                         </p>
 					</li>
                     @endforeach
