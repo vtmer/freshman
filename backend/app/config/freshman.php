@@ -1,6 +1,7 @@
 <?php
 
 return array(
+    'chooseIndex' => 0,
     'initSchoolPart' => 1,
     'articleNumber' => 6,
     'initShowArticleNumber' => 8,

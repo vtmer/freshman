@@ -21,6 +21,7 @@ class ListController extends FrontBaseController {
         return View::make('Front/List')->with(array(
             'getCatagory' => $getCatagory,
             'catagoriesList' => $catagories,
+            'headerChoose' => $id,
             'chooseCatagoryId' => $id
         ));
     }

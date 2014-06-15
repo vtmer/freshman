@@ -2,9 +2,13 @@
 <div class="logoWrapper">
 <a href="{{{ URL::route('FrontendIndex')}}}" class="homelink" title="首页"></a>
 <ul class="nav">
-    <li class="default"><a href="{{{ URL::route('FrontendIndex')}}}" class="controlSpace">首页</a></li>
+    <li @if($headerChoose == Config::get('freshman.chooseIndex')) class="default" @endif>
+        <a href="{{{ URL::route('FrontendIndex')}}}" class="controlSpace">首页</a>
+    </li>
     @foreach($catagories as $catagory)
-    <li><a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id']) }}}">{{ $catagory['catagory']}}</a></li>
+    <li @if($headerChoose == $catagory['id']) class="default" @endif>
+        <a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id']) }}}">{{ $catagory['catagory']}}</a>
+    </li>
     @endforeach
     <li class="special_li"><a class="special_a" href="{{{ URL::route('FrontendIndexBySchoolPart',$schoolParts[0]['id'])}}}">{{ $schoolParts[0]['schoolpart']}}</a>
         <ul class="special_down">
