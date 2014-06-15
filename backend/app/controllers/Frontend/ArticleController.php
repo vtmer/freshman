@@ -27,7 +27,7 @@ class ArticleController extends FrontBaseController {
             'catagoriesList' => $catagories,
             'currentCatagory' => $currentCatagory,
             'chooseCatagoryId' => Config::get('freshman.nullChooseCatagoryId'),
-            'headerChooseCatagoryId' => $catagory,
+            'headerChoose' => $catagory,
             'article' => $article
         ));
     }

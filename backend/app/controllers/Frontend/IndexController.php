@@ -23,6 +23,7 @@ class IndexController extends FrontBaseController {
 
         return View::make('Front/Index')->with(array(
             'catagoriesIndex' => $catagories,
+            'headerChoose' => Config::get('freshman.chooseIndex'),
             'newestInformation' => $catagories[Config::get('freshman.newestInformationIndex')]
         ));
 	}
