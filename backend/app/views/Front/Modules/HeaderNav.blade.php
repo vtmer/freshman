@@ -2,11 +2,11 @@
 <div class="logoWrapper">
 <a href="{{{ URL::route('FrontendIndex')}}}" class="homelink" title="首页"></a>
 <ul class="nav">
-    <li @if(!isset($headerChooseCatagoryId)) class="default" @endif>
+    <li @if($headerChoose == Config::get('freshman.chooseIndex')) class="default" @endif>
         <a href="{{{ URL::route('FrontendIndex')}}}" class="controlSpace">首页</a>
     </li>
     @foreach($catagories as $catagory)
-    <li @if(isset($headerChooseCatagoryId) && $headerChooseCatagoryId == $catagory['id']) class="default" @endif>
+    <li @if($headerChoose == $catagory['id']) class="default" @endif>
         <a href="{{{ URL::route('FrontendListByCatagoryId',$catagory['id']) }}}">{{ $catagory['catagory']}}</a>
     </li>
     @endforeach
