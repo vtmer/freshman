@@ -118,19 +118,19 @@
     </div>
     <div class="picture">
      <div class="picture1">
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoOne.jpg') }}} " >
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoTwo.jpg') }}} " >
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoThree.jpg') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_01.png') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_02.png') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_03.png') }}} " >
      </div>
      <div class="picture2">
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoOne.jpg') }}} " >
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoTwo.jpg') }}} " >
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoThree.jpg') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_04.png') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_05.png') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_06.png') }}} " >
      </div>
      <div class="picture3">
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoOne.jpg') }}} " >
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoTwo.jpg') }}} " >
-       <img class="gray_pic" src="{{{ URL::asset('static/images/photoThree.jpg') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_07.png') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_08.png') }}} " >
+       <img class="gray_pic" src="{{{ URL::asset('static/images/photo_09.png') }}} " >
        </div>
     </div>
     <br>
