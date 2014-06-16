@@ -42,7 +42,7 @@
                     <a href="{{{ URL::route('FrontendListByCatagoryId',$catagoriesList[Config::get('freshman.newestInformationIndex')]['id'])}}}">MORE</a></span>
 				</h1>
 				<ul class="list_box">
-                    {{--*/  $iconNumber = Config::get('freshman.initCataNumer'); /*--}}
+                    {{--*/  $iconNumber = Config::get('freshman.initIconNumber'); /*--}}
                     @foreach($catagoriesList[Config::get('freshman.newestInformationIndex')]['articles'] as $article)
                     @if($iconNumber == Config::get('freshman.iconOne'))<li id="list_boxFirst"><span class="first">1</span>
                     @elseif($iconNumber == Config::get('freshman.iconTwo'))<li><span class="second">2</span>
