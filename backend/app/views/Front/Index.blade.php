@@ -114,7 +114,7 @@
         </div>
     </div>
     <div class="photo">
-        <a href=""><img class="photo_download" src="{{{ URL::asset('static/images/13.png') }}} " alt=""></a>
+        <a href=""><img class="photo_download" src="{{{ URL::asset('static/images/banner.jpg') }}} " alt=""></a>
     </div>
     <div class="picture">
      <div class="picture1">
