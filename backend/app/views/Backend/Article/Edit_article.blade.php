@@ -6,6 +6,8 @@
 
 @section('styles')
 <script type="text/javascript" src="{{{ URL::asset('static/js/jquery.js')}}}"></script>
+<script type="text/javascript" src="{{{ URL::asset('static/ckeditor/ckeditor.js')}}}"></script>
+<script type="text/javascript" src="{{{ URL::asset('static/ckfinder/ckfinder.js')}}}"></script>
 <link href="{{{ URL::asset('static/css/select2.css')}}}" rel="stylesheet">
 <link href="{{{ URL::asset('static/css/prettify.css')}}}" rel="stylesheet">
 <link href="{{{ URL::asset('static/css/bootstrap.css')}}}" rel="stylesheet">
@@ -22,64 +24,24 @@
 	    <div class="col-md-1"><h1><a href="" data-toggle="modal" data-target="#save_myModal"><i class="icon-save"></i></a><h1></div><div class="col-md-1"><span id="savemessage"></span></div>
  	  </div>
 	</div>
-	<div id="alerts"></div>
-    <div class="btn-toolbar" data-role="editor-toolbar" data-target="#editor">
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="icon-font"></i><b class="caret"></b></a>
-          <ul class="dropdown-menu">
-          </ul>
-        </div>
-      <div class="btn-group">
-        <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
-          <ul class="dropdown-menu">
-          <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
-          <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
-          <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
-          </ul>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
-        <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
-        <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="icon-strikethrough"></i></a>
-        <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="icon-list-ul"></i></a>
-        <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="icon-list-ol"></i></a>
-        <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
-        <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="icon-indent-right"></i></a>
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
-        <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
-        <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
-        <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
-      </div>
-      <div class="btn-group">
-		  <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="icon-link"></i></a>
-		    <div class="dropdown-menu input-append">
-			    <input class="span2" placeholder="URL" type="text" data-edit="createLink"/>
-			    <button class="btn" type="button">Add</button>
-        </div>
-        <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="icon-cut"></i></a>
-
-      </div>
-
-      <div class="btn-group">
-        <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="icon-picture"></i></a>
-        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
-      </div>
-      <div class="btn-group">
-        <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
-        <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
-      </div>
-    </div>
     <input type="text" placeholder="文章标题" class="form-control" id="titleinput" value="@if(isset($article['title'])){{$article['title']}}@endif" requried><p></p>
-    <div id="editor">
+    <textarea id="ckeditor" class="ckeditor" cols="80" rows="10">
         @if(isset($article['content']))
         {{$article['content']}}
         @endif
-    </div>
+    </textarea>
+	<script type="text/javascript">
+        CKEDITOR.replace( 'ckeditor',
+        {
+            filebrowserBrowseUrl : "{{{ URL::asset('static/ckfinder/ckfinder.html')}}}",
+            filebrowserImageBrowseUrl : "{{{ URL::asset('static/ckfinder/ckfinder.html?Type=Images')}}}",
+            filebrowserFlashBrowseUrl : "{{{ URL::asset('static/ckfinder/ckfinder.html?Type=Flash')}}}",
+            filebrowserUploadUrl : "{{{ URL::asset('static/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files')}}}",
+            filebrowserImageUploadUrl : "{{{ URL::asset('static/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images')}}}",
+            filebrowserFlashUploadUrl : "{{{ URL::asset('static/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash')}}}"
+        });
+
+	</script>
   </div>
 
 
@@ -178,18 +140,14 @@
 @stop
 
 @section('scripts')
-<script src="{{{ URL::asset('static/js/wysiwyg.js')}}}" type="text/javascript"></script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="{{{ URL::asset('static/js/widgets.js')}}}";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <script type="text/javascript" src="{{{ URL::asset('static/js/bootstrap.js')}}}"></script>
 <script src="{{{ URL::asset('static/js/prettify.js')}}}"></script>
-<script src="{{{ URL::asset('static/js/jquery.hotkeys.js')}}}"></script>
-<script src="{{{ URL::asset('static/js/bootstrap-wysiwyg.js')}}}"></script>
 <script src="{{{ URL::asset('static/js/select2.min.js')}}}"></script>
 <script type="text/javascript">
 $(function(){
     $('#save').click(function () {
         var title  = document.getElementById('titleinput').value;
-        var content = $('#editor').html();
+        var content = CKEDITOR.instances.ckeditor.getData();
         $('#title').val(title);
         $('#content').val(content);
     });
@@ -200,6 +158,40 @@ $("#member").select2({
 $("#member2").select2({
     placeholder: "请选择文章分校区"
 });
+</script>
+<script language="JavaScript">
+                                                   $(document).ready(function() {
+      /* Our ckeck-variable which tells us if we need to warn the user before leave or not
+      initialized with 'false' so the don't bother the user when we don't have to. */
+      var warn_on_leave = false;
+
+      /* Here we check if the user has made any 'changes' actually we just check if he has pressed a key in ckeditor.
+      'cause you have to do that it's a proper solution.
+      This Code is NOT written in jquery, 'cause I haven't found a proper way to combine jQuery and CKEditor eventhandling
+      The first line is an event-listener which is called everytime we change our focus (i.e. click in our ckeditor, a link, etc)
+      The second 'CKEDITOR.currentInstance' is a method which returns our currently focused element. Here we listen if the user presses a key.
+      The 'try...catch' Block is needed so we don't produce an error when our focus is 'null'. */
+      CKEDITOR.on('currentInstance', function() {
+          try {
+              CKEDITOR.currentInstance.on('key', function() {
+                  warn_on_leave = true;
+              });
+          } catch (err) { }
+      });
+
+
+      // We don't want to annoy the user with a popup, when he's about to save his/her changes
+      $(document.activeElement).submit(function() {
+          warn_on_leave = false;
+      });
+
+      // Finally we check if we need to show our popup or not
+      $(window).bind('beforeunload', function() {
+          if(warn_on_leave) {
+              return 'Achtung! Es wurde nicht gespeichert! Alle Eingaben gehen verloren!';
+          }
+      });
+  });
 </script>
 
 @stop
