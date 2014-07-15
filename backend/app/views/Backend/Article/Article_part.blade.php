@@ -58,7 +58,8 @@
                 <span class="glyphicon glyphicon-thumbs-down"></span>
             @else<span class="glyphicon glyphicon-thumbs-up"></a>
             @endif
-             | <a href=""><span class="glyphicon glyphicon-eye-open"></span></a>
+             | <a href="{{{ URL::route('FrontendShowArticle',array($article['catagories'][0]['id'], $article['id']))}}}" target="_blank">
+                <span class="glyphicon glyphicon-eye-open"></span></a>
         </td>
 	     </tr>
 	   @endforeach
