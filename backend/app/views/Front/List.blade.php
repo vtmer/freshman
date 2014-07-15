@@ -26,13 +26,13 @@
 			<div class="contain_passage">
 				<ul>
                     @foreach($getCatagory['articles'] as $article)
-					<li>
+					<li class="list">
 						<h1>
 							<a href="{{{ URL::route('FrontendShowArticle',array($getCatagory['id'],$article['id']))}}}">{{ $article['title']}}</a>
 						</h1>
-						<span class="data">
+						<p class="data">
 							发布于：{{ $article['created_at'] }}&nbsp;&nbsp;&nbsp;&nbsp;来源：广东工业大学校团委数字中心
-						</span>
+						</p>
                         <p>
                             {{ strFilter::filterHtmlLimit($article['content'],Config::get('freshman.substrLength')) }}
                         </p>
