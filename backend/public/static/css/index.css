@@ -7,8 +7,13 @@
             height: 81px;
             z-index: 5;/*防止下滑时导航栏被遮掩*/
         }
-
-
+        .fixed.logo {background-color: #d43434;}
+        .fixed.logo .logoWrapper {background-image:url(../images/logo_down.png);}
+        .fixed.logo .logoWrapper .nav a{color:white;}
+        .fixed.logo .logoWrapper .nav a:hover{background-color: #fff;color: red;}
+        .fixed.logo .nav .special_li .special_a{background-image: url(../images/nav_position.jpg);}
+        .fixed.logo .nav .special_li .special_a:hover{background-color: #d34343;}
+        .fixed.logo .nav img{visibility: hidden;}
         .banner {
             width: 960px;
             margin: 100px auto;
@@ -44,6 +49,7 @@
             margin-right: 76px;
             margin-top: 35px;
             color: white;
+            width: 268px;
         }
 
         .right_banner p {
@@ -52,6 +58,14 @@
             padding: 0 0 25px 20px;
             border-bottom: 1px dotted #baaead;
             position: relative;
+        }
+	.right_banner p > a {
+            display: inline-block;
+            width: 90%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
         }
 
         .right_banner span a {
@@ -200,9 +214,10 @@
             background-position:50% 32px;
             background-color: #ffffff;
             float: right;
+            width: 320px;
         }
 
-        a.mainmenu_title {
+        div.mainmenu a.mainmenu_title {
             display: block ;
             height: 20px;
             width: 100px;
@@ -292,6 +307,13 @@
 
         .mainmenu a { 
             font-size: 14px; 
+            color: #555;
+            display: inline-block;
+            width: 90%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            -o-text-overflow: ellipsis;
         }
        .picture{
             width:960px; margin: auto;padding: 30px;overflow: hidden;

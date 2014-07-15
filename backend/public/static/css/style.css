@@ -4,36 +4,13 @@
 }
 body {
 	background:#fff;
-	color:#555;
-	font-size:14px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
-td,th,caption {
-	font-size:14px;
-}
-h1, h2, h3, h4, h5, h6 {
-	font-weight:normal;
-	font-size:100%;
-}
-address, caption, cite, code, dfn, em, strong, th, var {
-	font-style:normal;
-	font-weight:normal;
-}
 a {
-	color:#555;
 	text-decoration:none;
 }
 a:hover {
 	text-decoration:underline;
-}
-img {
-	border:none;
-}
-input, textarea, select, button {
-	font:14px Verdana,Helvetica,Arial,sans-serif;
-}
-table {
-	border-collapse:collapse;
 }
 html {
 	overflow-y: scroll;
@@ -125,13 +102,17 @@ ul.list_box li {
 }
 ul.list_box li a {
 	display: block;
-	width: 250px;
+	width: 215px;
 	margin-top: -15px;
 	margin-left: 20px;
 	padding-bottom: 5px;
 	text-align: left;
 	color: #d34343;
 	font-weight: 500;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
 }
    #form_second {
 	margin-top: 20px;
@@ -180,7 +161,7 @@ div.contain_passage {
 div.contain_passage ul {
 	list-style-type: none;
 }
-div.contain_passage ul li {
+div.contain_passage ul li.list{
 	height: 110px;
 	padding: 0px 15px 5px 15px;
 	border-bottom: 1px dashed #797;
@@ -196,15 +177,12 @@ div.contain_passage ul li h1 a {
 div.contain_passage ul li h1 a :hover {
 	color: #726B6B;
 }
-div.contain_passage ul li span.data {
+div.contain_passage ul li p.data {
+	font-size: 12px;
 	color: #797979;
 	width: 100%;
 	background-color: #ffffff;
-	margin-left: -130px;
-	padding: 5px 0px;
-}
-div.contain_passage ul li p {
-	font-weight: bolder;
+	padding: 3px 0px;
 }
 div.contain p.cnav {
 	background-color: #797979;
@@ -252,13 +230,17 @@ div.contain_passage ul.list li {
 }
 div.contain_passage ul.list li a{
 	width: 100%;
-	margin-left: -20px;
-	display: block;
+	color: #d34343;
+	display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
 }
 div.contain_passage ul.list li a:visited {
 	color: #726B6B;
 }
-div.contain_passage h1.nav1 {
+div.contain_passage p.nav1 {
 	background-color: #e7e7e7;
 	height: 25px;
 	width: 100%;
