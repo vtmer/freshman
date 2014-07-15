@@ -234,92 +234,12 @@ $(document).ready(function(){
 
     }
 
-    /*鼠标滚动*/
-    window.addEventListener("mousewheel", function (event) {
-
-         var scrollFunc = function (e) {
-         e = e || window.event;
-         if (e.wheelDelta) {  //判断浏览器IE，谷歌滑轮事件
-            if (e.wheelDelta > 0) { //当滑轮向上滚动时
-
-            }
-            if (e.wheelDelta < 0) { //当滑轮向下滚动时
-                $(".logo").css("background-color","#d43434");
-                $(".logoWrapper").css("background-image","url(static/images/logo_down.png)");
-                $(".nav a").css("color","white");
-                $(".special_a").css("background-image","url(static/images/nav_position.jpg)");
-            }
-         } else if (e.detail) {  //Firefox滑轮事件
-            if (e.detail> 0) { //当滑轮向上滚动时
-
-            }
-            if (e.detail< 0) { //当滑轮向下滚动时
-                $(".logo").css("background-color","#d43434");
-                $(".logoWrapper").css("background-image","url(static/images/logo_down.png)");
-                $(".nav a").css("color","white");
-                $(".special_a").css("background-image","url(static/images/nav_position.jpg)");
-            }
-         }
-        }
-        //给页面绑定滑轮滚动事件
-        if (document.addEventListener) {//firefox
-            document.addEventListener('DOMMouseScroll', scrollFunc, false);
-        }
-        //滚动滑轮触发scrollFunc方法  //ie 谷歌
-        window.onmousewheel = document.onmousewheel = scrollFunc;
-
-        if($("body").scrollTop() == 0) {
-                        $(".logo").css("background-color","");
-                        $(".logoWrapper").css("background-image","url(static/images/logo_front.png)");
-                        $(".nav a").css("color","black");
-                        $("oImg").css("display","block") ;
-                        $(".special_a").css("background-image","url(static/images/nav_position.png)");
-                        $(oImg).css("visibility","visible") ;
-                        for(var i = 0; i < $(".nav a").length && i != $(".nav a").length-3 ; i++) {
-                            $(".nav a").eq(i).mouseenter(function() {
-
-                               $(this).css("background-color","");
-                               $(this).css("color","red");
-                            });
-                            $(".nav a").eq(i).mouseleave(function() {
-
-                               $(this).css("background-color","");
-                               $(this).css("color","black");
-
-                            });
-                        }
-                    }
-                    else {
-                        $(oImg).css("visibility","hidden") ;
-                        for(var i = 0; i < $(".nav a").length-3; i++) {
-                                $(".nav a").eq(i).mouseenter(function() {
-
-                                   $(this).css("background-color","white");
-                                   $(this).css("color","#da5d5d");
-                                });
-                                $(".nav a").eq(i).mouseleave(function() {
-
-                                   $(this).css("background-color","");
-                                   $(this).css("color","white");
-                                });
-                        }
-                         for(var i = $(".nav a").length-2; i < $(".nav a").length; i++) {
-                                $(".nav a").eq(i).mouseenter(function() {
-
-                                   $(this).css("background-color","white");
-                                   $(this).css("color","red");
-                                });
-                                $(".nav a").eq(i).mouseleave(function() {
-
-                                   $(this).css("background-color","");
-                                   $(this).css("color","black");
-                                });
-                            }
-
-                    }
-
-    },"true");
-
-
     init();
 });
+		$(window).scroll(function(event) {
+            if($("body").scrollTop() == 0) {
+                $(".logo").removeClass("fixed");
+            } else {       
+                 $(".logo").addClass("fixed");                       
+            };    
+        });
