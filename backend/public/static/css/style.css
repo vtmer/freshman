@@ -388,3 +388,24 @@ ul.pagination li a:hover {
  #lineNone {
  	border:none;
  }
+
+ .returnTop {
+ 	display: none;
+ 	background-color: #434343;
+ 	opacity: 0.75; 
+ 	color: white; 
+ 	font-weight: bolder; 
+ 	position: fixed;
+ 	right: 20px;
+ 	bottom: 100px;
+ 	width: 66px; 
+ 	height: 54px;
+ 	font-size: 40px;
+ 	text-align: center;
+ 	line-height: 36px;
+ 	border-radius: 5px;
+ }
+ .returnTop:hover {
+ 	background-color: #d52626;
+ 	text-decoration: none;
+ }
