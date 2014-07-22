@@ -75,6 +75,7 @@
 		</div>
     @include('Front.Modules.Sidebar')
 </div>
+  <a href="" class="returnTop">︿</a>
     @include('Front.Modules.Footer')
 @stop
 
