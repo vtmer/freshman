@@ -1,4 +1,23 @@
 $(document).ready(function(){
+	
+	  $(window).scroll(function() {
+        if($('body').scrollTop() > 670 ) {
+            $('.returnTop').css('display','inline-block').click(function() {
+                $('body').animate({scrollTop: 0},{duration:'slow',queue:false});
+                $(this).css('background-color','#4c4c4c')
+                return false;
+            })
+            .mouseover(function() {
+                $(this).css('background-color', '#d43434')})
+            .mouseout(function() {
+                $(this).css('background-color', '#4c4c4c')
+            });
+        } else {
+            $('.returnTop').css({display:'none',backgroundColor:'#4c4c4c'});
+            return false;
+        }
+        return false;
+    });
 
     function init() {
             var  aUl = $(".nav li");
