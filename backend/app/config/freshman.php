@@ -16,5 +16,7 @@ return array(
     'initRelevanceNumber' => 0,
     'relevanceNumber' => 6,
 
-    'substrLength' => 90
+    'substrLength' => 90,
+
+    'freshmanTitle' => '广工新生专题网'
 );
