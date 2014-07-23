@@ -3,7 +3,7 @@
 @section('title')
     @foreach($catagoriesList as $catagory)
         @if($catagory['id'] == $chooseCatagoryId)
-        {{ $catagory['catagory']}} -- 广工大新生网
+        {{ $catagory['catagory']}} -- {{ Config::get('freshman.freshmanTitle')}}
         @endif
     @endforeach
 @stop
@@ -20,7 +20,7 @@
 				<span class="nav_bg">
 
 			    </span>
-				&nbsp;&nbsp;新生专题网>
+				&nbsp;&nbsp;{{ Config::get('freshman.freshmanTitle') }}>
                     {{ $getCatagory['catagory']}}
 			</p>
 			<div class="contain_passage">

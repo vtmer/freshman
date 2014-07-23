@@ -1,7 +1,7 @@
 @extends ('Front.Template.Front')
 
 @section('title')
-新生专题网--你的广工指南
+{{ Config::get('freshman.freshmanTitle')}}
 @stop
 
 @section('style')
