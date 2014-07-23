@@ -1,7 +1,7 @@
 @extends('Front.Template.Front')
 
 @section('title')
-        {{ $article['title']}} -- 广工大新生网
+        {{ $article['title']}} -- {{ Config::get('freshman.freshmanTitle')}}
 @stop
 
 @section('styles') @parent
@@ -15,7 +15,7 @@
 			<p class="cnav">
 				<span class="nav_bg">
 			    </span>
-				&nbsp;&nbsp;新生专题网>
+				&nbsp;&nbsp;{{ Config::get('freshman.freshmanTitle')}}>
                     {{ $currentCatagory['catagory']}}
 			</p>
 			<div class="contain_passage">
