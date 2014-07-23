@@ -199,6 +199,11 @@ div.contain span.nav_bg {
 .contain p {
 	margin-top: 5px;
 }
+.contain_passage > p {
+	margin-bottom: 30px;
+	font-family: Lora,Georgia,"Xin Gothic","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
+	line-height: 25px;
+}
 
   /*文章页面主要内容*/
 div.contain_passage_header {
