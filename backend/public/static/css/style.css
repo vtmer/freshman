@@ -203,6 +203,7 @@ div.contain span.nav_bg {
 	margin-bottom: 30px;
 	font-family: Lora,Georgia,"Xin Gothic","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
 	line-height: 25px;
+	word-wrap: break-word;
 }
 
   /*文章页面主要内容*/
