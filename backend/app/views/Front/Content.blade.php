@@ -22,7 +22,7 @@
 				 <div class="contain_passage_header">
                 	<h1>{{ $article['title']}}</h1>
                 	<p class="contain_p">
-                		发布时间：{{ $article['created_at'] }}&nbsp;&nbsp;&nbsp;&nbsp;来源：广东工业大学校团委新媒体
+                		发布时间：{{ $article['created_at'] }}&nbsp;&nbsp;&nbsp;&nbsp;来源：{{ $article['source']}}
                 	</p>
                 </div>
                 <p>
