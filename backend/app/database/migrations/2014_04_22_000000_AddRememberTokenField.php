@@ -16,7 +16,7 @@ class AddRememberTokenField extends Migration {
     public function down()
     {
         Schema::table('users', function ($table) {
-            Schema::dropColumn('remember_token');
+            $table->dropColumn('remember_token');
         });
     }
 }
