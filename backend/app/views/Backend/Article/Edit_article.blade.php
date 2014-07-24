@@ -105,6 +105,13 @@
 		</div>
 	</div>
     <div class="form-group">
+    {{ Form::label('source','文章来源',array('class'=> 'col-sm-2 control-label'))}}
+		<div class="col-sm-10">
+                <input id="source" type="text" name="source" class="form-control"
+                    value="@if(isset($article['source'])) {{ $article['source'] }} @else {{ Config::get('freshman.InitArticleSource')}} @endif" required>
+		</div>
+	</div>
+    <div class="form-group">
     {{ Form::label('select','文章状态',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="select" name="active">

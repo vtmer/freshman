@@ -143,6 +143,7 @@ class ArticleController extends BaseController {
         $article->content = $content;
         $article->active = $active;
         $article->updown = $updown;
+        $article->source = $source;
 
         $article->save();
 

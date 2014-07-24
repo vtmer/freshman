@@ -18,5 +18,6 @@ return array(
 
     'substrLength' => 90,
 
+    'InitArticleSource' => '广东工业大学学生新媒体中心',
     'freshmanTitle' => '广工新生专题网'
 );
