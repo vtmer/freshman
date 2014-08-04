@@ -14,7 +14,7 @@
             <div class="left_banner">
                 <p class="odd">2014.6.8高考</p>
                 <p class="even">2014.6月末 填报志愿</p>
-                <p class="odd">2014.7月中旬 收到录取通知书</p>
+                <p class="odd">2014.8月中旬 收到录取通知书</p>
                 <p class="even">2014.9.9 我们在广工大等你</p>
             </div>
             <div class="right_banner">
