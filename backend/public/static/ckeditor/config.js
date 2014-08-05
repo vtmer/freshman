@@ -36,6 +36,8 @@ CKEDITOR.editorConfig = function( config ) {
     config.fullPage = true;
 
 	// Simplify the dialog windows.
-    config.allowedContent=true;
 	config.removeDialogTabs = 'image:advanced;link:advanced';
+
+	// Set allowedcontent
+	config.allowedContent=true;
 };
