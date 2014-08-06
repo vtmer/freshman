@@ -124,8 +124,8 @@
     {{ Form::label('updown','置顶选择',array('class'=> 'col-sm-2 control-label'))}}
 		<div class="col-sm-10">
 		   <select style="width:100%" class="form-control" tabindex="-1" id="updown" name="updown">
-		      <option value="1"@if(isset($article['updown']) && $article['updown'] == '1')selected @endif>置顶</option>
 		      <option value="0"@if(isset($article['updown']) && $article['updown'] == '0')selected @endif>不置顶</option>
+		      <option value="1"@if(isset($article['updown']) && $article['updown'] == '1')selected @endif>置顶</option>
 		   </select>
 		</div>
            </div>
