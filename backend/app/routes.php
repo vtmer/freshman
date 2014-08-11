@@ -40,6 +40,11 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'as' => 'FrontendShowArticle',
         'uses' => 'Controllers\Frontend\ArticleController@showArticle'
     ));
+
+    Route::get('/feed', array(
+        'as' => 'FrontendFeed',
+        'uses' => 'Controllers\Frontend\FeedController@showFeed'
+    ));
 });
 
 
