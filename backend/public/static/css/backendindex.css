@@ -96,4 +96,6 @@ table.tablesorter .headerSortDown {
 	background-repeat: no-repeat;
 }
 
-
+.panel-body {
+    word-wrap:break-word;
+}
