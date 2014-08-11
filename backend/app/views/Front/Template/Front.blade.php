@@ -9,9 +9,11 @@
 		@show
 	</head>
 	<body>
+        <button class="suggestButton">反馈</button>
 		@yield('container')
 	</body>
 	@section('scripts')
 	<script type="text/javascript" src="{{{ URL::asset('static/js/jquery-1.11.0.min.js')}}}"></script>
+	<script type="text/javascript" src="{{{ URL::asset('static/js/suggest.js')}}}"></script>
 	@show
 </html>
