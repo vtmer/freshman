@@ -41,14 +41,14 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'uses' => 'Controllers\Frontend\ArticleController@showArticle'
     ));
 
-
-
-
-
-
     Route::post('/suggest', array(
         'as' => 'BackendNewSuggest',
         'uses' => 'Controllers\Frontend\SuggestController@newSuggest'
+    ));
+
+    Route::get('/feed', array(
+        'as' => 'FrontendFeed',
+        'uses' => 'Controllers\Frontend\FeedController@showFeed'
     ));
 });
 
