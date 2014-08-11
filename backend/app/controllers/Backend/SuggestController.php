@@ -32,7 +32,7 @@ class SuggestController extends BaseController {
     {
         extract(Input::all());
 
-        $usre = new SuggestModel(array(
+        $user = new SuggestModel(array(
             'name' => $name,
             'email' => $email,
             'suggest' => $suggest

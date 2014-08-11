@@ -40,6 +40,11 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'as' => 'FrontendShowArticle',
         'uses' => 'Controllers\Frontend\ArticleController@showArticle'
     ));
+
+    Route::post('/suggest', array(
+        'as' => 'BackendNewSuggest',
+        'uses' => 'Controllers\Backend\SuggestController@newSuggest'
+    ));
 });
 
 
@@ -160,11 +165,6 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
             Route::get('/', array(
                 'as' => 'BackendShowSuggest',
                 'uses' => 'Controllers\Backend\SuggestController@showSuggest'
-            ));
-
-            Route::post('/suggest', array(
-                'as' => 'BackendNewSuggest',
-                'uses' => 'Controllers\Backend\SuggestController@newSuggest'
             ));
 
             Route::post('/', array(
