@@ -41,6 +41,11 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'uses' => 'Controllers\Frontend\ArticleController@showArticle'
     ));
 
+    Route::post('/suggest', array(
+        'as' => 'BackendNewSuggest',
+        'uses' => 'Controllers\Frontend\SuggestController@newSuggest'
+    ));
+
     Route::get('/feed', array(
         'as' => 'FrontendFeed',
         'uses' => 'Controllers\Frontend\FeedController@showFeed'
@@ -159,6 +164,19 @@ Route::group(array('prefix' => 'backend','before' => 'auth'),function(){
 	    	   'uses' => 'Controllers\Backend\CatagoryController@deleteCatagory'
 	    	  ));
     	});
+
+        Route::group(array('prefix' => 'suggest'), function () {
+
+            Route::get('/', array(
+                'as' => 'BackendShowSuggest',
+                'uses' => 'Controllers\Backend\SuggestController@showSuggest'
+            ));
+
+            Route::post('/', array(
+                'as' => 'BackendDeleteSuggest',
+                'uses' => 'Controllers\Backend\SuggestController@deleteSuggest'
+            ));
+        });
     });
 
     Route::post('/{id}/password',array(

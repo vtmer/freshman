@@ -221,3 +221,131 @@
             color: #ffffff;
         }
         
+
+/--------suggest form css-----------------/
+@charset "UTF-8";
+/**
+ * 
+ * @aye (you@example.org)
+ * @date    2014-08-10 10:32:29
+ * @version $Id$
+ */
+ *{
+ 	margin: 0;
+ 	padding: 0;
+ }
+ html,body {
+ 	height: 1000px;
+ 	width: 100%;
+ }
+.suggest {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#aa000000,endColorstr=#aa000000);
+	zoom: 1;
+	background-color: rgba(0,0,0,0.6);
+    z-index:1000;
+}
+.suggestList {
+	width: 40%;
+	min-width: 410px;
+	height: auto;
+	margin: auto;
+	border-radius: 10px;
+	position: relative;
+	top: 50px;
+	background-color: #fff;
+    text-align:center;
+    padding-bottom: 10px;
+}
+.modal-header {
+    padding:15px;
+    font-size:30px;
+    text-align:center;
+}
+.suggestFormTitle p {
+    margin-top: 10px;
+}
+.suggestName ,
+.suggestEmail{
+	width: 90%;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 20px;
+	padding-left: 10px;
+	border:1px solid #ccc;
+	border-radius: 3px;
+	outline: none;
+}
+.suggestContent {
+    width:90%;
+	height: 280px;
+	margin: 20px 0;
+	position: 10px;
+	resize: none;
+    padding: 5px;
+	border-radius: 5px;
+    border: 1px solid #ccc;
+	outline: none;
+}
+.Namewarn {
+	display: none;
+	margin-left: 5px;
+	margin-top: 2px;
+	color: red;
+	font-size: 12px;
+}
+.warn {
+	display: none;
+	margin-left: 10px;
+	color: red;
+	font-size: 12px;
+}
+.Formsubmit {
+	width: 90%;
+	height: 30px;
+    cursor: pointer;
+    background-color: #d34343;
+    border-radius: 3px;
+    border:1px solid transparent;
+}
+.Formsubmit:hover {
+    background-color: #bd5252;
+}
+.suggestButton {
+	display: inline-block;
+	position: fixed;
+    text-align:center;
+	left: 0;
+	top: 40%;
+	width: 30px;
+	height: 80px;
+	border:1px solid #d43434;
+	border-radius: 3px;
+	background-color: #d43434;
+	color: #fff;
+	font-size: 18px;
+	font-family: '华文楷体';
+	outline: none;
+}
+.suggestButton:hover {
+	width: 35px;
+	opacity: 0.8;
+}
+.close {
+    margin:3px;
+    cursor:Pointer;
+    border:none;
+    background:none;
+	width: 20px;
+	height: 20px;
+	float: right;
+    opacity: 0.2;
+}
+.suggestList input:hover,
+.suggestList textarea:hover{
+    border:1px solid #000;
+}
