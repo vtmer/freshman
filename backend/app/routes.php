@@ -41,6 +41,15 @@ Route::group(array('prefix' => '','before' => ''),function(){
         'uses' => 'Controllers\Frontend\ArticleController@showArticle'
     ));
 
+
+
+
+
+
+    Route::post('/suggest', array(
+        'as' => 'BackendNewSuggest',
+        'uses' => 'Controllers\Frontend\SuggestController@newSuggest'
+    ));
 });
 
 
@@ -194,13 +203,3 @@ Route::post('/backend/login',array(
     'uses' => 'Controllers\Backend\UserController@doLogin'
 ));
 
-
-/*
-|---------------------------------------------
-| Frontend post suggest , Backend control
-|---------------------------------------------
-*/
-Route::post('/suggest', array(
-    'as' => 'BackendNewSuggest',
-    'uses' => 'Controllers\Backend\SuggestController@newSuggest'
-));
