@@ -15,15 +15,24 @@ class SuggestController extends FrontBaseController {
      */
     public function newSuggest()
     {
-        extract(Input::all());
+        $data = Input::all();
 
-        $user = new SuggestModel(array(
-            'name' => $name,
-            'email' => $email,
-            'suggest' => $suggest
+        $validator = Validator::make($data, array(
+            'name' => 'required',
+            'email' => 'required|email',
+            'suggest' => 'required|between:2, 500'
         ));
 
-        $user->save();
+        if ($validator->passes()) {
+            extract($data);
+            $user = new SuggestModel(array(
+                'name' => e($name),
+                'email' => $email,
+                'suggest' => $suggest
+            ));
+
+            $user->save();
+        }
 
         return Redirect::back()->with('thank','感谢您的建议反馈，我们将做得更好');
 
