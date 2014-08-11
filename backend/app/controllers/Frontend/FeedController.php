@@ -19,7 +19,7 @@ class FeedController extends FrontBaseController {
      */
     public function showFeed()
     {
-        $posts = ArticleModel::orderBy('created_at', 'desc')->take(50)->get();
+        $posts = ArticleModel::orderBy('created_at', 'desc')->get();
         $feed = Feed::make();
 
         $feed->title = Config::get('freshman.freshmanTitle');
