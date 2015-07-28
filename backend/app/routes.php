@@ -29,11 +29,16 @@ Route::group(array('prefix' => '','before' => ''),function(){
     Route::get('/school/{id}',array(
         'as' => 'FrontendIndexBySchoolPart',
         'uses' => 'Controllers\Frontend\IndexController@showIndexBySchoolPart'
-    ));
+    ))->where('id', '[1-3]');
 
     Route::get('/category/{id}',array(
         'as' => 'FrontendListByCatagoryId',
         'uses' => 'Controllers\Frontend\ListController@showList'
+    ));
+
+    Route::get('/m-category/{id}',array(
+        'as' => 'MFrontendListByCatagoryId',
+        'uses' => 'Controllers\Frontend\ListController@ajaxPaginate'
     ));
 
     Route::get('/article/{catagory}/{id}',array(
