@@ -63,7 +63,7 @@ class ListController extends FrontBaseController {
                 ->orderBy('id','desc')
                 ->where('active','=',1)
                 ->where('schoolpart_id','=',$schoolPart['id'])
-                ->paginate(3);
+                ->paginate($articleNumber);
         return $catagory;
     }
 }
