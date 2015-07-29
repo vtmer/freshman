@@ -21,11 +21,17 @@ class IndexController extends FrontBaseController {
 	{
         $catagories = $this->getCatagoryArticle(Config::get('freshman.initShowArticleNumber'));
 
-        return View::make('Front/Index')->with(array(
-            'catagoriesIndex' => $catagories,
-            'headerChoose' => Config::get('freshman.chooseIndex'),
-            'newestInformation' => $catagories[Config::get('freshman.newestInformationIndex')]
-        ));
+        if (!$this->isMobile())
+            return View::make('Front/Index')->with(array(
+                'catagoriesIndex' => $catagories,
+                'headerChoose' => Config::get('freshman.chooseIndex'),
+                'newestInformation' => $catagories[Config::get('freshman.newestInformationIndex')]
+            ));
+        else
+            return View::make('mobile/Index')->with(array(
+                'headerChoose' => Config::get('freshman.chooseIndex'),
+                'newestInformation' => $catagories[Config::get('freshman.newestInformationIndex')]
+            ));
 	}
 
     /**

@@ -23,13 +23,25 @@ class ArticleController extends FrontBaseController {
 
         $this->increaseViewNumber($id);
 
-        return View::make('Front/Content')->with(array(
-            'catagoriesList' => $catagories,
-            'currentCatagory' => $currentCatagory,
-            'chooseCatagoryId' => Config::get('freshman.nullChooseCatagoryId'),
-            'headerChoose' => $catagory,
-            'article' => $article
-        ));
+        if (!$this->isMobile())
+            return View::make('Front/Content')->with(array(
+                'catagoriesList' => $catagories,
+                'currentCatagory' => $currentCatagory,
+                'chooseCatagoryId' => Config::get('freshman.nullChooseCatagoryId'),
+                'headerChoose' => $catagory,
+                'article' => $article
+            ));
+        else {
+            $nextArticle = ArticleModel::find($article->id + 1);
+            $lastArticle = ArticleModel::find($article->id - 1);
+            return View::make('mobile/Content')->with(array(
+                'article' => $article,
+                'nextArticle' => $nextArticle,
+                'lastArticle' => $lastArticle,
+                'headerChoose' => $catagory,
+                'chooseCatagoryId' => Config::get('freshman.nullChooseCatagoryId')
+            ));
+        }
     }
 
     /**
