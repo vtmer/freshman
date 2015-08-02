@@ -1,7 +1,14 @@
 $(document).ready(function() {
 	campusChange();
 	scrollCreate();
+    imgSizeChange();
 });
+function imgSizeChange() {
+    var imgs = $('.passage-body').find('img');
+    for (var i = 0; i < imgs.length; i++) {
+        imgs.eq(i).css({width: "100%", height: "100%"});
+    }
+}
 function campusChange() {
 	$('.campus-list .active a').click(function(event) {
 		var e = window.event || event;
